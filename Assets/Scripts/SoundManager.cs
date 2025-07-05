@@ -71,7 +71,7 @@ public class SoundManager : MonoBehaviour
     }
     
     // Fade to a specific volume without stopping
-    public void FadeLoopingMusicTo(float targetVolume, float fadeDuration)
+    public void FadeLoopingMusicTo(float targetVolume, float fadeDuration = 1f)
     {
         if (activeAudioSource != null)
         {
@@ -85,10 +85,12 @@ public class SoundManager : MonoBehaviour
     
     private IEnumerator FadeOutCoroutine(float duration)
     {
+        if (activeAudioSource == null) yield break;
+        
         float startVolume = activeAudioSource.volume;
         float timer = 0f;
         
-        while (timer < duration)
+        while (timer < duration && activeAudioSource != null)
         {
             timer += Time.deltaTime;
             float normalizedTime = timer / duration;
@@ -96,17 +98,25 @@ public class SoundManager : MonoBehaviour
             yield return null;
         }
         
-        activeAudioSource.volume = 0f;
-        StopLoopingMusic();
+        if (activeAudioSource != null)
+        {
+            activeAudioSource.volume = 0f;
+            activeAudioSource.Stop();
+            Destroy(activeAudioSource.gameObject);
+            activeAudioSource = null;
+        }
+        
         fadeCoroutine = null;
     }
     
     private IEnumerator FadeToVolumeCoroutine(float targetVolume, float duration)
     {
+        if (activeAudioSource == null) yield break;
+        
         float startVolume = activeAudioSource.volume;
         float timer = 0f;
         
-        while (timer < duration)
+        while (timer < duration && activeAudioSource != null)
         {
             timer += Time.deltaTime;
             float normalizedTime = timer / duration;
@@ -114,7 +124,11 @@ public class SoundManager : MonoBehaviour
             yield return null;
         }
         
-        activeAudioSource.volume = targetVolume;
+        if (activeAudioSource != null)
+        {
+            activeAudioSource.volume = targetVolume;
+        }
+        
         fadeCoroutine = null;
     }
 }

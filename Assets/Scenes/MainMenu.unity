@@ -202,7 +202,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9, y: -2, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 306695117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9339ac40e9d483c418052204922bd8a4, type: 3}
+  m_Script: {fileID: 11500000, guid: c78c064375f5f9d47b5efd5612e12ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -812,10 +812,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d788fbe519e034a925a468b08d9e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 306695120}
+  playerTransform: {fileID: 306695119}
   tilemapTransform: {fileID: 1184963466}
   titleLoadClip: {fileID: 8300000, guid: 922445e139e592043b2f17ad49e0f057, type: 3}
   buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
+  mainMenuThemeClip: {fileID: 8300000, guid: 678979e617548d24fb5adf350ad97c8a, type: 3}
 --- !u!1 &2045295032
 GameObject:
   m_ObjectHideFlags: 0

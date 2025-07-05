@@ -1,12 +1,32 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/MainMenu.uss?fileID=7433441132597879392&amp;guid=05db8605061ae3340a76b56c9bb3173c&amp;type=3#MainMenu" />
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenu.uss?fileID=7433441132597879392&amp;guid=05db8605061ae3340a76b56c9bb3173c&amp;type=3" />
     <ui:VisualElement style="flex-grow: 1; align-items: center; margin-top: 4%; margin-right: 4%; margin-bottom: 4%; margin-left: 4%; -unity-font-definition: url(&quot;project://database/Assets/Fonts/RobotoMono-VariableFont_wght.ttf?fileID=12800000&amp;guid=a1f49eb60ab741b49b9b9f01aa6a6bdb&amp;type=3#RobotoMono-VariableFont_wght&quot;); font-size: 14%; scale: 1 1;">
         <ui:Label text="GRIEF" name="Title" style="font-size: 100px; color: rgb(255, 255, 255); transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; letter-spacing: 0; margin-top: 4%;" />
-        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-items: center; align-content: flex-start; align-self: flex-end; font-size: 70px; margin-top: 20px; margin-right: 10%; margin-bottom: 10%; margin-left: 20px; justify-content: space-around; border-bottom-width: 0;">
-            <ui:VisualElement style="flex-grow: 1; justify-content: space-evenly;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-items: center; align-content: flex-start; align-self: flex-end; font-size: 70px; margin-top: 20px; margin-right: 10%; margin-bottom: 10%; margin-left: 20px; justify-content: space-around; border-bottom-width: 0; height: 0%;">
+            <ui:VisualElement style="flex-grow: 1; justify-content: space-evenly; height: 100%; flex-direction: column;">
                 <ui:Button text="START" name="StartGame" style="width: 100%; opacity: 1;" />
+                <ui:Button text="LEVELS" name="LevelSelect" style="width: 100%; opacity: 1;" />
                 <ui:Button text="CREDITS" name="Credits" style="width: 100%; opacity: 1;" />
                 <ui:Button text="EXIT" name="ExitGame" style="width: 100%; opacity: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="LevelSelectContainer" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%;">
+            <ui:VisualElement name="LevelSelect" style="flex-grow: 1; flex-direction: row; margin-right: 5%; margin-left: 5%; margin-bottom: 0; padding-bottom: 0%;">
+                <ui:Button text="1" name="1" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; background-color: rgba(0, 0, 0, 0.44);">
+                    <ui:VisualElement name="1sprite" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/PC.png?fileID=-6893851535811529201&amp;guid=07b9b9e912a47054f9bab1ab8dbb8035&amp;type=3#PC_5&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%;" />
+                </ui:Button>
+                <ui:Button text="2" name="2" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; font-size: 50%;">
+                    <ui:VisualElement name="2sprite" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/PNG/Objects.png?fileID=7642980859614939925&amp;guid=4096506704fea104c975e5c8fcfea0e4&amp;type=3#Objects_0&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 80% 80%;" />
+                </ui:Button>
+                <ui:Button text="3" name="3" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%;">
+                    <ui:VisualElement name="3sprite" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/boss_demon_slime_FREE_v1.0/aseprite/demon_slime_FREE_v1.0.aseprite?fileID=-7842780898595971855&amp;guid=ceb94f7cb684d9d4884d908f41ece0cf&amp;type=3#Frame_2&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:Button>
+                <ui:Button text="4" name="4" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-left: 2%; margin-right: 2%;">
+                    <ui:VisualElement name="4sprite" style="flex-grow: 1;" />
+                </ui:Button>
+                <ui:Button text="5" name="5" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%;">
+                    <ui:VisualElement style="flex-grow: 1;" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
