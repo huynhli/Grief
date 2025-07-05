@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Player")]
-    [SerializeField] private Player player;
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform tilemapTransform;
 
     [Header("UX")]
@@ -39,7 +39,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnMouseEnter(MouseEnterEvent evt)
     {
-        SoundManager.instance.PlaySFXClip(buttonHoverClip, player.transform, 0.4f);
+        SoundManager.instance.PlaySFXClip(buttonHoverClip, playerTransform, 0.4f);
     }
 
      private void StartButtonClicked()
@@ -88,6 +88,7 @@ public class MainMenuManager : MonoBehaviour
         exitButton = uiDocument.rootVisualElement.Q<Button>("ExitGame");
         startButton.style.opacity = 0f;
         creditsButton.style.opacity = 0f;
+        levelSelectButton.style.opacity = 0f;
         exitButton.style.opacity = 0f;
 
         startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
@@ -116,7 +117,7 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator AnimateWalkIn(float duration, float destination, Vector2 unitVector)
     {
-        Vector2 start = player.transform.position;
+        Vector2 start = playerTransform.position;
         float elapsed = 0f;
         Vector2 target = start + unitVector * destination;
 
@@ -124,7 +125,7 @@ public class MainMenuManager : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float progress = elapsed / duration;
-            player.transform.position = Vector2.Lerp(start, target, progress); // Lerp smoothly goes from one position to another
+            playerTransform.position = Vector2.Lerp(start, target, progress); // Lerp smoothly goes from one position to another
             yield return null; // Wait one frame
         }
     }
@@ -133,7 +134,7 @@ public class MainMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 
-        SoundManager.instance.PlaySFXClip(titleLoadClip, player.transform, 15f);
+        SoundManager.instance.PlaySFXClip(titleLoadClip, playerTransform, 15f);
 
         for (int i = 0; i < titleText.Length; i++)
         {
@@ -144,9 +145,8 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator FadeButtons()
     {
-        SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, player.transform, 10f);
-
         yield return new WaitForSeconds(1.0f);
+        SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, playerTransform, 0.1f);
         StartCoroutine(MoveStuff(2.5f));
         float duration = 4f;
         float elapsed = 0f;
@@ -158,6 +158,7 @@ public class MainMenuManager : MonoBehaviour
             float opacity = Mathf.Lerp(0f, 1f, percent);
             startButton.style.opacity = opacity;
             creditsButton.style.opacity = opacity;
+            levelSelectButton.style.opacity = opacity;
             exitButton.style.opacity = opacity;
             yield return null;
         }
@@ -169,7 +170,7 @@ public class MainMenuManager : MonoBehaviour
         float duration = 2.5f;
         float elapsed = 0f;
 
-        Vector3 playerStart = player.transform.position;
+        Vector3 playerStart = playerTransform.position;
         Vector3 tilemapStart = tilemapTransform.position;
         Vector3 playerTarget = playerStart + Vector3.left * distance;
         Vector3 tilemapTarget = tilemapStart + Vector3.left * distance;
@@ -182,7 +183,7 @@ public class MainMenuManager : MonoBehaviour
             // Smooth skewed curve using a single mathematical function
             float curveValue = SmoothSkewedCurve(t);
 
-            player.transform.position = Vector3.Lerp(playerStart, playerTarget, curveValue);
+            playerTransform.position = Vector3.Lerp(playerStart, playerTarget, curveValue);
             tilemapTransform.position = Vector3.Lerp(tilemapStart, tilemapTarget, curveValue);
 
             yield return null;
