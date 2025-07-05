@@ -1,11 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenu.uss?fileID=7433441132597879392&amp;guid=05db8605061ae3340a76b56c9bb3173c&amp;type=3#MainMenu" />
     <ui:VisualElement style="flex-grow: 1; align-items: center; margin-top: 4%; margin-right: 4%; margin-bottom: 4%; margin-left: 4%; -unity-font-definition: url(&quot;project://database/Assets/Fonts/RobotoMono-VariableFont_wght.ttf?fileID=12800000&amp;guid=a1f49eb60ab741b49b9b9f01aa6a6bdb&amp;type=3#RobotoMono-VariableFont_wght&quot;); font-size: 14%; scale: 1 1;">
-        <ui:Label text="GRIEF" name="Title" style="font-size: 100px; color: rgb(255, 255, 255); transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; letter-spacing: 0;" />
+        <ui:Label text="GRIEF" name="Title" style="font-size: 100px; color: rgb(255, 255, 255); transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; letter-spacing: 0; margin-top: 4%;" />
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-items: center; align-content: flex-start; align-self: flex-end; font-size: 70px; margin-top: 20px; margin-right: 10%; margin-bottom: 10%; margin-left: 20px; justify-content: space-around; border-bottom-width: 0;">
-            <ui:Button text="START" name="StartGame" style="width: 100%; opacity: 1;" />
-            <ui:Button text="CREDITS" name="Credits" style="width: 100%; opacity: 1;" />
-            <ui:Button text="EXIT" name="ExitGame" style="width: 100%; opacity: 1;" />
+            <ui:VisualElement style="flex-grow: 1; justify-content: space-evenly;">
+                <ui:Button text="START" name="StartGame" style="width: 100%; opacity: 1;" />
+                <ui:Button text="CREDITS" name="Credits" style="width: 100%; opacity: 1;" />
+                <ui:Button text="EXIT" name="ExitGame" style="width: 100%; opacity: 1;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
