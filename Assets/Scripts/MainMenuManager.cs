@@ -15,14 +15,35 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform tilemapTransform;
 
-    [Header("UX")]
+    [Header("UXML")]
     private UIDocument uiDocument;
+
+    [Header("Main Menu")]
     private Label titleElement;
     private string titleText;
     private Button startButton;
     private Button levelSelectButton;
     private Button creditsButton;
     private Button exitButton;
+
+    [Header("Level Select")]
+    private VisualElement levelSelectMenu;
+    private Button unlockAllButton;
+    private Button levelOneButton;
+    private VisualElement levelOneCover;
+    private Button levelTwoButton;
+    private VisualElement levelTwoCover;
+    private Button levelThreeButton;
+    private VisualElement levelThreeCover;
+    private Button levelFourButton;
+    private VisualElement levelFourCover;
+    private Button levelFiveButton;
+    private VisualElement levelFiveCover;
+    private Button levelSelectBackButton;
+
+    [Header("Credits")]
+    private VisualElement creditsMenu;
+    // private Button creditsBackButton;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip titleLoadClip;
@@ -32,26 +53,110 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        SetUI();
+        Awake();
         StartCoroutine(AnimateSequence());
     }
 
+    private void SetUI()
+    {
+        uiDocument = GetComponent<UIDocument>();
 
+        // Set title
+        titleElement = uiDocument.rootVisualElement.Q<Label>("Title");
+        titleText = titleElement.text;
+        titleElement.text = "";
+
+        // Find main menu buttons, set invisible, enable hovering + clicks 
+        startButton = uiDocument.rootVisualElement.Q<Button>("StartGame");
+        creditsButton = uiDocument.rootVisualElement.Q<Button>("Credits");
+        levelSelectButton = uiDocument.rootVisualElement.Q<Button>("LevelSelect");
+        exitButton = uiDocument.rootVisualElement.Q<Button>("ExitGame");
+        startButton.style.opacity = 0f;
+        creditsButton.style.opacity = 0f;
+        levelSelectButton.style.opacity = 0f;
+        exitButton.style.opacity = 0f;
+        startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        startButton.clicked += () => LevelSelectedClicked(1);
+        creditsButton.clicked += CreditsButtonClicked;
+        levelSelectButton.clicked += LevelSelectButtonClicked;
+        exitButton.clicked += ExitButtonClicked;
+
+        // Invisible level select menu, + enable for interactions
+        levelSelectMenu = uiDocument.rootVisualElement.Q<VisualElement>("LevelSelectMenu");
+        unlockAllButton = uiDocument.rootVisualElement.Q<Button>("UnlockAll");
+        levelOneButton = uiDocument.rootVisualElement.Q<Button>("1");
+        levelOneCover = uiDocument.rootVisualElement.Q<VisualElement>("1cover");
+        levelTwoButton = uiDocument.rootVisualElement.Q<Button>("2");
+        levelTwoCover = uiDocument.rootVisualElement.Q<VisualElement>("2cover");
+        levelThreeButton = uiDocument.rootVisualElement.Q<Button>("3");
+        levelThreeCover = uiDocument.rootVisualElement.Q<VisualElement>("3cover");
+        levelFourButton = uiDocument.rootVisualElement.Q<Button>("4");
+        levelFourCover = uiDocument.rootVisualElement.Q<VisualElement>("4cover");
+        levelFiveButton = uiDocument.rootVisualElement.Q<Button>("5");
+        levelFiveCover = uiDocument.rootVisualElement.Q<VisualElement>("5cover");
+        levelSelectBackButton = uiDocument.rootVisualElement.Q<Button>("LevelBack");
+        levelSelectMenu.style.opacity = 0f;
+        levelOneButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelTwoButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelThreeButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelFourButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelFiveButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelSelectBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelOneButton.clicked += () => LevelSelectedClicked(1);
+        levelTwoButton.clicked += () => LevelSelectedClicked(2);
+        levelThreeButton.clicked += () => LevelSelectedClicked(3);
+        levelFourButton.clicked += () => LevelSelectedClicked(4);
+        levelFiveButton.clicked += () => LevelSelectedClicked(5);
+        levelSelectBackButton.clicked += () => BackButtonClicked(0);
+
+        // Credits menu
+        creditsMenu = uiDocument.rootVisualElement.Q<VisualElement>("CreditsMenu");
+    }
+
+    // Button Logic //
     private void OnMouseEnter(MouseEnterEvent evt)
     {
         SoundManager.instance.PlaySFXClip(buttonHoverClip, playerTransform, 0.4f);
     }
 
-     private void StartButtonClicked()
+    private void LevelSelectedClicked(int levelNum)
     {
+        IEnumerator WaitForSoundThenLoad()
+        {
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(levelNum);
+        }
         StartCoroutine(WaitForSoundThenLoad());
     }
 
-    private IEnumerator WaitForSoundThenLoad()
+    private void BackButtonClicked(int det)
     {
-        yield return new WaitForSeconds(1f);
-
-        SceneManager.LoadScene(1);
+        if (det == 0) // coming from level select
+        {
+            levelSelectMenu.style.opacity = 0f;
+            titleElement.style.opacity = 1f;
+            startButton.style.opacity = 1f;
+            levelSelectButton.style.opacity = 1f;
+            creditsButton.style.opacity = 1f;
+            exitButton.style.opacity = 1f;
+            
+        }
+        else if (det == 1) // coming from credits
+        {
+            creditsMenu.style.opacity = 0f;
+            titleElement.style.opacity = 1f;
+            startButton.style.opacity = 1f;
+            levelSelectButton.style.opacity = 1f;
+            creditsButton.style.opacity = 1f;
+            exitButton.style.opacity = 1f;
+        }
+        else
+        {
+            Debug.Log("Dafuq");
+        }
     }
 
     private void CreditsButtonClicked()
@@ -72,36 +177,7 @@ public class MainMenuManager : MonoBehaviour
 #endif
     }
 
-    private void SetUI()
-    {
-        uiDocument = GetComponent<UIDocument>();
-
-        // Set title
-        titleElement = uiDocument.rootVisualElement.Q<Label>("Title");
-        titleText = titleElement.text;
-        titleElement.text = "";
-
-        // Set buttons
-        startButton = uiDocument.rootVisualElement.Q<Button>("StartGame");
-        creditsButton = uiDocument.rootVisualElement.Q<Button>("Credits");
-        levelSelectButton = uiDocument.rootVisualElement.Q<Button>("LevelSelect");
-        exitButton = uiDocument.rootVisualElement.Q<Button>("ExitGame");
-        startButton.style.opacity = 0f;
-        creditsButton.style.opacity = 0f;
-        levelSelectButton.style.opacity = 0f;
-        exitButton.style.opacity = 0f;
-
-        startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        
-        startButton.clicked += StartButtonClicked;
-        creditsButton.clicked += CreditsButtonClicked;
-        levelSelectButton.clicked += LevelSelectButtonClicked;
-        exitButton.clicked += ExitButtonClicked;
-    }
-
+    // Animations //
     IEnumerator AnimateSequence()
     {
         // player walk right and up, then shift background to left, sfx
@@ -181,21 +257,12 @@ public class MainMenuManager : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / duration); // Clamp to prevent overshoot
 
             // Smooth skewed curve using a single mathematical function
-            float curveValue = SmoothSkewedCurve(t);
+            float curveValue = 1f - Mathf.Exp(-4f * t);
 
             playerTransform.position = Vector3.Lerp(playerStart, playerTarget, curveValue);
             tilemapTransform.position = Vector3.Lerp(tilemapStart, tilemapTarget, curveValue);
 
             yield return null;
         }
-
     }
-
-    private float SmoothSkewedCurve(float t)
-    {
-        // Method 4: Exponential-like curve
-        return 1f - Mathf.Exp(-4f * t); // Very fast start, smooth approach to end
-    }
-    
-
 }

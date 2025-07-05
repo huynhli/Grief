@@ -10,24 +10,39 @@
                 <ui:Button text="EXIT" name="ExitGame" style="width: 100%; opacity: 1;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="LevelSelectContainer" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%;">
-            <ui:VisualElement name="LevelSelect" style="flex-grow: 1; flex-direction: row; margin-right: 5%; margin-left: 5%; margin-bottom: 0; padding-bottom: 0%;">
-                <ui:Button text="1" name="1" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; background-color: rgba(0, 0, 0, 0.44);">
-                    <ui:VisualElement name="1sprite" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/PC.png?fileID=-6893851535811529201&amp;guid=07b9b9e912a47054f9bab1ab8dbb8035&amp;type=3#PC_5&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%;" />
+        <ui:VisualElement name="LevelSelectMenu" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%;">
+            <ui:Button text="Unlock All Levels" name="UnlockAll" style="width: 40%; height: 10%; margin-bottom: 2%; margin-top: 14%; margin-right: 4%; margin-left: 4%; align-self: center; font-size: 50px;" />
+            <ui:VisualElement name="Levels" style="flex-grow: 1; flex-direction: row; margin-right: 5%; margin-left: 5%; margin-bottom: 0; padding-bottom: 0%;">
+                <ui:Button name="1" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; background-color: rgba(0, 0, 0, 0.44); margin-top: 1%; background-image: url(&quot;project://database/Assets/Sprites/PC.png?fileID=-6893851535811529201&amp;guid=07b9b9e912a47054f9bab1ab8dbb8035&amp;type=3#PC_5&quot;); -unity-background-scale-mode: scale-to-fit; color: rgb(255, 255, 255); align-self: auto; justify-content: center; background-size: 30% 70%;">
+                    <ui:Label text="1" name="1num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
+                        <ui:VisualElement name="1cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
+                    </ui:Label>
                 </ui:Button>
-                <ui:Button text="2" name="2" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; font-size: 50%;">
-                    <ui:VisualElement name="2sprite" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/PNG/Objects.png?fileID=7642980859614939925&amp;guid=4096506704fea104c975e5c8fcfea0e4&amp;type=3#Objects_0&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 80% 80%;" />
+                <ui:Button name="2" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Bargaining/Objects.png?fileID=7642980859614939925&amp;guid=4096506704fea104c975e5c8fcfea0e4&amp;type=3#Objects_0&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 40% 50%;">
+                    <ui:Label text="2" name="2num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
+                        <ui:VisualElement name="2cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
+                    </ui:Label>
                 </ui:Button>
-                <ui:Button text="3" name="3" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%;">
-                    <ui:VisualElement name="3sprite" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/boss_demon_slime_FREE_v1.0/aseprite/demon_slime_FREE_v1.0.aseprite?fileID=-7842780898595971855&amp;guid=ceb94f7cb684d9d4884d908f41ece0cf&amp;type=3#Frame_2&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="3" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Anger/aseprite/demon_slime_FREE_v1.0.aseprite?fileID=-7842780898595971855&amp;guid=ceb94f7cb684d9d4884d908f41ece0cf&amp;type=3#Frame_2&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 30% 70%;">
+                    <ui:Label text="3" name="3num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
+                        <ui:VisualElement name="3cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
+                    </ui:Label>
                 </ui:Button>
-                <ui:Button text="4" name="4" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-left: 2%; margin-right: 2%;">
-                    <ui:VisualElement name="4sprite" style="flex-grow: 1;" />
+                <ui:Button name="4" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-left: 2%; margin-right: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Depression/Agis.png?fileID=6701719294234715542&amp;guid=abb4ccf010fa19740b693f106a42665e&amp;type=3#Agis_6&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 40% 80%;">
+                    <ui:Label text="4" name="4num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
+                        <ui:VisualElement name="4cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
+                    </ui:Label>
                 </ui:Button>
-                <ui:Button text="5" name="5" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%;">
-                    <ui:VisualElement style="flex-grow: 1;" />
+                <ui:Button name="5" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; margin-top: 1%; justify-content: center;">
+                    <ui:Label text="?" name="5num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
+                        <ui:VisualElement name="5cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
+                    </ui:Label>
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-self: flex-start; margin-left: 5%;">
+            <ui:Button text="Button" name="LevelBack" style="font-size: 60px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CreditsMenu" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; bottom: 0%; right: 0%; background-color: rgba(236, 37, 37, 0.58);" />
     </ui:VisualElement>
 </ui:UXML>
