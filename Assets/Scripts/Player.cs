@@ -12,11 +12,13 @@ public class Player : MonoBehaviour
     public float moveSpeed = 15f;
     float horizontalMovement;
     float verticalMovement;
+    private bool isFacingRight = true;
 
     [Header("Dashing")]
     public float dashSpeed = 40f;
-    public float dashDuration = 0.1f;
-    public float dashCooldown = 0.1f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+    private Vector2 dashDirection;
     bool isDashing;
     bool canDash = true;
     TrailRenderer trailRenderer;
@@ -26,16 +28,19 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (isDashing)
-        // {
-        //     return;
-        // }
+        if (isDashing)
+        {
+            return;
+        }
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, verticalMovement * moveSpeed * 2 / 3);
+
+        Flip();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -58,20 +63,42 @@ public class Player : MonoBehaviour
 
     }
 
-    // public void Dash(InputAction.CallbackContext context)
-    // {
-    //     if (context.performed && canDash)
-    //     {
-    //         StartCoroutine(DashCoroutine());
-    //     }
-    // }
+    private void Flip()
+    {
+        if (isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 ls = transform.localScale;
+            ls.x *= -1f;
+            transform.localScale = ls;
+        }
+    }
 
-    // private IEnumerator DashCoroutine()
-    // {
-    //     canDash = false;
-    //     isDashing = true;
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed && canDash)
+        {
+            StartCoroutine(DashCoroutine());
+        }
+    }
 
-    //     trailRenderer.emitting = true;
-    //     float dashDirection = ;
-    // }
+    private IEnumerator DashCoroutine()
+    {
+        canDash = false;
+        isDashing = true;
+        trailRenderer.emitting = true;
+
+        dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
+
+        rb.linearVelocity = new Vector2(dashDirection.x * dashSpeed, dashDirection.y * dashSpeed);
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+        trailRenderer.emitting = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+
+    }
 }
