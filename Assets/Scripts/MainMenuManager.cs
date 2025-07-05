@@ -43,13 +43,13 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Credits")]
     private VisualElement creditsMenu;
-    // private Button creditsBackButton;
+    private Button creditsBackButton;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip titleLoadClip;
     [SerializeField] private AudioClip buttonHoverClip;
     [SerializeField] private AudioClip mainMenuThemeClip;
-    
+
 
     void Awake()
     {
@@ -80,8 +80,8 @@ public class MainMenuManager : MonoBehaviour
         levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         startButton.clicked += () => LevelSelectedClicked(1);
-        creditsButton.clicked += CreditsButtonClicked;
         levelSelectButton.clicked += LevelSelectButtonClicked;
+        creditsButton.clicked += CreditsButtonClicked;
         exitButton.clicked += ExitButtonClicked;
 
         // Invisible level select menu, + enable for interactions
@@ -98,22 +98,28 @@ public class MainMenuManager : MonoBehaviour
         levelFiveButton = uiDocument.rootVisualElement.Q<Button>("5");
         levelFiveCover = uiDocument.rootVisualElement.Q<VisualElement>("5cover");
         levelSelectBackButton = uiDocument.rootVisualElement.Q<Button>("LevelBack");
-        levelSelectMenu.style.opacity = 0f;
+        levelSelectMenu.style.display = DisplayStyle.None;
         levelOneButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelTwoButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelThreeButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelFourButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelFiveButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelSelectBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        unlockAllButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelOneButton.clicked += () => LevelSelectedClicked(1);
         levelTwoButton.clicked += () => LevelSelectedClicked(2);
         levelThreeButton.clicked += () => LevelSelectedClicked(3);
         levelFourButton.clicked += () => LevelSelectedClicked(4);
         levelFiveButton.clicked += () => LevelSelectedClicked(5);
         levelSelectBackButton.clicked += () => BackButtonClicked(0);
+        unlockAllButton.clicked += UnlockAllButtonClicked;
 
         // Credits menu
         creditsMenu = uiDocument.rootVisualElement.Q<VisualElement>("CreditsMenu");
+        creditsBackButton = uiDocument.rootVisualElement.Q<Button>("CreditBackButton");
+        creditsMenu.style.display = DisplayStyle.None;
+        creditsBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        creditsBackButton.clicked += () => BackButtonClicked(1);
     }
 
     // Button Logic //
@@ -136,22 +142,23 @@ public class MainMenuManager : MonoBehaviour
     {
         if (det == 0) // coming from level select
         {
-            levelSelectMenu.style.opacity = 0f;
-            titleElement.style.opacity = 1f;
-            startButton.style.opacity = 1f;
-            levelSelectButton.style.opacity = 1f;
-            creditsButton.style.opacity = 1f;
-            exitButton.style.opacity = 1f;
-            
+            levelSelectMenu.style.display = DisplayStyle.None;
+            titleElement.style.display = DisplayStyle.Flex;
+            startButton.style.display = DisplayStyle.Flex;
+            levelSelectButton.style.display = DisplayStyle.Flex;
+            creditsButton.style.display = DisplayStyle.Flex;
+            exitButton.style.display = DisplayStyle.Flex;
+            StartCoroutine(MoveStuff(2f, new Vector3(-1.25f, 1f, 0f)));
+
         }
         else if (det == 1) // coming from credits
         {
-            creditsMenu.style.opacity = 0f;
-            titleElement.style.opacity = 1f;
-            startButton.style.opacity = 1f;
-            levelSelectButton.style.opacity = 1f;
-            creditsButton.style.opacity = 1f;
-            exitButton.style.opacity = 1f;
+            creditsMenu.style.display = DisplayStyle.None;
+            titleElement.style.display = DisplayStyle.Flex;
+            startButton.style.display = DisplayStyle.Flex;
+            levelSelectButton.style.display = DisplayStyle.Flex;
+            creditsButton.style.display = DisplayStyle.Flex;
+            exitButton.style.display = DisplayStyle.Flex;
         }
         else
         {
@@ -159,14 +166,51 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    private void UnlockAllButtonClicked()
+    {
+        levelTwoCover.style.opacity = 0f;
+        levelThreeCover.style.opacity = 0f;
+        levelFourCover.style.opacity = 0f;
+        levelFiveCover.style.opacity = 0f;
+        levelTwoButton.SetEnabled(true);
+        levelThreeButton.SetEnabled(true);
+        levelFourButton.SetEnabled(true);
+        levelFiveButton.SetEnabled(true);
+    }
+
     private void CreditsButtonClicked()
     {
-        Debug.Log("Credit");
+        creditsMenu.style.display = DisplayStyle.Flex;
+        titleElement.style.display = DisplayStyle.None;
+        startButton.style.display = DisplayStyle.None;
+        levelSelectButton.style.display = DisplayStyle.None;
+        creditsButton.style.display = DisplayStyle.None;
+        exitButton.style.display = DisplayStyle.None;
     }
 
     private void LevelSelectButtonClicked()
     {
-        Debug.Log("Lvl select");
+        levelSelectMenu.style.display = DisplayStyle.Flex;
+        titleElement.style.display = DisplayStyle.None;
+        startButton.style.display = DisplayStyle.None;
+        levelSelectButton.style.display = DisplayStyle.None;
+        creditsButton.style.display = DisplayStyle.None;
+        exitButton.style.display = DisplayStyle.None;
+
+        // disable levels locked
+        levelOneCover.style.opacity = 0f;
+        levelTwoCover.style.opacity = 1f;
+        levelThreeCover.style.opacity = 1f;
+        levelFourCover.style.opacity = 1f;
+        levelFiveCover.style.opacity = 1f;
+
+        levelTwoButton.SetEnabled(false);
+        levelThreeButton.SetEnabled(false);
+        levelFourButton.SetEnabled(false);
+        levelFiveButton.SetEnabled(false);
+
+        // animation to move
+        StartCoroutine(MoveStuff(2f, new Vector3(1.25f, -1f, 0f)));
     }
 
     private void ExitButtonClicked()
@@ -183,7 +227,7 @@ public class MainMenuManager : MonoBehaviour
         // player walk right and up, then shift background to left, sfx
         yield return StartCoroutine(AnimateWalkIn(4f, 9f, Vector2.right));
 
-        yield return StartCoroutine(AnimateWalkIn(2f, 1f, Vector2.up));
+        yield return StartCoroutine(AnimateWalkIn(1.25f, 1f, Vector2.up));
 
         // enable buttons + text and music, sfx
         yield return StartCoroutine(AnimateTitle());
@@ -223,7 +267,7 @@ public class MainMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, playerTransform, 0.1f);
-        StartCoroutine(MoveStuff(2.5f));
+        StartCoroutine(MoveStuff(2.5f, Vector3.left));
         float duration = 4f;
         float elapsed = 0f;
 
@@ -240,16 +284,16 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    IEnumerator MoveStuff(float distance)
+    IEnumerator MoveStuff(float distance, Vector3 direction)
     {
 
-        float duration = 2.5f;
+        float duration = 1f;
         float elapsed = 0f;
 
         Vector3 playerStart = playerTransform.position;
         Vector3 tilemapStart = tilemapTransform.position;
-        Vector3 playerTarget = playerStart + Vector3.left * distance;
-        Vector3 tilemapTarget = tilemapStart + Vector3.left * distance;
+        Vector3 playerTarget = playerStart + direction * distance;
+        Vector3 tilemapTarget = tilemapStart + direction * distance;
 
         while (elapsed < duration)
         {
@@ -265,4 +309,5 @@ public class MainMenuManager : MonoBehaviour
             yield return null;
         }
     }
+
 }

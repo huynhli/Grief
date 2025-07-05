@@ -57,7 +57,8 @@
 }
 
 .lvl-select-buttons {
-    height: 20%;
+    height: 40%;
     font-size: 50px;
     width: 150%;
+    padding-bottom: 0%;
 }
