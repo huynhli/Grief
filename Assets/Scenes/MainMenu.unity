@@ -814,7 +814,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 306695120}
   tilemapTransform: {fileID: 1184963466}
-  titleLoadAudio: {fileID: 8300000, guid: 922445e139e592043b2f17ad49e0f057, type: 3}
+  titleLoadClip: {fileID: 8300000, guid: 922445e139e592043b2f17ad49e0f057, type: 3}
+  buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
 --- !u!1 &2045295032
 GameObject:
   m_ObjectHideFlags: 0
