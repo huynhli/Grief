@@ -51,9 +51,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip mainMenuThemeClip;
     
 
-    void Start()
+    void Awake()
     {
-        Awake();
+        SetUI();
         StartCoroutine(AnimateSequence());
     }
 
