@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
+    private Animator animator;
 
     [Header("Movement")]
     public Rigidbody2D rb;
@@ -18,9 +20,6 @@ public class Player : MonoBehaviour
     bool isDashing;
     bool canDash = true;
     TrailRenderer trailRenderer;
-
-    [Header("Animator")]
-    private Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
