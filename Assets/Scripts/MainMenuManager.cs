@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Tilemaps;
 using System;
-using System.Collections; 
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private Player player;
+    [SerializeField] private Transform tilemapTransform;
 
     [Header("UX")]
     private UIDocument uiDocument;
@@ -16,6 +22,8 @@ public class MainMenuManager : MonoBehaviour
     private Button startButton;
     private Button creditsButton;
     private Button exitButton;
+    [SerializeField] private AudioClip titleLoadClip;
+    [SerializeField] private AudioClip buttonHoverClip;
 
     void Start()
     {
@@ -24,10 +32,33 @@ public class MainMenuManager : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseEnter(MouseEnterEvent evt)
     {
+        SoundManager.instance.PlaySFXClip(buttonHoverClip, player.transform, 0.4f);
+    }
 
+     private void StartButtonClicked()
+    {
+        StartCoroutine(WaitForSoundThenLoad());
+    }
+
+    private IEnumerator WaitForSoundThenLoad()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(1);
+    }
+
+    private void CreditsButtonClicked()
+    {
+        Debug.Log("Credit");
+    }
+
+    private void ExitButtonClicked()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying=false;
+#endif
     }
 
     private void SetUI()
@@ -46,6 +77,14 @@ public class MainMenuManager : MonoBehaviour
         startButton.style.opacity = 0f;
         creditsButton.style.opacity = 0f;
         exitButton.style.opacity = 0f;
+
+        startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        
+        startButton.clicked += StartButtonClicked;
+        creditsButton.clicked += CreditsButtonClicked;
+        exitButton.clicked += ExitButtonClicked;
     }
 
     IEnumerator AnimateSequence()
@@ -57,7 +96,7 @@ public class MainMenuManager : MonoBehaviour
 
         // enable buttons + text and music, sfx
         yield return StartCoroutine(AnimateTitle());
-    
+
         yield return StartCoroutine(FadeButtons());
     }
 
@@ -80,6 +119,8 @@ public class MainMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 
+        SoundManager.instance.PlaySFXClip(titleLoadClip, player.transform, 15f);
+
         for (int i = 0; i < titleText.Length; i++)
         {
             titleElement.text += titleText[i];
@@ -90,6 +131,7 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator FadeButtons()
     {
         yield return new WaitForSeconds(1.0f);
+        StartCoroutine(MoveStuff(2.5f));
         float duration = 4f;
         float elapsed = 0f;
 
@@ -104,4 +146,39 @@ public class MainMenuManager : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator MoveStuff(float distance)
+    {
+
+        float duration = 2.5f;
+        float elapsed = 0f;
+
+        Vector3 playerStart = player.transform.position;
+        Vector3 tilemapStart = tilemapTransform.position;
+        Vector3 playerTarget = playerStart + Vector3.left * distance;
+        Vector3 tilemapTarget = tilemapStart + Vector3.left * distance;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration); // Clamp to prevent overshoot
+
+            // Smooth skewed curve using a single mathematical function
+            float curveValue = SmoothSkewedCurve(t);
+
+            player.transform.position = Vector3.Lerp(playerStart, playerTarget, curveValue);
+            tilemapTransform.position = Vector3.Lerp(tilemapStart, tilemapTarget, curveValue);
+
+            yield return null;
+        }
+
+    }
+
+    private float SmoothSkewedCurve(float t)
+    {
+        // Method 4: Exponential-like curve
+        return 1f - Mathf.Exp(-4f * t); // Very fast start, smooth approach to end
+    }
+    
+
 }
