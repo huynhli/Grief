@@ -20,10 +20,15 @@ public class MainMenuManager : MonoBehaviour
     private Label titleElement;
     private string titleText;
     private Button startButton;
+    private Button levelSelectButton;
     private Button creditsButton;
     private Button exitButton;
+
+    [Header("Sounds")]
     [SerializeField] private AudioClip titleLoadClip;
     [SerializeField] private AudioClip buttonHoverClip;
+    [SerializeField] private AudioClip mainMenuThemeClip;
+    
 
     void Start()
     {
@@ -44,13 +49,19 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator WaitForSoundThenLoad()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
+
         SceneManager.LoadScene(1);
     }
 
     private void CreditsButtonClicked()
     {
         Debug.Log("Credit");
+    }
+
+    private void LevelSelectButtonClicked()
+    {
+        Debug.Log("Lvl select");
     }
 
     private void ExitButtonClicked()
@@ -73,6 +84,7 @@ public class MainMenuManager : MonoBehaviour
         // Set buttons
         startButton = uiDocument.rootVisualElement.Q<Button>("StartGame");
         creditsButton = uiDocument.rootVisualElement.Q<Button>("Credits");
+        levelSelectButton = uiDocument.rootVisualElement.Q<Button>("LevelSelect");
         exitButton = uiDocument.rootVisualElement.Q<Button>("ExitGame");
         startButton.style.opacity = 0f;
         creditsButton.style.opacity = 0f;
@@ -80,10 +92,12 @@ public class MainMenuManager : MonoBehaviour
 
         startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         
         startButton.clicked += StartButtonClicked;
         creditsButton.clicked += CreditsButtonClicked;
+        levelSelectButton.clicked += LevelSelectButtonClicked;
         exitButton.clicked += ExitButtonClicked;
     }
 
@@ -130,6 +144,8 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator FadeButtons()
     {
+        SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, player.transform, 10f);
+
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(MoveStuff(2.5f));
         float duration = 4f;
