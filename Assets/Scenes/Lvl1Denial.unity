@@ -166,6 +166,11 @@ MonoBehaviour:
   bulletSpeed: 50
   enemy: 0
   invincibilityDuration: 1.5
+  isInvincible: 0
+  dashSFX: {fileID: 8300000, guid: fb3f4d168d61b6d49a430a94c5dba59a, type: 3}
+  fireSFX: {fileID: 8300000, guid: 2b1885623f0b9d64fbf0976de95d54a5, type: 3}
+  deathSFX: {fileID: 8300000, guid: 44b6ee1f90443e2429688266be61c393, type: 3}
+  playerHurtSFX: {fileID: 8300000, guid: 24d6f17996ebbdb46939c738c135d534, type: 3}
 --- !u!114 &157662305
 MonoBehaviour:
   m_ObjectHideFlags: 0
