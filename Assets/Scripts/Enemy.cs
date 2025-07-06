@@ -1,16 +1,16 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Boss")]
     private Rigidbody2D rb;
-    public int maxHealth = 30;
+    public virtual int MaxHealth { get; set; } = 200;
     public int currentHealth;
 
     [Header("Damage Taken")]
-    private SpriteRenderer spriteRenderer;
-    private Color ogColor;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -18,8 +18,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        currentHealth = maxHealth;
-        ogColor = spriteRenderer.color;
+        currentHealth = MaxHealth;
     }
 
     // Update is called once per frame
@@ -31,18 +30,18 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        StartCoroutine(FlashWhite());
+        StartCoroutine(FlashYellow());
         if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    private IEnumerator FlashWhite()
+    private IEnumerator FlashYellow()
     {
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = Color.yellow;
         yield return new WaitForSeconds(0.2f);
-        spriteRenderer.color = ogColor;
+        spriteRenderer.color = new Color(1f, 1f, 1f, 1f); 
     }
 
     protected virtual void Die()
