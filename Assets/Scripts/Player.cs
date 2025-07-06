@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        isInvincible = true;
         trailRenderer.emitting = true;
 
         dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
@@ -116,6 +117,7 @@ public class Player : MonoBehaviour
 
         isDashing = false;
         trailRenderer.emitting = false;
+        isInvincible = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
