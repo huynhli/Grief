@@ -154,11 +154,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9339ac40e9d483c418052204922bd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
   rb: {fileID: 157662306}
   moveSpeed: 15
   dashSpeed: 40
   dashDuration: 0.2
   dashCooldown: 1
+  bulletPrefab: {fileID: 5012302426932157593, guid: 974eb5b543ebc314c81e839ce8d57a1d, type: 3}
+  bulletSpeed: 50
+  enemy: 0
+  invincibilityDuration: 1.5
 --- !u!114 &157662305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,6 +943,7 @@ GameObject:
   - component: {fileID: 721518724}
   - component: {fileID: 721518723}
   - component: {fileID: 721518722}
+  - component: {fileID: 721518725}
   m_Layer: 0
   m_Name: SkellyBoss
   m_TagString: Untagged
@@ -1010,7 +1017,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5743903864428815690, guid: 772d77347c0e0294f94ab63a2b3d6f51, type: 3}
+  m_Sprite: {fileID: 4408931256765324866, guid: 772d77347c0e0294f94ab63a2b3d6f51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1210,6 +1217,20 @@ PolygonCollider2D:
       - {x: 4.1255884, y: 4.3166}
       - {x: -4.9312525, y: 4.3156557}
   m_UseDelaunayMesh: 0
+--- !u!114 &721518725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721518718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccea5183f46b5f41af928e7d4910675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  player: {fileID: 157662304}
 --- !u!1 &1025795544
 GameObject:
   m_ObjectHideFlags: 0
