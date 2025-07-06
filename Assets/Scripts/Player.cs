@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     public int maxHealth = 5;
     public int currentHealth;
+    private Transform transform;
 
     [Header("Movement")]
     public Rigidbody2D rb;
@@ -37,9 +38,15 @@ public class Player : MonoBehaviour
     public bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip dashSFX;
+    [SerializeField] private AudioClip fireSFX;
+    [SerializeField] private AudioClip deathSFX;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         trailRenderer = GetComponent<TrailRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -109,6 +116,8 @@ public class Player : MonoBehaviour
         isInvincible = true;
         trailRenderer.emitting = true;
 
+        SoundManager.instance.PlaySFXClip(dashSFX, transform, 300f);
+
         dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
 
         rb.linearVelocity = new Vector2(dashDirection.x * dashSpeed, dashDirection.y * dashSpeed);
@@ -132,6 +141,7 @@ public class Player : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
+        SoundManager.instance.PlaySFXClip(fireSFX, transform, 10f);
     }
 
     public void TakeDamage()
@@ -155,6 +165,8 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("isDead", true);
+            yield return new WaitForSeconds(2f);
+            SoundManager.instance.PlaySFXClip(deathSFX, transform, 4f);
             // player dead -- call game over, anmimation, etc.
         }
     }
