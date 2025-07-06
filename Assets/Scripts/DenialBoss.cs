@@ -176,10 +176,10 @@ public class DenialBoss : Enemy
         }
     }
 
-    // Signature denial attack - creates bullet-blocking barriers
- IEnumerator BulletBlockerVortexAttack()
+    // Attack 1: Bullet blocker vortex - unavoidable, forces player to break bullets
+    IEnumerator BulletBlockerVortexAttack()
     {
-        float attackDuration = 10f;
+        float attackDuration = 5f;
         float spawnInterval = 0.3f;
         float elapsedTime = 0f;
         
@@ -206,8 +206,8 @@ public class DenialBoss : Enemy
                 // Give the blocker movement toward the center, then outward
                 StartCoroutine(MoveBulletBlockerInVortex(blocker, spawnPos, currentAngle));
                 
-                // Destroy after a short time
-                Destroy(blocker, 3f);
+                // Destroy after much longer time for extended travel
+                Destroy(blocker, 10f);
             }
             
             elapsedTime += spawnInterval;
@@ -221,14 +221,14 @@ public class DenialBoss : Enemy
     {
         if (blocker == null) yield break;
         
-        float moveTime = 2f;
+        float moveTime = 2f; // Much longer travel time
         float elapsedTime = 0f;
         
         while (blocker != null && elapsedTime < moveTime)
         {
             float progress = elapsedTime / moveTime;
             float currentAngle = startAngle + (progress * 180f); // Half rotation during movement
-            float currentRadius = Mathf.Lerp(3f, 8f, progress); // Move outward
+            float currentRadius = Mathf.Lerp(3f, 20f, progress); // Move much further outward
             
             float radians = currentAngle * Mathf.Deg2Rad;
             Vector3 newPos = bossTransform.position + new Vector3(
@@ -244,44 +244,16 @@ public class DenialBoss : Enemy
         }
     }
 
-    // Creates a wave of denial energy
+    // Attack 2: Ripple waves originating from boss with gaps
     IEnumerator DenialWaveAttack()
     {
         int totalWaves = 6;
-        float waveInterval = 1f;
+        float waveInterval = 4f;
         
         for (int wave = 0; wave < totalWaves; wave++)
         {
-            // Determine wave direction (alternating)
-            bool leftToRight = (wave % 2 == 0);
-            float waveAngle = leftToRight ? 0f : 180f;
-            Vector3 waveStartPos = bossTransform.position + new Vector3(
-                leftToRight ? -15f : 15f,
-                UnityEngine.Random.Range(-3f, 3f),
-                0f
-            );
-            
-            // Create bullets with gaps
-            for (int i = 0; i < bulletsPerWave; i++)
-            {
-                // Create gaps at specific intervals
-                bool isGap = (i % 5 == 2 || i % 5 == 3); // 2 bullet gap every 5 bullets
-                if (isGap) continue;
-                
-                Vector3 bulletPos = waveStartPos + new Vector3(0f, (i - bulletsPerWave/2) * 0.8f, 0f);
-                GameObject waveBullet = Instantiate(bullet, bulletPos, Quaternion.identity);
-                
-                // Give bullet velocity
-                Rigidbody2D bulletRb = waveBullet.GetComponent<Rigidbody2D>();
-                if (bulletRb == null)
-                    bulletRb = waveBullet.AddComponent<Rigidbody2D>();
-                
-                Vector3 direction = leftToRight ? Vector3.right : Vector3.left;
-                bulletRb.linearVelocity = direction * 6f;
-                
-                // Destroy bullet after time
-                Destroy(waveBullet, 5f);
-            }
+            // Create ripple wave emanating from boss
+            StartCoroutine(CreateRippleWave(wave));
             
             yield return new WaitForSeconds(waveInterval);
         }
@@ -289,24 +261,76 @@ public class DenialBoss : Enemy
         yield return new WaitForSeconds(1f);
     }
 
+    IEnumerator CreateRippleWave(int waveNumber)
+    {
+        float maxRadius = 30f;
+        float waveSpeed = 20f;
+        float currentRadius = 2f;
+        
+        // Create gap angle - this will be the safe spot in the ripple
+        float gapAngle = UnityEngine.Random.Range(0f, 360f);
+        float gapSize = 45f; // Size of the gap in degrees
+        
+        while (currentRadius < maxRadius)
+        {
+            // Calculate number of bullets based on circumference
+            int bulletsInRing = Mathf.RoundToInt(currentRadius * 2f);
+            bulletsInRing = Mathf.Max(8, bulletsInRing); // Minimum 8 bullets
+            
+            float angleStep = 360f / bulletsInRing;
+            
+            for (int i = 0; i < bulletsInRing; i++)
+            {
+                float currentAngle = i * angleStep;
+                
+                // Check if this bullet is in the gap
+                float angleDifference = Mathf.Abs(Mathf.DeltaAngle(currentAngle, gapAngle));
+                if (angleDifference < gapSize / 2f)
+                    continue; // Skip bullets in the gap
+                
+                float radians = currentAngle * Mathf.Deg2Rad;
+                Vector3 bulletPos = bossTransform.position + new Vector3(
+                    Mathf.Cos(radians) * currentRadius,
+                    Mathf.Sin(radians) * currentRadius,
+                    0f
+                );
+                
+                GameObject rippleBullet = Instantiate(bullet, bulletPos, Quaternion.identity);
+                
+                // Give bullets outward velocity
+                Rigidbody2D bulletRb = rippleBullet.GetComponent<Rigidbody2D>();
+                if (bulletRb == null)
+                    bulletRb = rippleBullet.AddComponent<Rigidbody2D>();
+                
+                Vector3 direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
+                bulletRb.linearVelocity = direction * 4f;
+                
+                // Destroy bullet after time
+                Destroy(rippleBullet, 6f);
+            }
+            
+            currentRadius += waveSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
 
-    // Bullet hell attack
+
+    // Attack 3: Orbs that target player one by one with fast acceleration
     IEnumerator OrbsAttack()
     {
         int totalWaves = 4;
-        float waveInterval = 2f;
+        float waveInterval = 3f;
         
         for (int wave = 0; wave < totalWaves; wave++)
         {
-            // Store player's current position as target
-            Vector3 playerPos = player.transform.position;
-            
             // Spawn orbs in a circle around the boss
+            GameObject[] orbs = new GameObject[orbsPerWave];
+            
             for (int i = 0; i < orbsPerWave; i++)
             {
                 float angle = (360f / orbsPerWave) * i;
                 float radians = angle * Mathf.Deg2Rad;
-                float spawnRadius = 4f;
+                float spawnRadius = 5f;
                 
                 Vector3 spawnPos = bossTransform.position + new Vector3(
                     Mathf.Cos(radians) * spawnRadius,
@@ -315,12 +339,30 @@ public class DenialBoss : Enemy
                 );
                 
                 GameObject orb = Instantiate(bullet, spawnPos, Quaternion.identity);
+                orbs[i] = orb;
                 
-                // Start the orb movement coroutine
-                StartCoroutine(MoveOrbToTarget(orb, playerPos));
+                // Make orb visually distinct (you can change this based on your bullet prefab)
+                SpriteRenderer orbRenderer = orb.GetComponent<SpriteRenderer>();
+                if (orbRenderer != null)
+                {
+                    orbRenderer.color = Color.yellow;
+                    orb.transform.localScale = Vector3.one * 1.2f; // Make orbs slightly larger
+                }
                 
-                // Destroy orb after time if it hasn't hit anything
-                Destroy(orb, 8f);
+                // Destroy orb after time if it hasn't been launched
+                Destroy(orb, 12f);
+            }
+            
+            // Launch orbs one by one at the player
+            for (int i = 0; i < orbsPerWave; i++)
+            {
+                if (orbs[i] != null)
+                {
+                    Vector3 playerPos = player.transform.position;
+                    StartCoroutine(LaunchOrbAtPlayer(orbs[i], playerPos));
+                }
+                
+                yield return new WaitForSeconds(0.15f); // Short delay between each orb launch
             }
             
             yield return new WaitForSeconds(waveInterval);
@@ -329,13 +371,8 @@ public class DenialBoss : Enemy
         yield return new WaitForSeconds(1f);
     }
 
-    IEnumerator MoveOrbToTarget(GameObject orb, Vector3 targetPos)
+    IEnumerator LaunchOrbAtPlayer(GameObject orb, Vector3 targetPos)
     {
-        if (orb == null) yield break;
-        
-        // Wait a moment before starting movement
-        yield return new WaitForSeconds(0.5f);
-        
         if (orb == null) yield break;
         
         Rigidbody2D orbRb = orb.GetComponent<Rigidbody2D>();
@@ -345,10 +382,10 @@ public class DenialBoss : Enemy
         // Calculate direction to target
         Vector3 direction = (targetPos - orb.transform.position).normalized;
         
-        // Start with slow movement, then accelerate
-        float acceleration = 2f;
-        float maxSpeed = 12f;
-        float currentSpeed = 3f;
+        // Fast acceleration - start with moderate speed and rapidly increase
+        float acceleration = 25f; // Much higher acceleration
+        float maxSpeed = 20f; // Higher max speed
+        float currentSpeed = 5f;
         
         while (orb != null && currentSpeed < maxSpeed)
         {
@@ -362,7 +399,7 @@ public class DenialBoss : Enemy
             orbRb.linearVelocity = direction * maxSpeed;
     }
 
-    // Phase 2 ultimate attack - maximum denial
+    // Attack 4: Ultimate attack - combines all previous attacks
     IEnumerator UltimateBlockAttack()
     {
         float attackDuration = 15f;
@@ -374,7 +411,8 @@ public class DenialBoss : Enemy
         
         yield return new WaitForSeconds(attackDuration);
     }
-    
+
+
     IEnumerator UltimateVortexComponent()
     {
         float duration = 12f;
@@ -399,8 +437,8 @@ public class DenialBoss : Enemy
                 );
                 
                 GameObject blocker = Instantiate(bulletBlockerPrefab, spawnPos, Quaternion.identity);
-                StartCoroutine(MoveBulletBlockerInVortex(blocker, spawnPos, currentAngle));
-                Destroy(blocker, 2.5f);
+                StartCoroutine(UltimateMoveBlockerInVortex(blocker, spawnPos, currentAngle));
+                Destroy(blocker, 6f); // Longer travel time
             }
             
             elapsedTime += spawnInterval;
@@ -408,38 +446,90 @@ public class DenialBoss : Enemy
         }
     }
 
+    IEnumerator UltimateMoveBlockerInVortex(GameObject blocker, Vector3 startPos, float startAngle)
+    {
+        if (blocker == null) yield break;
+        
+        float moveTime = 4f; // Faster movement for ultimate
+        float elapsedTime = 0f;
+        
+        while (blocker != null && elapsedTime < moveTime)
+        {
+            float progress = elapsedTime / moveTime;
+            float currentAngle = startAngle + (progress * 180f);
+            float currentRadius = Mathf.Lerp(2f, 18f, progress); // Travel far and fast
+            
+            float radians = currentAngle * Mathf.Deg2Rad;
+            Vector3 newPos = bossTransform.position + new Vector3(
+                Mathf.Cos(radians) * currentRadius,
+                Mathf.Sin(radians) * currentRadius,
+                0f
+            );
+            
+            blocker.transform.position = newPos;
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     IEnumerator UltimateWaveComponent()
     {
         yield return new WaitForSeconds(2f); // Offset start time
         
-        for (int wave = 0; wave < 8; wave++) // More waves
+        for (int wave = 0; wave < 4; wave++) // More frequent ripples
         {
-            bool leftToRight = (wave % 2 == 0);
-            Vector3 waveStartPos = bossTransform.position + new Vector3(
-                leftToRight ? -12f : 12f,
-                UnityEngine.Random.Range(-4f, 4f),
-                0f
-            );
+            StartCoroutine(CreateUltimateRippleWave(wave));
+            yield return new WaitForSeconds(2f); // Faster ripple waves
+        }
+    }
+
+    IEnumerator CreateUltimateRippleWave(int waveNumber)
+    {
+        float maxRadius = 12f;
+        float waveSpeed = 10f; // Faster ripple expansion
+        float currentRadius = 1.5f;
+        
+        // Smaller gap for ultimate difficulty
+        float gapAngle = UnityEngine.Random.Range(0f, 360f);
+        float gapSize = 35f; // Smaller gap
+        
+        while (currentRadius < maxRadius)
+        {
+            int bulletsInRing = Mathf.RoundToInt(currentRadius * 2.5f);
+            bulletsInRing = Mathf.Max(6, bulletsInRing);
             
-            for (int i = 0; i < 10; i++) // Fewer bullets per wave but more frequent
+            float angleStep = 360f / bulletsInRing;
+            
+            for (int i = 0; i < bulletsInRing; i++)
             {
-                bool isGap = (i % 4 == 2); // Smaller gaps
-                if (isGap) continue;
+                float currentAngle = i * angleStep;
                 
-                Vector3 bulletPos = waveStartPos + new Vector3(0f, (i - 5) * 0.9f, 0f);
-                GameObject waveBullet = Instantiate(bullet, bulletPos, Quaternion.identity);
+                float angleDifference = Mathf.Abs(Mathf.DeltaAngle(currentAngle, gapAngle));
+                if (angleDifference < gapSize / 2f)
+                    continue;
                 
-                Rigidbody2D bulletRb = waveBullet.GetComponent<Rigidbody2D>();
+                float radians = currentAngle * Mathf.Deg2Rad;
+                Vector3 bulletPos = bossTransform.position + new Vector3(
+                    Mathf.Cos(radians) * currentRadius,
+                    Mathf.Sin(radians) * currentRadius,
+                    0f
+                );
+                
+                GameObject rippleBullet = Instantiate(bullet, bulletPos, Quaternion.identity);
+                
+                Rigidbody2D bulletRb = rippleBullet.GetComponent<Rigidbody2D>();
                 if (bulletRb == null)
-                    bulletRb = waveBullet.AddComponent<Rigidbody2D>();
+                    bulletRb = rippleBullet.AddComponent<Rigidbody2D>();
                 
-                Vector3 direction = leftToRight ? Vector3.right : Vector3.left;
-                bulletRb.linearVelocity = direction * 7f; // Faster bullets
+                Vector3 direction = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
+                bulletRb.linearVelocity = direction * 5f; // Faster bullets
                 
-                Destroy(waveBullet, 4f);
+                Destroy(rippleBullet, 4f);
             }
             
-            yield return new WaitForSeconds(1.2f); // Faster waves
+            currentRadius += waveSpeed * Time.deltaTime;
+            yield return null;
         }
     }
 
@@ -447,16 +537,16 @@ public class DenialBoss : Enemy
     {
         yield return new WaitForSeconds(4f); // Offset start time
         
-        for (int wave = 0; wave < 3; wave++) // Fewer but more intense waves
+        for (int wave = 0; wave < 3; wave++)
         {
-            Vector3 playerPos = player.transform.position;
+            // Spawn orbs in circle
+            GameObject[] orbs = new GameObject[10]; // Fewer orbs but more aggressive
             
-            // Spawn more orbs
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 10; i++)
             {
-                float angle = (360f / 12) * i;
+                float angle = (360f / 10) * i;
                 float radians = angle * Mathf.Deg2Rad;
-                float spawnRadius = 5f;
+                float spawnRadius = 6f;
                 
                 Vector3 spawnPos = bossTransform.position + new Vector3(
                     Mathf.Cos(radians) * spawnRadius,
@@ -465,12 +555,58 @@ public class DenialBoss : Enemy
                 );
                 
                 GameObject orb = Instantiate(bullet, spawnPos, Quaternion.identity);
-                StartCoroutine(MoveOrbToTarget(orb, playerPos));
-                Destroy(orb, 6f);
+                orbs[i] = orb;
+                
+                SpriteRenderer orbRenderer = orb.GetComponent<SpriteRenderer>();
+                if (orbRenderer != null)
+                {
+                    orbRenderer.color = Color.red; // Red for ultimate attack
+                    orb.transform.localScale = Vector3.one * 1.3f;
+                }
+                
+                Destroy(orb, 8f);
             }
             
-            yield return new WaitForSeconds(3f);
+            // Launch orbs rapidly one by one
+            for (int i = 0; i < 10; i++)
+            {
+                if (orbs[i] != null)
+                {
+                    Vector3 playerPos = player.transform.position;
+                    StartCoroutine(UltimateLaunchOrbAtPlayer(orbs[i], playerPos));
+                }
+                
+                yield return new WaitForSeconds(0.1f); // Very fast succession
+            }
+            
+            yield return new WaitForSeconds(2.5f);
         }
+    }
+
+    IEnumerator UltimateLaunchOrbAtPlayer(GameObject orb, Vector3 targetPos)
+    {
+        if (orb == null) yield break;
+        
+        Rigidbody2D orbRb = orb.GetComponent<Rigidbody2D>();
+        if (orbRb == null)
+            orbRb = orb.AddComponent<Rigidbody2D>();
+        
+        Vector3 direction = (targetPos - orb.transform.position).normalized;
+        
+        // Even faster acceleration for ultimate
+        float acceleration = 35f;
+        float maxSpeed = 25f;
+        float currentSpeed = 8f;
+        
+        while (orb != null && currentSpeed < maxSpeed)
+        {
+            orbRb.linearVelocity = direction * currentSpeed;
+            currentSpeed += acceleration * Time.deltaTime;
+            yield return null;
+        }
+        
+        if (orb != null)
+            orbRb.linearVelocity = direction * maxSpeed;
     }
 
     IEnumerator PlayDenialEffect()
