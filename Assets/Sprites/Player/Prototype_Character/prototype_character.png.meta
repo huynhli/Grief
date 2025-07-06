@@ -212,10 +212,10 @@ TextureImporter:
       name: prototype_character_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 360
-        width: 14
-        height: 16
+        x: 10
+        y: 361
+        width: 12
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: prototype_character_1
       rect:
         serializedVersion: 2
-        x: 41
-        y: 360
-        width: 14
-        height: 15
+        x: 40
+        y: 361
+        width: 16
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,13 +256,13 @@ TextureImporter:
       name: prototype_character_2
       rect:
         serializedVersion: 2
-        x: 9
+        x: 8
         y: 328
-        width: 13
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -278,13 +278,13 @@ TextureImporter:
       name: prototype_character_3
       rect:
         serializedVersion: 2
-        x: 41
+        x: 40
         y: 328
-        width: 13
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -300,13 +300,13 @@ TextureImporter:
       name: prototype_character_4
       rect:
         serializedVersion: 2
-        x: 9
+        x: 8
         y: 296
-        width: 14
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -322,13 +322,13 @@ TextureImporter:
       name: prototype_character_5
       rect:
         serializedVersion: 2
-        x: 41
+        x: 40
         y: 296
-        width: 14
+        width: 16
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -344,13 +344,13 @@ TextureImporter:
       name: prototype_character_6
       rect:
         serializedVersion: 2
-        x: 10
+        x: 8
         y: 264
-        width: 12
-        height: 16
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -366,13 +366,13 @@ TextureImporter:
       name: prototype_character_7
       rect:
         serializedVersion: 2
-        x: 41
+        x: 40
         y: 264
-        width: 14
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -388,13 +388,13 @@ TextureImporter:
       name: prototype_character_8
       rect:
         serializedVersion: 2
-        x: 74
-        y: 264
-        width: 12
-        height: 16
+        x: 72
+        y: 265
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -410,13 +410,13 @@ TextureImporter:
       name: prototype_character_9
       rect:
         serializedVersion: 2
-        x: 105
+        x: 104
         y: 264
-        width: 14
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -432,13 +432,13 @@ TextureImporter:
       name: prototype_character_10
       rect:
         serializedVersion: 2
-        x: 10
+        x: 8
         y: 232
-        width: 11
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -454,13 +454,13 @@ TextureImporter:
       name: prototype_character_11
       rect:
         serializedVersion: 2
-        x: 41
+        x: 40
         y: 232
-        width: 12
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -476,13 +476,13 @@ TextureImporter:
       name: prototype_character_12
       rect:
         serializedVersion: 2
-        x: 74
-        y: 232
-        width: 11
+        x: 72
+        y: 233
+        width: 16
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -498,13 +498,13 @@ TextureImporter:
       name: prototype_character_13
       rect:
         serializedVersion: 2
-        x: 106
+        x: 104
         y: 232
-        width: 11
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -520,13 +520,13 @@ TextureImporter:
       name: prototype_character_14
       rect:
         serializedVersion: 2
-        x: 10
+        x: 8
         y: 200
-        width: 13
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -542,13 +542,13 @@ TextureImporter:
       name: prototype_character_15
       rect:
         serializedVersion: 2
-        x: 41
-        y: 200
-        width: 14
+        x: 40
+        y: 201
+        width: 16
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -564,13 +564,13 @@ TextureImporter:
       name: prototype_character_16
       rect:
         serializedVersion: 2
-        x: 73
-        y: 200
-        width: 13
+        x: 72
+        y: 201
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 2}
       customData: 
       outline: []
       physicsShape: []
@@ -586,13 +586,13 @@ TextureImporter:
       name: prototype_character_17
       rect:
         serializedVersion: 2
-        x: 105
+        x: 104
         y: 200
-        width: 14
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -608,13 +608,13 @@ TextureImporter:
       name: prototype_character_18
       rect:
         serializedVersion: 2
-        x: 9
+        x: 8
         y: 168
-        width: 14
-        height: 16
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -630,13 +630,13 @@ TextureImporter:
       name: prototype_character_19
       rect:
         serializedVersion: 2
-        x: 41
-        y: 168
-        width: 14
-        height: 16
+        x: 40
+        y: 169
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -654,11 +654,11 @@ TextureImporter:
         serializedVersion: 2
         x: 8
         y: 136
-        width: 13
-        height: 16
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -676,11 +676,11 @@ TextureImporter:
         serializedVersion: 2
         x: 40
         y: 136
-        width: 13
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -696,10 +696,10 @@ TextureImporter:
       name: prototype_character_22
       rect:
         serializedVersion: 2
-        x: 9
-        y: 104
-        width: 14
-        height: 15
+        x: 8
+        y: 105
+        width: 16
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -718,13 +718,13 @@ TextureImporter:
       name: prototype_character_23
       rect:
         serializedVersion: 2
-        x: 41
+        x: 40
         y: 104
-        width: 14
+        width: 16
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -743,10 +743,10 @@ TextureImporter:
         x: 8
         y: 72
         width: 16
-        height: 14
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -763,12 +763,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 40
-        y: 72
+        y: 73
         width: 16
-        height: 10
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -787,10 +787,10 @@ TextureImporter:
         x: 72
         y: 72
         width: 16
-        height: 11
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -806,13 +806,13 @@ TextureImporter:
       name: prototype_character_27
       rect:
         serializedVersion: 2
-        x: 10
+        x: 8
         y: 40
-        width: 15
-        height: 13
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -830,11 +830,11 @@ TextureImporter:
         serializedVersion: 2
         x: 42
         y: 40
-        width: 17
-        height: 9
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -847,38 +847,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prototype_character_29
+      name: prototype_character_30
       rect:
         serializedVersion: 2
         x: 74
         y: 40
-        width: 17
-        height: 10
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 071fdc0e0adb894c0800000000000000
-      internalID: -4280462947151646352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prototype_character_30
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 8
-        width: 15
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -891,38 +869,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prototype_character_31
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 8
-        width: 17
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ddd9fa57e35954210800000000000000
-      internalID: 1316622561570692573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: prototype_character_32
       rect:
         serializedVersion: 2
-        x: 69
-        y: 8
-        width: 17
-        height: 10
+        x: 8
+        y: 9
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       customData: 
       outline: []
       physicsShape: []
@@ -930,6 +886,50 @@ TextureImporter:
       bones: []
       spriteID: 49d9f4bd451ce1350800000000000000
       internalID: 5989437124650179988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_34
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 1, z: 0, w: 1}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05868b438eb9bcf45a5c6b73c88948e2
+      internalID: -1255218155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_36
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 9
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 1}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d700653aba542478e6b852e46c06b4
+      internalID: -834830557
       vertices: []
       indices: 
       edges: []
@@ -975,6 +975,10 @@ TextureImporter:
       prototype_character_30: -8693093938180812259
       prototype_character_31: 1316622561570692573
       prototype_character_32: 5989437124650179988
+      prototype_character_33: 1846978057
+      prototype_character_34: -1255218155
+      prototype_character_35: -484116547
+      prototype_character_36: -834830557
       prototype_character_4: 5238044292592336801
       prototype_character_5: 4584923541809903837
       prototype_character_6: 4035579806969883910
