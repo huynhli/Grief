@@ -8,8 +8,11 @@ public class DenialBoss : Enemy
     public Player player;
     [SerializeField] private Transform bossTransform;
     [HideInInspector]
-    private int maxHealth = 300;
+    private int maxHealth = 10;
     public override int MaxHealth => maxHealth;
+    private string bossTitle = "Denial";
+    public override string BossTitle => bossTitle;
+
     private Animator animator;
     private bool isInvulnerable = true; // Start invulnerable during intro
     private bool battleStarted = false;

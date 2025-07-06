@@ -9,6 +9,8 @@ public class SkellyBoss : Enemy
     [SerializeField] private bool isInvulnerable;
     private int maxHealth = 300;
     public override int MaxHealth => maxHealth;
+    private string bossTitle = "Bargain";
+    public override string BossTitle => bossTitle;
 
     [Header("Spawning")]
     public GameObject Tower1Prefab;

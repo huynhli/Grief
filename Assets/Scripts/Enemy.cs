@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Boss")]
     private Rigidbody2D rb;
     public abstract int MaxHealth { get; }
+    public abstract string BossTitle { get; }
     public int currentHealth;
 
     [Header("Damage Taken")]
