@@ -7,6 +7,8 @@ public class SkellyBoss : Enemy
     public Player player;
     private Animator animator;
     [SerializeField] private bool isInvulnerable;
+    private int maxHealth = 300;
+    public override int MaxHealth => maxHealth;
 
     [Header("Spawning")]
     public GameObject Tower1Prefab;
@@ -53,7 +55,7 @@ public class SkellyBoss : Enemy
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (base.currentHealth < base.MaxHealth / 2)
+        if (base.currentHealth < maxHealth / 2)
         if (!isInvulnerable)
         {
             SoundManager.instance.PlaySFXClip(bossHurtSFX, player.transform, 0.4f);
@@ -93,7 +95,7 @@ public class SkellyBoss : Enemy
         animator.SetFloat("Speed", animSpeed);
         if (phaseNum == 1)
         {
-            while (base.currentHealth > base.MaxHealth / 2)
+            while (base.currentHealth > maxHealth / 2)
             {
                 // Reset to idle and wait for idle state to finish once
                 animator.SetInteger("AttackType", 0);

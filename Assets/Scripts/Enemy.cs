@@ -2,11 +2,11 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [Header("Boss")]
     private Rigidbody2D rb;
-    public virtual int MaxHealth { get; set; } = 200;
+    public abstract int MaxHealth { get; }
     public int currentHealth;
 
     [Header("Damage Taken")]

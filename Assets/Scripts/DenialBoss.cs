@@ -7,7 +7,9 @@ public class DenialBoss : Enemy
     [Header("Boss Phases")]
     public Player player;
     [SerializeField] private Transform bossTransform;
-    public override int MaxHealth { get; set; } = 300;
+    [HideInInspector]
+    private int maxHealth = 300;
+    public override int MaxHealth => maxHealth;
     private Animator animator;
     private bool isInvulnerable = true; // Start invulnerable during intro
     private bool battleStarted = false;
@@ -55,7 +57,7 @@ public class DenialBoss : Enemy
         base.TakeDamage(damage);
 
         // Check for phase two transition
-        if (base.currentHealth < base.MaxHealth / 2 && !phaseTwo)
+        if (base.currentHealth < maxHealth / 2 && !phaseTwo)
         {
             phaseTwo = true;
             animator.SetBool("isPhaseTwo", true);

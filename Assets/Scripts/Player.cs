@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     [Header("Attack")]
     public GameObject bulletPrefab;
     public float bulletSpeed = 50f;
+    public float shootCooldown = 0.3f; // Time between shots in seconds
+    private float lastShootTime = 0f;
 
     [Header("Damage Boss")]
     public bool enemy;
@@ -136,6 +138,12 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
+        // Check if enough time has passed since the last shot
+        if (Time.time - lastShootTime < shootCooldown)
+        {
+            return; // Exit early if still on cooldown
+        }
+
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 shootDirection = (mousePosition - playerTransform.position).normalized;
@@ -143,6 +151,9 @@ public class Player : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, playerTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
         SoundManager.instance.PlaySFXClip(fireSFX, playerTransform, 10f);
+        
+        // Update the last shoot time
+        lastShootTime = Time.time;
     }
 
     public void TakeDamage()
