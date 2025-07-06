@@ -35,9 +35,9 @@ public class SkellyBoss : Enemy
         base.Die();
     }
 
-    protected override void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
-        base.TakeDamage();
+        base.TakeDamage(damage);
         if (base.currentHealth < base.maxHealth / 2)
         {
             phaseTwo = true;
