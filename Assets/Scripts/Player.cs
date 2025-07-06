@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator TakeDamage()
+    public IEnumerator TakeDamage()
     {
         isInvincible = true;
         currentHealth -= 1;

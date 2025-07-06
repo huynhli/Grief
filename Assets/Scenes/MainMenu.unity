@@ -872,7 +872,7 @@ MonoBehaviour:
   tilemapTransform: {fileID: 1184963466}
   titleLoadClip: {fileID: 8300000, guid: 922445e139e592043b2f17ad49e0f057, type: 3}
   buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
-  mainMenuThemeClip: {fileID: 8300000, guid: 678979e617548d24fb5adf350ad97c8a, type: 3}
+  mainMenuThemeClip: {fileID: 8300000, guid: c0adba69556899c4ba6818988e0fff2a, type: 3}
 --- !u!1 &2045295032
 GameObject:
   m_ObjectHideFlags: 0

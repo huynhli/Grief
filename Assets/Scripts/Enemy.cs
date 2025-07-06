@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Boss")]
     private Rigidbody2D rb;
-    public int maxHealth = 150;
+    public int maxHealth = 30;
     public int currentHealth;
 
     [Header("Damage Taken")]
@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     private Color ogColor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = ogColor;
     }
 
-    void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }
