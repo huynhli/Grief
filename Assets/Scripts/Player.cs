@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     public int maxHealth = 5;
     public int currentHealth;
+    private Transform transform;
 
     [Header("Movement")]
     public Rigidbody2D rb;
@@ -34,12 +35,18 @@ public class Player : MonoBehaviour
 
     [Header("Damage Taken")]
     public float invincibilityDuration = 1.5f;
-    private bool isInvincible = false;
+    public bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip dashSFX;
+    [SerializeField] private AudioClip fireSFX;
+    [SerializeField] private AudioClip deathSFX;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         trailRenderer = GetComponent<TrailRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -106,7 +113,10 @@ public class Player : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        isInvincible = true;
         trailRenderer.emitting = true;
+
+        SoundManager.instance.PlaySFXClip(dashSFX, transform, 300f);
 
         dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
 
@@ -116,6 +126,7 @@ public class Player : MonoBehaviour
 
         isDashing = false;
         trailRenderer.emitting = false;
+        isInvincible = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -130,19 +141,18 @@ public class Player : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
-        Destroy(bullet, 2f);
+        SoundManager.instance.PlaySFXClip(fireSFX, transform, 10f);
     }
 
-    // Contact damage
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage()
     {
-        if (collision.CompareTag("Enemy") && !isInvincible)
+        if (!isInvincible)
         {
-            StartCoroutine(TakeDamage());
+            StartCoroutine(TakeDamageRoutine());
         }
     }
 
-    public IEnumerator TakeDamage()
+    public IEnumerator TakeDamageRoutine()
     {
         isInvincible = true;
         currentHealth -= 1;
@@ -155,6 +165,8 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("isDead", true);
+            yield return new WaitForSeconds(2f);
+            SoundManager.instance.PlaySFXClip(deathSFX, transform, 4f);
             // player dead -- call game over, anmimation, etc.
         }
     }

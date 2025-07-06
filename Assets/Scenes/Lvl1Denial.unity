@@ -166,6 +166,7 @@ MonoBehaviour:
   bulletSpeed: 50
   enemy: 0
   invincibilityDuration: 1.5
+  isInvincible: 0
 --- !u!114 &157662305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,15 +956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 0
-  spriteRenderer: {fileID: 0}
-  player: {fileID: 157662304}
-  bossTransform: {fileID: 605293545}
-  introMusic: {fileID: 8300000, guid: 5ef34c407408a794abe88cb23c3ffbcf, type: 3}
-  battleMusic: {fileID: 8300000, guid: c74f4eb60b0e68f438c75a0b62120e9f, type: 3}
-  denyBullet: {fileID: 8300000, guid: 48484f53bf3dbde47a5fc4a3f489b4c5, type: 3}
-  introAnimationDuration: 22.9
-  bulletBlockerPrefab: {fileID: 3366944751413072598, guid: 4ebd84b4fac1a4641aad7972ea8e1349, type: 3}
-  vulnerableAttacks: 0200000004000000
 --- !u!61 &605293549
 BoxCollider2D:
   m_ObjectHideFlags: 0

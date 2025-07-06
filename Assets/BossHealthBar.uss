@@ -1,0 +1,14 @@
+.unity-progress-bar__progress {
+    color: rgba(255, 0, 0, 0);
+    flex-grow: 1;
+    background-color: rgb(152, 14, 14);
+    flex-direction: row;
+    align-items: stretch;
+    background-size: 100% 100%;
+}
+
+.unity-progress-bar__background {
+    color: rgba(255, 0, 0, 0);
+    flex-grow: 1;
+    background-color: rgba(152, 14, 14, 0);
+}

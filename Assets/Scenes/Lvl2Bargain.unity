@@ -119,6 +119,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &42453159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 42453161}
+  - component: {fileID: 42453160}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &42453160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42453159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb7c902ee6724142bf000dbe5b295bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 5554617312134040976, guid: 3ca41162d58ad044997a4664cb4d6760, type: 3}
+--- !u!4 &42453161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42453159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.87988853, y: -0.17841727, z: -9.955862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &157662303
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,9 +207,13 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 1
   bulletPrefab: {fileID: 5012302426932157593, guid: 974eb5b543ebc314c81e839ce8d57a1d, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 30
   enemy: 0
   invincibilityDuration: 1.5
+  isInvincible: 0
+  dashSFX: {fileID: 8300000, guid: fb3f4d168d61b6d49a430a94c5dba59a, type: 3}
+  fireSFX: {fileID: 8300000, guid: 2b1885623f0b9d64fbf0976de95d54a5, type: 3}
+  deathSFX: {fileID: 8300000, guid: 44b6ee1f90443e2429688266be61c393, type: 3}
 --- !u!114 &157662305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +628,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162240005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
@@ -659,7 +708,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.229461
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -735,8 +784,8 @@ GameObject:
   - component: {fileID: 303628760}
   - component: {fileID: 303628759}
   - component: {fileID: 303628763}
-  - component: {fileID: 303628762}
   - component: {fileID: 303628764}
+  - component: {fileID: 303628765}
   m_Layer: 0
   m_Name: SkellyBoss
   m_TagString: Enemy
@@ -933,25 +982,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &303628762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303628757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ccea5183f46b5f41af928e7d4910675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 30
-  currentHealth: 30
-  player: {fileID: 157662304}
-  Tower1Prefab: {fileID: 7730854855173508027, guid: 6a837431e9cab664eb8b5025ec984aa9, type: 3}
-  Tower2Prefab: {fileID: 7521357196625296224, guid: 550ef29a49ac7f44ebe105feba758a42, type: 3}
-  ClawPrefab: {fileID: 1659828279302597055, guid: d880c1562a116f94d8cdff87facbef39, type: 3}
-  CrystalPrefab: {fileID: 1228693669817799786, guid: e0c25bf5461b12042815f2aef4dde736, type: 3}
 --- !u!212 &303628763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1029,6 +1059,92 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &303628765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303628757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccea5183f46b5f41af928e7d4910675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  currentHealth: 30
+  spriteRenderer: {fileID: 0}
+  player: {fileID: 157662304}
+  isInvulnerable: 0
+  Tower1Prefab: {fileID: 7730854855173508027, guid: 6a837431e9cab664eb8b5025ec984aa9, type: 3}
+  Tower2Prefab: {fileID: 7521357196625296224, guid: 550ef29a49ac7f44ebe105feba758a42, type: 3}
+  ClawPrefab: {fileID: 1659828279302597055, guid: d880c1562a116f94d8cdff87facbef39, type: 3}
+  CrystalPrefab: {fileID: 1228693669817799786, guid: e0c25bf5461b12042815f2aef4dde736, type: 3}
+--- !u!1 &664570356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664570358}
+  - component: {fileID: 664570357}
+  - component: {fileID: 664570359}
+  m_Layer: 5
+  m_Name: BossHealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &664570357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664570356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: ff3b54456cb411c43bdcafeace1ca7e4, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: e29ea883fb2438b429d036c3d2613172, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!4 &664570358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664570356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664570359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664570356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3dca165134fa0543b21e46adb5cd281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 303628765}
 --- !u!1 &721518718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1159,7 @@ GameObject:
   - component: {fileID: 721518722}
   m_Layer: 0
   m_Name: Skelly
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1252,7 +1368,7 @@ GameObject:
   - component: {fileID: 1025795548}
   m_Layer: 0
   m_Name: Border
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1295,7 +1411,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1315,7 +1431,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -11561,7 +11677,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 12.229461
+    OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -11603,3 +11719,5 @@ SceneRoots:
   - {fileID: 1449496435}
   - {fileID: 2062274387}
   - {fileID: 303628758}
+  - {fileID: 664570358}
+  - {fileID: 42453161}
