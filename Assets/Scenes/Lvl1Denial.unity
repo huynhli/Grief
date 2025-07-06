@@ -719,7 +719,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.229461
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -744,7 +744,7 @@ Transform:
   m_GameObject: {fileID: 162240005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -969,6 +969,8 @@ MonoBehaviour:
   introAnimationDuration: 22.9
   bullet: {fileID: 5012302426932157593, guid: c7cc1c09bf3eb8548815441585a1b443, type: 3}
   bulletBlockerPrefab: {fileID: 3366944751413072598, guid: 4ebd84b4fac1a4641aad7972ea8e1349, type: 3}
+  bulletsPerWave: 12
+  orbsPerWave: 16
   vulnerableAttacks: 0200000004000000
 --- !u!61 &605293549
 BoxCollider2D:
@@ -12017,7 +12019,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 12.229461
+    OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

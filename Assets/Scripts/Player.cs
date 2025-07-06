@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         isInvincible = true;
         trailRenderer.emitting = true;
 
-        SoundManager.instance.PlaySFXClip(dashSFX, playerTransform, 300f);
+        SoundManager.instance.PlaySFXClip(dashSFX, playerTransform, 4f);
 
         dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
 
