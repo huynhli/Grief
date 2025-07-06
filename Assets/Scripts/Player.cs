@@ -50,7 +50,6 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         currentHealth = maxHealth;
-
     }
 
     // Update is called once per frame
@@ -184,5 +183,4 @@ public class Player : MonoBehaviour
 
         spriteRenderer.enabled = true;
     }
-
 }

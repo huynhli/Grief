@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    protected virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
         StartCoroutine(FlashWhite());

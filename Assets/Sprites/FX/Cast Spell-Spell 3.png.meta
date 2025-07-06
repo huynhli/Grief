@@ -1,0 +1,2158 @@
+fileFormatVersion: 2
+guid: 59862446bf486cd41961af1309aa624b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1070366480930169768
+    second: Cast Spell-Spell 3_0
+  - first:
+      213: -902526144313976203
+    second: Cast Spell-Spell 3_1
+  - first:
+      213: 5270052565883713892
+    second: Cast Spell-Spell 3_2
+  - first:
+      213: -6210921101128989504
+    second: Cast Spell-Spell 3_3
+  - first:
+      213: 8616843914002581819
+    second: Cast Spell-Spell 3_4
+  - first:
+      213: 4043798569958266420
+    second: Cast Spell-Spell 3_5
+  - first:
+      213: 7576046288449756744
+    second: Cast Spell-Spell 3_6
+  - first:
+      213: -1718834148711721326
+    second: Cast Spell-Spell 3_7
+  - first:
+      213: -1835561305605862005
+    second: Cast Spell-Spell 3_8
+  - first:
+      213: -4356579723718029272
+    second: Cast Spell-Spell 3_9
+  - first:
+      213: 1510156053523082756
+    second: Cast Spell-Spell 3_10
+  - first:
+      213: 6489368300723721096
+    second: Cast Spell-Spell 3_11
+  - first:
+      213: -6432991364135341281
+    second: Cast Spell-Spell 3_12
+  - first:
+      213: -1551955184313009
+    second: Cast Spell-Spell 3_13
+  - first:
+      213: 3316374634737251303
+    second: Cast Spell-Spell 3_14
+  - first:
+      213: 54164150300860852
+    second: Cast Spell-Spell 3_15
+  - first:
+      213: 159622277203906486
+    second: Cast Spell-Spell 3_16
+  - first:
+      213: 5854065196152083422
+    second: Cast Spell-Spell 3_17
+  - first:
+      213: -6879433596089283540
+    second: Cast Spell-Spell 3_18
+  - first:
+      213: 7892848719420753642
+    second: Cast Spell-Spell 3_19
+  - first:
+      213: 4332083275577900748
+    second: Cast Spell-Spell 3_20
+  - first:
+      213: 4378707845909712186
+    second: Cast Spell-Spell 3_21
+  - first:
+      213: 8508355003772693078
+    second: Cast Spell-Spell 3_22
+  - first:
+      213: -5887450588513733004
+    second: Cast Spell-Spell 3_23
+  - first:
+      213: -7066275725967394312
+    second: Cast Spell-Spell 3_24
+  - first:
+      213: 2323763529603442559
+    second: Cast Spell-Spell 3_25
+  - first:
+      213: 2542281502483123726
+    second: Cast Spell-Spell 3_26
+  - first:
+      213: 8245928380893031516
+    second: Cast Spell-Spell 3_27
+  - first:
+      213: 452253571559514906
+    second: Cast Spell-Spell 3_28
+  - first:
+      213: 1188538802623193757
+    second: Cast Spell-Spell 3_29
+  - first:
+      213: 4394950859610102666
+    second: Cast Spell-Spell 3_30
+  - first:
+      213: -1094313178820355295
+    second: Cast Spell-Spell 3_31
+  - first:
+      213: -6479725137290084054
+    second: Cast Spell-Spell 3_32
+  - first:
+      213: -7040790421029549470
+    second: Cast Spell-Spell 3_33
+  - first:
+      213: 102938092179317686
+    second: Cast Spell-Spell 3_34
+  - first:
+      213: 1642031339749903775
+    second: Cast Spell-Spell 3_35
+  - first:
+      213: 6220051836994905237
+    second: Cast Spell-Spell 3_36
+  - first:
+      213: 8964605242225590587
+    second: Cast Spell-Spell 3_37
+  - first:
+      213: -654768336857620547
+    second: Cast Spell-Spell 3_38
+  - first:
+      213: 1550675766016006118
+    second: Cast Spell-Spell 3_39
+  - first:
+      213: 3667126620883969819
+    second: Cast Spell-Spell 3_40
+  - first:
+      213: -7219262426831851896
+    second: Cast Spell-Spell 3_41
+  - first:
+      213: -8633244962188605207
+    second: Cast Spell-Spell 3_42
+  - first:
+      213: -3151270943237857695
+    second: Cast Spell-Spell 3_43
+  - first:
+      213: 2844281926230211275
+    second: Cast Spell-Spell 3_44
+  - first:
+      213: 3573684117707236839
+    second: Cast Spell-Spell 3_45
+  - first:
+      213: -5300315550191178311
+    second: Cast Spell-Spell 3_46
+  - first:
+      213: -5401987081864193395
+    second: Cast Spell-Spell 3_47
+  - first:
+      213: 7073908129711254172
+    second: Cast Spell-Spell 3_48
+  - first:
+      213: -846089827375117573
+    second: Cast Spell-Spell 3_49
+  - first:
+      213: -7284848310986017771
+    second: Cast Spell-Spell 3_50
+  - first:
+      213: 1802338313344012346
+    second: Cast Spell-Spell 3_51
+  - first:
+      213: -8075189646299100936
+    second: Cast Spell-Spell 3_52
+  - first:
+      213: -6692847242090789966
+    second: Cast Spell-Spell 3_53
+  - first:
+      213: 8363777539189126276
+    second: Cast Spell-Spell 3_54
+  - first:
+      213: 8180281935804945711
+    second: Cast Spell-Spell 3_55
+  - first:
+      213: 5369697140242294711
+    second: Cast Spell-Spell 3_56
+  - first:
+      213: 8934004301455492084
+    second: Cast Spell-Spell 3_57
+  - first:
+      213: 8186861743149022836
+    second: Cast Spell-Spell 3_58
+  - first:
+      213: -7625266770228216350
+    second: Cast Spell-Spell 3_59
+  - first:
+      213: 1715253913706734219
+    second: Cast Spell-Spell 3_60
+  - first:
+      213: 2616503356929418491
+    second: Cast Spell-Spell 3_61
+  - first:
+      213: 5459729067991385026
+    second: Cast Spell-Spell 3_62
+  - first:
+      213: -5342512368370633378
+    second: Cast Spell-Spell 3_63
+  - first:
+      213: -8558147866184407449
+    second: Cast Spell-Spell 3_64
+  - first:
+      213: -5069927179722249015
+    second: Cast Spell-Spell 3_65
+  - first:
+      213: 4717574392960821032
+    second: Cast Spell-Spell 3_66
+  - first:
+      213: 34313440614658259
+    second: Cast Spell-Spell 3_67
+  - first:
+      213: 6869972170422682808
+    second: Cast Spell-Spell 3_68
+  - first:
+      213: -5554311710287224235
+    second: Cast Spell-Spell 3_69
+  - first:
+      213: -6463488465076146776
+    second: Cast Spell-Spell 3_70
+  - first:
+      213: -5361042361304402264
+    second: Cast Spell-Spell 3_71
+  - first:
+      213: 2062065012254959741
+    second: Cast Spell-Spell 3_72
+  - first:
+      213: 3780957425159316376
+    second: Cast Spell-Spell 3_73
+  - first:
+      213: 6740634918500076432
+    second: Cast Spell-Spell 3_74
+  - first:
+      213: 6294613239990701335
+    second: Cast Spell-Spell 3_75
+  - first:
+      213: 6626825320698019768
+    second: Cast Spell-Spell 3_76
+  - first:
+      213: -9146702931265601308
+    second: Cast Spell-Spell 3_77
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_0
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 31
+        width: 86
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3e353b4a4bade00800000000000000
+      internalID: 1070366480930169768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_1
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 31
+        width: 92
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a99a7e0459973f0800000000000000
+      internalID: -902526144313976203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_2
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 31
+        width: 95
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 469722103ecf22940800000000000000
+      internalID: 5270052565883713892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_3
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 48
+        width: 18
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c48a375a206ec9a0800000000000000
+      internalID: -6210921101128989504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_4
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 66
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b394c13c2ed259770800000000000000
+      internalID: 8616843914002581819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_5
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 69
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4365899df557e1830800000000000000
+      internalID: 4043798569958266420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_6
+      rect:
+        serializedVersion: 2
+        x: 2145
+        y: 78
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84ed6f0b5f5832960800000000000000
+      internalID: 7576046288449756744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_7
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 78
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2961a32d2797528e0800000000000000
+      internalID: -1718834148711721326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_8
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 41
+        width: 46
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d09efb7b6c686e0800000000000000
+      internalID: -1835561305605862005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_9
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 82
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8201e1cc2d15a83c0800000000000000
+      internalID: -4356579723718029272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_10
+      rect:
+        serializedVersion: 2
+        x: 2286
+        y: 82
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e26a5fde625f410800000000000000
+      internalID: 1510156053523082756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_11
+      rect:
+        serializedVersion: 2
+        x: 2369
+        y: 41
+        width: 191
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883515d561ede0a50800000000000000
+      internalID: 6489368300723721096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_12
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 31
+        width: 61
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f13be81107c69b6a0800000000000000
+      internalID: -6432991364135341281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_13
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 31
+        width: 77
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4d1886418c7afff0800000000000000
+      internalID: -1551955184313009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_14
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 31
+        width: 81
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e331adc821260e20800000000000000
+      internalID: 3316374634737251303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_15
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 31
+        width: 82
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b16e3af10e60c000800000000000000
+      internalID: 54164150300860852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_16
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 31
+        width: 82
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf4afa8d97173200800000000000000
+      internalID: 159622277203906486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_17
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 31
+        width: 39
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed35f9c9741dd3150800000000000000
+      internalID: 5854065196152083422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_18
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 31
+        width: 21
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2cc539d7975780a0800000000000000
+      internalID: -6879433596089283540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_19
+      rect:
+        serializedVersion: 2
+        x: 1756
+        y: 31
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae688fa9718098d60800000000000000
+      internalID: 7892848719420753642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_20
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 31
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce3b3a69c6ae1c30800000000000000
+      internalID: 4332083275577900748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_21
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 30
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d0aa2269b44cc30800000000000000
+      internalID: 4378707845909712186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_22
+      rect:
+        serializedVersion: 2
+        x: 1994
+        y: 53
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65ae9c6fbcfb31670800000000000000
+      internalID: 8508355003772693078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_23
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 59
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47679fef1e29b4ea0800000000000000
+      internalID: -5887450588513733004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_24
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 34
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f97fbc7aab8fed90800000000000000
+      internalID: -7066275725967394312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_25
+      rect:
+        serializedVersion: 2
+        x: 2106
+        y: 49
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77650c4e9aaf3020800000000000000
+      internalID: 2323763529603442559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_26
+      rect:
+        serializedVersion: 2
+        x: 2115
+        y: 51
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0e8d829e8ff74320800000000000000
+      internalID: 2542281502483123726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_27
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 59
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ce0727c2c6f6270800000000000000
+      internalID: 8245928380893031516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_28
+      rect:
+        serializedVersion: 2
+        x: 2126
+        y: 65
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a13e4392a3ab64600800000000000000
+      internalID: 452253571559514906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_29
+      rect:
+        serializedVersion: 2
+        x: 2130
+        y: 57
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d92af1c6eb98e7010800000000000000
+      internalID: 1188538802623193757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_30
+      rect:
+        serializedVersion: 2
+        x: 2133
+        y: 67
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8b9b5875800efc30800000000000000
+      internalID: 4394950859610102666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_31
+      rect:
+        serializedVersion: 2
+        x: 2140
+        y: 60
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12b526736f730d0f0800000000000000
+      internalID: -1094313178820355295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_32
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 71
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a21c7a591546316a0800000000000000
+      internalID: -6479725137290084054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_33
+      rect:
+        serializedVersion: 2
+        x: 2154
+        y: 60
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26a8f807a661a4e90800000000000000
+      internalID: -7040790421029549470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_34
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 62
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b3643246a5bd6100800000000000000
+      internalID: 102938092179317686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_35
+      rect:
+        serializedVersion: 2
+        x: 2215
+        y: 39
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9d0adbbdcaa9c610800000000000000
+      internalID: 1642031339749903775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_36
+      rect:
+        serializedVersion: 2
+        x: 2237
+        y: 54
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 594e894c030125650800000000000000
+      internalID: 6220051836994905237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_37
+      rect:
+        serializedVersion: 2
+        x: 2278
+        y: 56
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b310676a8fca86c70800000000000000
+      internalID: 8964605242225590587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_38
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 63
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbf9d6faaabc9e6f0800000000000000
+      internalID: -654768336857620547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_39
+      rect:
+        serializedVersion: 2
+        x: 2282
+        y: 51
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e7d033b46b158510800000000000000
+      internalID: 1550675766016006118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_40
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 68
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b17ea208b3044e230800000000000000
+      internalID: 3667126620883969819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_41
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 56
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88eec54721700db90800000000000000
+      internalID: -7219262426831851896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_42
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 38
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e841d1a27d803880800000000000000
+      internalID: -8633244962188605207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_43
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 44
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e1c45f5cf6444d0800000000000000
+      internalID: -3151270943237857695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_44
+      rect:
+        serializedVersion: 2
+        x: 2002
+        y: 34
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcaf30e975be87720800000000000000
+      internalID: 2844281926230211275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_45
+      rect:
+        serializedVersion: 2
+        x: 2119
+        y: 43
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e5256755c6489130800000000000000
+      internalID: 3573684117707236839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_46
+      rect:
+        serializedVersion: 2
+        x: 2125
+        y: 43
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd2061e61f7176b0800000000000000
+      internalID: -5300315550191178311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_47
+      rect:
+        serializedVersion: 2
+        x: 2132
+        y: 47
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8a5c38be594805b0800000000000000
+      internalID: -5401987081864193395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_48
+      rect:
+        serializedVersion: 2
+        x: 2140
+        y: 48
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9aef2df6f19b2260800000000000000
+      internalID: 7073908129711254172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_49
+      rect:
+        serializedVersion: 2
+        x: 2146
+        y: 52
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa0c37e8c51244f0800000000000000
+      internalID: -846089827375117573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_50
+      rect:
+        serializedVersion: 2
+        x: 2149
+        y: 37
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 514f215de0507ea90800000000000000
+      internalID: -7284848310986017771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_51
+      rect:
+        serializedVersion: 2
+        x: 2158
+        y: 48
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3052f39521330910800000000000000
+      internalID: 1802338313344012346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_52
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 45
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f80e660dc92fef80800000000000000
+      internalID: -8075189646299100936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_53
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 48
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b3c93fb4ea3e13a0800000000000000
+      internalID: -6692847242090789966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_54
+      rect:
+        serializedVersion: 2
+        x: 2342
+        y: 42
+        width: 26
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48432c3db5b121470800000000000000
+      internalID: 8363777539189126276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_55
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 31
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25d2326413368170800000000000000
+      internalID: 8180281935804945711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_56
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 31
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7a293691ff48a40800000000000000
+      internalID: 5369697140242294711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_57
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 31
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3011ae395fbfb70800000000000000
+      internalID: 8934004301455492084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_58
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 31
+        width: 43
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47ef1a921639d9170800000000000000
+      internalID: 8186861743149022836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_59
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 31
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2edf4fad54c9d2690800000000000000
+      internalID: -7625266770228216350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_60
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 31
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82a612c85ecdc710800000000000000
+      internalID: 1715253913706734219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_61
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 32
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf42567b0ffaf4420800000000000000
+      internalID: 2616503356929418491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_62
+      rect:
+        serializedVersion: 2
+        x: 1828
+        y: 31
+        width: 28
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3408319aad4cb40800000000000000
+      internalID: 5459729067991385026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_63
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 30
+        width: 27
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e55332b8e459bd5b0800000000000000
+      internalID: -5342512368370633378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_64
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 35
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 766afc4dbd95b3980800000000000000
+      internalID: -8558147866184407449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_65
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 32
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccae87771004a9b0800000000000000
+      internalID: -5069927179722249015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_66
+      rect:
+        serializedVersion: 2
+        x: 1986
+        y: 35
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 827a8e56ae0387140800000000000000
+      internalID: 4717574392960821032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_67
+      rect:
+        serializedVersion: 2
+        x: 2089
+        y: 39
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0bbd674e7e97000800000000000000
+      internalID: 34313440614658259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_68
+      rect:
+        serializedVersion: 2
+        x: 2095
+        y: 41
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b40dd25a4b075f50800000000000000
+      internalID: 6869972170422682808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_69
+      rect:
+        serializedVersion: 2
+        x: 2102
+        y: 35
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 552a9807dee1be2b0800000000000000
+      internalID: -5554311710287224235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_70
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 35
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad2d4d6c731d46a0800000000000000
+      internalID: -6463488465076146776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_71
+      rect:
+        serializedVersion: 2
+        x: 2114
+        y: 39
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a631ac5060c995b0800000000000000
+      internalID: -5361042361304402264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_72
+      rect:
+        serializedVersion: 2
+        x: 2129
+        y: 39
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d78e73f043ded9c10800000000000000
+      internalID: 2062065012254959741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_73
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 38
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8932f7deeb8a87430800000000000000
+      internalID: 3780957425159316376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_74
+      rect:
+        serializedVersion: 2
+        x: 2286
+        y: 40
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b8ac5bebb8b8d50800000000000000
+      internalID: 6740634918500076432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_75
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 31
+        width: 148
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71dcd183465fa5750800000000000000
+      internalID: 6294613239990701335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_76
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 31
+        width: 21
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bff4ccc48637fb50800000000000000
+      internalID: 6626825320698019768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cast Spell-Spell 3_77
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 31
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e0c3e33522601180800000000000000
+      internalID: -9146702931265601308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cast Spell-Spell 3_0: 1070366480930169768
+      Cast Spell-Spell 3_1: -902526144313976203
+      Cast Spell-Spell 3_10: 1510156053523082756
+      Cast Spell-Spell 3_11: 6489368300723721096
+      Cast Spell-Spell 3_12: -6432991364135341281
+      Cast Spell-Spell 3_13: -1551955184313009
+      Cast Spell-Spell 3_14: 3316374634737251303
+      Cast Spell-Spell 3_15: 54164150300860852
+      Cast Spell-Spell 3_16: 159622277203906486
+      Cast Spell-Spell 3_17: 5854065196152083422
+      Cast Spell-Spell 3_18: -6879433596089283540
+      Cast Spell-Spell 3_19: 7892848719420753642
+      Cast Spell-Spell 3_2: 5270052565883713892
+      Cast Spell-Spell 3_20: 4332083275577900748
+      Cast Spell-Spell 3_21: 4378707845909712186
+      Cast Spell-Spell 3_22: 8508355003772693078
+      Cast Spell-Spell 3_23: -5887450588513733004
+      Cast Spell-Spell 3_24: -7066275725967394312
+      Cast Spell-Spell 3_25: 2323763529603442559
+      Cast Spell-Spell 3_26: 2542281502483123726
+      Cast Spell-Spell 3_27: 8245928380893031516
+      Cast Spell-Spell 3_28: 452253571559514906
+      Cast Spell-Spell 3_29: 1188538802623193757
+      Cast Spell-Spell 3_3: -6210921101128989504
+      Cast Spell-Spell 3_30: 4394950859610102666
+      Cast Spell-Spell 3_31: -1094313178820355295
+      Cast Spell-Spell 3_32: -6479725137290084054
+      Cast Spell-Spell 3_33: -7040790421029549470
+      Cast Spell-Spell 3_34: 102938092179317686
+      Cast Spell-Spell 3_35: 1642031339749903775
+      Cast Spell-Spell 3_36: 6220051836994905237
+      Cast Spell-Spell 3_37: 8964605242225590587
+      Cast Spell-Spell 3_38: -654768336857620547
+      Cast Spell-Spell 3_39: 1550675766016006118
+      Cast Spell-Spell 3_4: 8616843914002581819
+      Cast Spell-Spell 3_40: 3667126620883969819
+      Cast Spell-Spell 3_41: -7219262426831851896
+      Cast Spell-Spell 3_42: -8633244962188605207
+      Cast Spell-Spell 3_43: -3151270943237857695
+      Cast Spell-Spell 3_44: 2844281926230211275
+      Cast Spell-Spell 3_45: 3573684117707236839
+      Cast Spell-Spell 3_46: -5300315550191178311
+      Cast Spell-Spell 3_47: -5401987081864193395
+      Cast Spell-Spell 3_48: 7073908129711254172
+      Cast Spell-Spell 3_49: -846089827375117573
+      Cast Spell-Spell 3_5: 4043798569958266420
+      Cast Spell-Spell 3_50: -7284848310986017771
+      Cast Spell-Spell 3_51: 1802338313344012346
+      Cast Spell-Spell 3_52: -8075189646299100936
+      Cast Spell-Spell 3_53: -6692847242090789966
+      Cast Spell-Spell 3_54: 8363777539189126276
+      Cast Spell-Spell 3_55: 8180281935804945711
+      Cast Spell-Spell 3_56: 5369697140242294711
+      Cast Spell-Spell 3_57: 8934004301455492084
+      Cast Spell-Spell 3_58: 8186861743149022836
+      Cast Spell-Spell 3_59: -7625266770228216350
+      Cast Spell-Spell 3_6: 7576046288449756744
+      Cast Spell-Spell 3_60: 1715253913706734219
+      Cast Spell-Spell 3_61: 2616503356929418491
+      Cast Spell-Spell 3_62: 5459729067991385026
+      Cast Spell-Spell 3_63: -5342512368370633378
+      Cast Spell-Spell 3_64: -8558147866184407449
+      Cast Spell-Spell 3_65: -5069927179722249015
+      Cast Spell-Spell 3_66: 4717574392960821032
+      Cast Spell-Spell 3_67: 34313440614658259
+      Cast Spell-Spell 3_68: 6869972170422682808
+      Cast Spell-Spell 3_69: -5554311710287224235
+      Cast Spell-Spell 3_7: -1718834148711721326
+      Cast Spell-Spell 3_70: -6463488465076146776
+      Cast Spell-Spell 3_71: -5361042361304402264
+      Cast Spell-Spell 3_72: 2062065012254959741
+      Cast Spell-Spell 3_73: 3780957425159316376
+      Cast Spell-Spell 3_74: 6740634918500076432
+      Cast Spell-Spell 3_75: 6294613239990701335
+      Cast Spell-Spell 3_76: 6626825320698019768
+      Cast Spell-Spell 3_77: -9146702931265601308
+      Cast Spell-Spell 3_8: -1835561305605862005
+      Cast Spell-Spell 3_9: -4356579723718029272
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
