@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,10 +37,6 @@ public class Player : MonoBehaviour
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
-    // [Header("Camera Shake")]
-    // public CinemachineImpulseSource impulseSource;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -151,20 +146,15 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
         currentHealth -= 1;
-        // animator.SetTrigger("isHurt");
 
         StartCoroutine(FlashPlayer());
-        // if (impulseSource != null)
-        // {
-        //     Debug.Log("Shake!");
-        //     impulseSource.GenerateImpulse();
-        // }
 
         yield return new WaitForSeconds(invincibilityDuration);
         isInvincible = false;
 
         if (currentHealth <= 0)
         {
+            animator.SetBool("isDead", true);
             // player dead -- call game over, anmimation, etc.
         }
     }
