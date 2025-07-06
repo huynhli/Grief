@@ -11,7 +11,7 @@ public class BossHealthBar : MonoBehaviour
         var root = GetComponent<UIDocument>().rootVisualElement;
         progressBar = root.Q<ProgressBar>("ProgressBar");
         progressBar.lowValue = 0f;
-        progressBar.highValue = (float) boss.maxHealth;
+        progressBar.highValue = (float) boss.MaxHealth;
         
         progressBar.value = (float) boss.currentHealth;
     }

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public int currentHealth;
 
     [Header("Damage Taken")]
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()

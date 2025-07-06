@@ -69,7 +69,7 @@ public class SkellyBoss : Enemy
         animator.SetFloat("Speed", animSpeed);
         if (phaseNum == 1)
         {
-            while (base.currentHealth > base.maxHealth / 2)
+            while (base.currentHealth > base.MaxHealth / 2)
             {
                 // Reset to idle and wait for idle state to finish once
                 animator.SetInteger("AttackType", 0);

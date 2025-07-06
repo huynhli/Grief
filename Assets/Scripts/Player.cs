@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     public int maxHealth = 5;
     public int currentHealth;
-    private Transform transform;
+    private Transform playerTransform;
 
     [Header("Movement")]
     public Rigidbody2D rb;
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        transform = GetComponent<Transform>();
+        playerTransform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         trailRenderer = GetComponent<TrailRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -95,9 +95,9 @@ public class Player : MonoBehaviour
         if (isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
         {
             isFacingRight = !isFacingRight;
-            Vector3 ls = transform.localScale;
+            Vector3 ls = playerTransform.localScale;
             ls.x *= -1f;
-            transform.localScale = ls;
+            playerTransform.localScale = ls;
         }
     }
 
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         isInvincible = true;
         trailRenderer.emitting = true;
 
-        SoundManager.instance.PlaySFXClip(dashSFX, transform, 300f);
+        SoundManager.instance.PlaySFXClip(dashSFX, playerTransform, 300f);
 
         dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
 
@@ -137,11 +137,11 @@ public class Player : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 shootDirection = (mousePosition - transform.position).normalized;
+        Vector3 shootDirection = (mousePosition - playerTransform.position).normalized;
 
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, playerTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
-        SoundManager.instance.PlaySFXClip(fireSFX, transform, 10f);
+        SoundManager.instance.PlaySFXClip(fireSFX, playerTransform, 10f);
     }
 
     public void TakeDamage()
@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isDead", true);
             yield return new WaitForSeconds(2f);
-            SoundManager.instance.PlaySFXClip(deathSFX, transform, 4f);
+            SoundManager.instance.PlaySFXClip(deathSFX, playerTransform, 4f);
             // player dead -- call game over, anmimation, etc.
         }
     }
