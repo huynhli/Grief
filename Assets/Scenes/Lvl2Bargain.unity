@@ -208,6 +208,7 @@ MonoBehaviour:
   dashCooldown: 1
   bulletPrefab: {fileID: 5012302426932157593, guid: 974eb5b543ebc314c81e839ce8d57a1d, type: 3}
   bulletSpeed: 30
+  shootCooldown: 0.3
   enemy: 0
   invincibilityDuration: 1.5
   isInvincible: 0
@@ -1072,7 +1073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccea5183f46b5f41af928e7d4910675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
   currentHealth: 30
   spriteRenderer: {fileID: 0}
   player: {fileID: 157662304}
@@ -11619,6 +11619,7 @@ GameObject:
   - component: {fileID: 2062274387}
   - component: {fileID: 2062274386}
   - component: {fileID: 2062274385}
+  - component: {fileID: 2062274388}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -11715,6 +11716,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2062274388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062274384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!1 &2121034769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2121034770}
+  - component: {fileID: 2121034771}
+  m_Layer: 0
+  m_Name: CameraShake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2121034770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121034769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.901403, y: 6.125581, z: 0.27187166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2121034771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121034769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b4fdfbdb79f94d88826f09c78d831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cineCamera: {fileID: 2062274386}
+  defaultShakeIntensity: 1
+  defaultShakeDuration: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11726,3 +11791,4 @@ SceneRoots:
   - {fileID: 303628758}
   - {fileID: 664570358}
   - {fileID: 42453161}
+  - {fileID: 2121034770}

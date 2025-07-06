@@ -7,10 +7,15 @@ public class SkellyBoss : Enemy
     public Player player;
     private Animator animator;
     [SerializeField] private bool isInvulnerable;
-    private int maxHealth = 300;
+    private int maxHealth = 10;
     public override int MaxHealth => maxHealth;
     private string bossTitle = "Bargain";
     public override string BossTitle => bossTitle;
+    private CompositeCollider2D collisionToToggle;
+    
+    // Add phase tracking
+    private int currentPhase = 1;
+    private Coroutine currentAttackCoroutine;
 
     [Header("Spawning")]
     public GameObject Tower1Prefab;
@@ -28,6 +33,8 @@ public class SkellyBoss : Enemy
     protected override void Start()
     {
         base.Start();
+        collisionToToggle = GetComponent<CompositeCollider2D>();
+        collisionToToggle.enabled = false;
         animator = GetComponent<Animator>();
         animator.SetBool("Dead", false);
         isInvulnerable = true;
@@ -38,8 +45,47 @@ public class SkellyBoss : Enemy
 
     IEnumerator AttackSequence()
     {
-        yield return StartCoroutine(AttackPhase(1, 1f));
-        yield return StartCoroutine(AttackPhase(2, 1.25f));
+        yield return StartCoroutine(AttackPhase(1, 1.25f));
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        if (!isInvulnerable)
+        {
+            SoundManager.instance.PlaySFXClip(bossHurtSFX, player.transform, 0.4f);
+            base.TakeDamage(damage);
+            StartCoroutine(flashRed());
+            
+            // Check if we should transition to phase 2
+            if (currentPhase == 1 && base.currentHealth <= maxHealth / 2)
+            {
+                StartCoroutine(TransitionToPhaseTwo());
+            }
+        }
+        else
+        {
+            StartCoroutine(flashGreen());
+        }
+    }
+
+    IEnumerator TransitionToPhaseTwo()
+    {
+        currentPhase = 2;
+        
+        // Stop any current attack coroutines
+        if (currentAttackCoroutine != null)
+        {
+            StopCoroutine(currentAttackCoroutine);
+        }
+        
+        // Force reset to idle immediately
+        animator.SetInteger("AttackType", 0);
+        
+        // Wait a brief moment for any current animations to reset
+        yield return new WaitForSeconds(0.5f);
+        
+        // Start Phase 2
+        StartCoroutine(AttackPhase(2, 2f));
     }
 
     protected override void Die()
@@ -52,22 +98,6 @@ public class SkellyBoss : Enemy
     private void DestroyBoss() 
     {
         base.Die();
-    }
-
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        if (base.currentHealth < maxHealth / 2)
-        if (!isInvulnerable)
-        {
-            SoundManager.instance.PlaySFXClip(bossHurtSFX, player.transform, 0.4f);
-            base.TakeDamage(damage);
-            StartCoroutine(flashRed());
-        }
-        else
-        {
-            StartCoroutine(flashGreen());
-        }
     }
 
     IEnumerator flashGreen()
@@ -93,35 +123,73 @@ public class SkellyBoss : Enemy
 
     IEnumerator AttackPhase(int phaseNum, float animSpeed)
     {
+        collisionToToggle.enabled = false;
         yield return new WaitForSeconds(1.0f); // beginning, wait
+        collisionToToggle.enabled = true;
         animator.SetFloat("Speed", animSpeed);
+
         if (phaseNum == 1)
         {
-            while (base.currentHealth > maxHealth / 2)
+            while (base.currentHealth > maxHealth / 2 && currentPhase == 1)
             {
                 // Reset to idle and wait for idle state to finish once
                 animator.SetInteger("AttackType", 0);
                 int rand = UnityEngine.Random.Range(1, 3); // Choose attack before idle finishes
-                yield return StartCoroutine(WaitForIdleToFinish(rand));
-                
-                yield return StartCoroutine(handleAttack(rand));
+                currentAttackCoroutine = StartCoroutine(WaitForIdleToFinish(rand));
+                yield return currentAttackCoroutine;
 
+                // Check if we're still in phase 1 before continuing
+                if (currentPhase == 1)
+                {
+                    currentAttackCoroutine = StartCoroutine(handleAttack(rand));
+                    yield return currentAttackCoroutine;
+                }
             }
         }
         else if (phaseNum == 2)
         {
+            isInvulnerable = true;
+            animator.SetFloat("Speed", 1f);
+            animator.SetInteger("AttackType", 3);
+            CameraShake.Instance.Shake(10f, 7f);
+
+            yield return new WaitForSeconds(0.1f);
+
+            while (!animator.GetCurrentAnimatorStateInfo(0).IsName("SkellyAttack3"))
+            {
+                yield return null;
+            }
+
+            // Wait for the animation to complete
+            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                yield return null;
+            }
+
+            // Now reset everything and start phase 2 proper
+            animator.SetInteger("AttackType", 0);
+            animator.SetFloat("Speed", 2f);
+            Invoke("DisableInvulnerability", 5f);
+
             while (base.currentHealth > 0)
             {
                 // Reset to idle and wait for idle state to finish once
                 animator.SetInteger("AttackType", 0);
-                int rand = UnityEngine.Random.Range(1, 4); // Choose attack before idle finishes
-                yield return StartCoroutine(WaitForIdleToFinish(rand));
-                
-                yield return StartCoroutine(handleAttack(rand));     
+                int rand = UnityEngine.Random.Range(2, 4); // Choose attack before idle finishes
+                currentAttackCoroutine = StartCoroutine(WaitForIdleToFinish(rand));
+                yield return currentAttackCoroutine;
 
+                currentAttackCoroutine = StartCoroutine(handleAttack(rand));
+                yield return currentAttackCoroutine;
             }
+            
+            
         }
+    }
 
+    void DisableInvulnerability()
+    {
+        isInvulnerable = false;
     }
 
     IEnumerator WaitForIdleToFinish(int nextAttackType)
@@ -134,6 +202,12 @@ public class SkellyBoss : Enemy
             yield return null;
         }
 
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(RandomProjAttack());
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(RandomProjAttack());
+
         // Wait until the idle state is completely finished
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
@@ -144,9 +218,31 @@ public class SkellyBoss : Enemy
         animator.SetInteger("AttackType", nextAttackType);
     }
 
+    IEnumerator RandomProjAttack()
+    {
+        int randomInt = Random.Range(0, 4);
+        switch (randomInt)
+        {
+            case 0: 
+                yield return new WaitForSeconds(1f);
+                break;
+            case 1:
+                yield return new WaitForSeconds(1f);
+                break;
+            case 2:
+                yield return new WaitForSeconds(1f);
+                break;
+            case 3:
+                yield return new WaitForSeconds(1f);
+                break;
+            default:
+                yield return null;
+                break;
+        }
+    }
+
     IEnumerator handleAttack(int atkType)
     {
-
         if (atkType == 1)
         {
             yield return new WaitForSeconds(3f);
