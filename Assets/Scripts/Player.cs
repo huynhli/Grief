@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     [Header("Damage Taken")]
     public float invincibilityDuration = 1.5f;
-    private bool isInvincible = false;
+    public bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -130,19 +130,17 @@ public class Player : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
-        Destroy(bullet, 2f);
     }
 
-    // Contact damage
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage()
     {
-        if (collision.CompareTag("Enemy") && !isInvincible)
+        if (!isInvincible)
         {
-            StartCoroutine(TakeDamage());
+            StartCoroutine(TakeDamageRoutine());
         }
     }
 
-    public IEnumerator TakeDamage()
+    public IEnumerator TakeDamageRoutine()
     {
         isInvincible = true;
         currentHealth -= 1;

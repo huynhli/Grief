@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5922270498588282733}
   - component: {fileID: 2281437779877704135}
   - component: {fileID: 7866129087258847829}
+  - component: {fileID: 4349265612405413216}
   m_Layer: 0
   m_Name: CrystalPrefab
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,3 +186,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4349265612405413216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228693669817799786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce56392b5c651e42864f7cfd3278b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBulletPrefab: {fileID: 5012302426932157593, guid: c7cc1c09bf3eb8548815441585a1b443, type: 3}
+  bulletVelocity: 7

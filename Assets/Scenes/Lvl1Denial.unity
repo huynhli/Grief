@@ -166,6 +166,7 @@ MonoBehaviour:
   bulletSpeed: 50
   enemy: 0
   invincibilityDuration: 1.5
+  isInvincible: 0
 --- !u!114 &157662305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +956,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
+  player: {fileID: 0}
+  audioSource: {fileID: 0}
+  introMusic: {fileID: 0}
+  battleMusic: {fileID: 0}
+  introAnimationDuration: 24
 --- !u!61 &605293549
 BoxCollider2D:
   m_ObjectHideFlags: 0

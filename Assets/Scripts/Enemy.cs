@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public int currentHealth;
 
     [Header("Damage Taken")]
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private Color ogColor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,12 +20,6 @@ public class Enemy : MonoBehaviour
 
         currentHealth = maxHealth;
         ogColor = spriteRenderer.color;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public virtual void TakeDamage(int damage)

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 661194593497830546}
   - component: {fileID: 4148355531705119529}
   - component: {fileID: 7801589852511073788}
+  - component: {fileID: 8834905489500314875}
   m_Layer: 0
   m_Name: Tower1Prefab
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,3 +186,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8834905489500314875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730854855173508027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dadcce51e9fac4e9d7db8d42da3286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDelay: 0.5
+  enemyBulletPrefab: {fileID: 5012302426932157593, guid: c7cc1c09bf3eb8548815441585a1b443, type: 3}
+  bulletVelocity: 8
+  rotationOffset: 22.5
+  randomAngleRange: 5
+  health: 1
