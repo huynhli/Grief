@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Boss")]
     private Rigidbody2D rb;
-    public int maxHealth = 30;
+    public int maxHealth = 150;
     public int currentHealth;
 
     [Header("Damage Taken")]
