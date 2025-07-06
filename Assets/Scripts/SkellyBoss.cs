@@ -14,6 +14,12 @@ public class SkellyBoss : Enemy
     public GameObject ClawPrefab;
     public GameObject CrystalPrefab;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip bossHurtSFX;
+    [SerializeField] private AudioClip spawnClawSFX;
+    [SerializeField] private AudioClip spawnTowerSFX;
+    [SerializeField] private AudioClip spawnCrystalSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -21,8 +27,7 @@ public class SkellyBoss : Enemy
         animator = GetComponent<Animator>();
         animator.SetBool("Dead", false);
         isInvulnerable = true;
-        base.spriteRenderer.color = new Color(0.482f, 0.843f, 0.769f, 0.95f);
-
+        base.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         StartCoroutine(AttackSequence());
         // dies automatically, just overrides
     }
@@ -51,8 +56,27 @@ public class SkellyBoss : Enemy
         if (base.currentHealth < base.MaxHealth / 2)
         if (!isInvulnerable)
         {
+            SoundManager.instance.PlaySFXClip(bossHurtSFX, player.transform, 0.4f);
             base.TakeDamage(damage);
+            StartCoroutine(flashRed());
         }
+        else
+        {
+            StartCoroutine(flashGreen());
+        }
+    }
+
+    IEnumerator flashGreen()
+    {
+        base.spriteRenderer.color = new Color(0.482f, 0.843f, 0.769f, 0.95f);
+        yield return new WaitForSeconds(0.1f);
+        base.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+    }
+    IEnumerator flashRed()
+    {
+        base.spriteRenderer.color = new Color(1.0f, 0.714f, 0.714f, 1.0f);
+        yield return new WaitForSeconds(0.1f);
+        base.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -123,7 +147,7 @@ public class SkellyBoss : Enemy
         {
             yield return new WaitForSeconds(3f);
             isInvulnerable = true;
-            base.spriteRenderer.color = new Color(0.482f, 0.843f, 0.769f, 0.95f);
+            SoundManager.instance.PlaySFXClip(spawnTowerSFX, player.transform, 4f);
             float randomFloat = Random.Range(-3, 4);
             Destroy(Instantiate(Tower1Prefab, new Vector2(21f + randomFloat, 3f + randomFloat), Quaternion.identity), 10f);
             randomFloat = Random.Range(-3, 4);
@@ -134,17 +158,17 @@ public class SkellyBoss : Enemy
             Destroy(Instantiate(Tower1Prefab, new Vector2(-21f + randomFloat, -10f + randomFloat), Quaternion.identity), 10f);
             yield return new WaitForSeconds(4f); // Wait for rest of animation to be done
             isInvulnerable = false;
-            base.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         }
         else if (atkType == 2)
         {
             // spawn two tower2 + 4 crystals
             yield return new WaitForSeconds(3f);
             isInvulnerable = true;
-            base.spriteRenderer.color = new Color(0.482f, 0.843f, 0.769f, 0.95f);
+            SoundManager.instance.PlaySFXClip(spawnTowerSFX, player.transform, 4f);
             Destroy(Instantiate(Tower2Prefab, new Vector2(15f, 2f), Quaternion.identity), 8f);
             Destroy(Instantiate(Tower2Prefab, new Vector2(-15f, 2f), Quaternion.identity), 8f);
             float randomFloat = Random.Range(-10, 10);
+            SoundManager.instance.PlaySFXClip(spawnCrystalSFX, player.transform, 2f);
             Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat, 4f + randomFloat/2), Quaternion.identity), 7f);
             randomFloat = Random.Range(-10, 10);
             Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat, 10f + randomFloat/2), Quaternion.identity), 7f);
@@ -162,14 +186,13 @@ public class SkellyBoss : Enemy
             Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat, -9f + randomFloat/2), Quaternion.identity), 7f);
             yield return new WaitForSeconds(4f);
             isInvulnerable = false;
-            base.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         }
         else if (atkType == 3)
         {
             // spawn 2 tower1, 2 tower 2, hands 
             yield return new WaitForSeconds(2f);
             isInvulnerable = true;
-            base.spriteRenderer.color = new Color(0.482f, 0.843f, 0.769f, 0.95f);
+            SoundManager.instance.PlaySFXClip(spawnTowerSFX, player.transform, 4f);
             Destroy(Instantiate(Tower1Prefab, new Vector2(21f, 3f), Quaternion.identity), 7f);
             Destroy(Instantiate(Tower1Prefab, new Vector2(-21f, 3f), Quaternion.identity), 7f);
             Destroy(Instantiate(Tower2Prefab, new Vector2(15f, 2f), Quaternion.identity), 7f);
@@ -178,7 +201,6 @@ public class SkellyBoss : Enemy
             ClawSpawn(0);
             yield return new WaitForSeconds(2f);
             isInvulnerable = false;
-            base.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
             ClawSpawn(1);
             yield return new WaitForSeconds(2f);
         }
@@ -188,6 +210,7 @@ public class SkellyBoss : Enemy
 
     void ClawSpawn(int leftRight)
     {
+        SoundManager.instance.PlaySFXClip(spawnClawSFX, player.transform, 4f);
         float leftSpawn = -38f;
         float rightSpawn = 38f;
         if (leftRight == 0)

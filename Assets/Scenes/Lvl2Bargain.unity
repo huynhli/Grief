@@ -214,6 +214,7 @@ MonoBehaviour:
   dashSFX: {fileID: 8300000, guid: fb3f4d168d61b6d49a430a94c5dba59a, type: 3}
   fireSFX: {fileID: 8300000, guid: 2b1885623f0b9d64fbf0976de95d54a5, type: 3}
   deathSFX: {fileID: 8300000, guid: 44b6ee1f90443e2429688266be61c393, type: 3}
+  playerHurtSFX: {fileID: 8300000, guid: 24d6f17996ebbdb46939c738c135d534, type: 3}
 --- !u!114 &157662305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1081,10 @@ MonoBehaviour:
   Tower2Prefab: {fileID: 7521357196625296224, guid: 550ef29a49ac7f44ebe105feba758a42, type: 3}
   ClawPrefab: {fileID: 1659828279302597055, guid: d880c1562a116f94d8cdff87facbef39, type: 3}
   CrystalPrefab: {fileID: 1228693669817799786, guid: e0c25bf5461b12042815f2aef4dde736, type: 3}
+  bossHurtSFX: {fileID: 8300000, guid: 8bfa7c7458b80054e835033eae6d535c, type: 3}
+  spawnClawSFX: {fileID: 8300000, guid: 18af44cb9c1c8a846ba88b4719f77cae, type: 3}
+  spawnTowerSFX: {fileID: 8300000, guid: 3f6b0d4909f976e47819f29dfb699719, type: 3}
+  spawnCrystalSFX: {fileID: 8300000, guid: 0bbca25ea5f0ff14fbcef4c46e976f7e, type: 3}
 --- !u!1 &664570356
 GameObject:
   m_ObjectHideFlags: 0
