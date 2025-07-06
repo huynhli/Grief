@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public float bulletSpeed = 50f;
     public float shootCooldown = 0.3f; // Time between shots in seconds
     private float lastShootTime = 0f;
+    private bool isHoldingShooting = false; // Track if mouse is being held
 
     [Header("Damage Boss")]
     public bool enemy;
@@ -65,7 +66,25 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0)) // Left click
+        // Check for mouse button down (start holding)
+        if (Input.GetMouseButtonDown(0))
+        {
+            isHoldingShooting = true;
+            // Only fire immediately if cooldown allows
+            if (Time.time - lastShootTime >= shootCooldown)
+            {
+                Shoot();
+            }
+        }
+        
+        // Check for mouse button up (stop holding)
+        if (Input.GetMouseButtonUp(0))
+        {
+            isHoldingShooting = false;
+        }
+        
+        // Continue shooting while holding and cooldown allows
+        if (isHoldingShooting && Time.time - lastShootTime >= shootCooldown)
         {
             Shoot();
         }
@@ -138,12 +157,6 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        // Check if enough time has passed since the last shot
-        if (Time.time - lastShootTime < shootCooldown)
-        {
-            return; // Exit early if still on cooldown
-        }
-
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 shootDirection = (mousePosition - playerTransform.position).normalized;
@@ -180,6 +193,9 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(2f);
             SoundManager.instance.PlaySFXClip(deathSFX, playerTransform, 4f);
             // player dead -- call game over, anmimation, etc.
+            yield return new WaitForSeconds(2f);
+            // TODO fade in death screen and show for time, then
+            // SceneManager.LoadScene(0);
         }
     }
 
