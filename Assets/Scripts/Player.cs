@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [Header("Player")]
     private Animator animator;
+    public int maxHealth = 5;
+    public int currentHealth;
 
     [Header("Movement")]
     public Rigidbody2D rb;
@@ -23,12 +26,31 @@ public class Player : MonoBehaviour
     bool canDash = true;
     TrailRenderer trailRenderer;
 
+    [Header("Attack")]
+    public GameObject bulletPrefab;
+    public float bulletSpeed = 50f;
+
+    [Header("Damage Boss")]
+    public bool enemy;
+
+    [Header("Damage Taken")]
+    public float invincibilityDuration = 1.5f;
+    private bool isInvincible = false;
+    private SpriteRenderer spriteRenderer;
+
+    // [Header("Camera Shake")]
+    // public CinemachineImpulseSource impulseSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         trailRenderer = GetComponent<TrailRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        currentHealth = maxHealth;
+
     }
 
     // Update is called once per frame
@@ -38,6 +60,12 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
+        if (Input.GetMouseButtonDown(0)) // Left click
+        {
+            Shoot();
+        }
+
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, verticalMovement * moveSpeed * 2 / 3);
 
         Flip();
@@ -59,8 +87,6 @@ public class Player : MonoBehaviour
 
         verticalMovement = context.ReadValue<Vector2>().y;
         animator.SetFloat("InputY", verticalMovement);
-
-
     }
 
     private void Flip()
@@ -101,4 +127,62 @@ public class Player : MonoBehaviour
         canDash = true;
 
     }
+
+    private void Shoot()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 shootDirection = (mousePosition - transform.position).normalized;
+
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
+        Destroy(bullet, 2f);
+    }
+
+    // Contact damage
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") && !isInvincible)
+        {
+            StartCoroutine(TakeDamage());
+        }
+    }
+
+    private IEnumerator TakeDamage()
+    {
+        isInvincible = true;
+        currentHealth -= 1;
+        // animator.SetTrigger("isHurt");
+
+        StartCoroutine(FlashPlayer());
+        // if (impulseSource != null)
+        // {
+        //     Debug.Log("Shake!");
+        //     impulseSource.GenerateImpulse();
+        // }
+
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+
+        if (currentHealth <= 0)
+        {
+            // player dead -- call game over, anmimation, etc.
+        }
+    }
+
+    private IEnumerator FlashPlayer()
+    {
+        float elapsed = 0;
+        float flashInterval = 0.1f;
+
+        while (elapsed < invincibilityDuration)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(flashInterval);
+            elapsed += flashInterval;
+        }
+
+        spriteRenderer.enabled = true;
+    }
+
 }
