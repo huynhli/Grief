@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip dashSFX;
     [SerializeField] private AudioClip fireSFX;
     [SerializeField] private AudioClip deathSFX;
+    [SerializeField] private AudioClip playerHurtSFX;
 
     void Start()
     {
@@ -156,7 +157,7 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
         currentHealth -= 1;
-
+        SoundManager.instance.PlaySFXClip(playerHurtSFX, transform, 1f);
         StartCoroutine(FlashPlayer());
 
         yield return new WaitForSeconds(invincibilityDuration);
