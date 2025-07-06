@@ -57,36 +57,61 @@ public class SkellyBoss : Enemy
         yield return new WaitForSeconds(1.5f);
         while (base.currentHealth > 0)
         {
-            int rand = UnityEngine.Random.Range(1, phaseTwo ? 5 : 4);
-            animator.SetInteger("AttackType", rand);
-            StartCoroutine(handleAttack(rand));
-            yield return new WaitForSeconds(6.5f); // duration of atk animations
+            // Reset to idle and wait for idle state to finish
+            animator.SetInteger("AttackType", 0);
+            yield return StartCoroutine(WaitForIdleToFinish());
+
+            int rand = UnityEngine.Random.Range(1, phaseTwo ? 3 : 2);
+            yield return StartCoroutine(handleAttack(rand)); // Wait for attack to complete
+            
+        }
+    }
+
+    IEnumerator WaitForIdleToFinish()
+    {
+        // Wait one frame to ensure transition starts
+        yield return null;
+        
+        // Wait until we're in the idle state
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("SkellyIdle"))
+        {
+            yield return null;
+        }
+        
+        // Wait until the idle state finishes (normalized time >= 1.0)
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            yield return null;
         }
     }
 
     IEnumerator handleAttack(int atkType)
     {
-        // spawn 4 of tower 1 for 10 seconds
+        animator.SetInteger("AttackType", atkType);
+        
         if (atkType == 1)
         {
-            Destroy(Instantiate(Tower1Prefab, new Vector3(21f, 3f, 0f), Quaternion.identity), 10f);
-            Destroy(Instantiate(Tower1Prefab, new Vector3(-21f, 3f, 0f), Quaternion.identity), 10f);
-            Destroy(Instantiate(Tower1Prefab, new Vector3(21f, -2f, 0f), Quaternion.identity), 10f);
-            Destroy(Instantiate(Tower1Prefab, new Vector3(-21f, -2f, 0f), Quaternion.identity), 10f);
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
+            Destroy(Instantiate(Tower1Prefab, new Vector3(21f, 3f, 0f), Quaternion.identity), 7f);
+            Destroy(Instantiate(Tower1Prefab, new Vector3(-21f, 3f, 0f), Quaternion.identity), 7f);
+            Destroy(Instantiate(Tower1Prefab, new Vector3(21f, -2f, 0f), Quaternion.identity), 7f);
+            Destroy(Instantiate(Tower1Prefab, new Vector3(-21f, -2f, 0f), Quaternion.identity), 7f);
+            yield return new WaitForSeconds(4f); // Wait for rest of animation to be done
         }
-        // spawn 2 of tower 2 for 10 seconds + broken trees
         else if (atkType == 2)
         {
-            Destroy(Instantiate(Tower2Prefab, new Vector3(15f, 2f, 0f), Quaternion.identity), 10f);
-            Destroy(Instantiate(Tower2Prefab, new Vector3(-15f, 2f, 0f), Quaternion.identity), 10f);
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
+            Destroy(Instantiate(Tower2Prefab, new Vector3(15f, 2f, 0f), Quaternion.identity), 7f);
+            Destroy(Instantiate(Tower2Prefab, new Vector3(-15f, 2f, 0f), Quaternion.identity), 7f);
+            yield return new WaitForSeconds(4f);
         }
-        // spawn 4 of each tower type + moving hands (waves)
-        else
+        else if (atkType == 3)
         {
-            Destroy(Instantiate(Tower1Prefab, new Vector3(21f, 3f, 0f), Quaternion.identity), 10f);
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
+            Destroy(Instantiate(Tower1Prefab, new Vector3(21f, 3f, 0f), Quaternion.identity), 7f);
+            yield return new WaitForSeconds(4f);
         }
-    }     
+        
+        animator.SetInteger("AttackType", 0);
+    }  
 }
