@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class SkellyBoss : Enemy
 {
@@ -7,7 +8,7 @@ public class SkellyBoss : Enemy
     public Player player;
     private Animator animator;
     [SerializeField] private bool isInvulnerable;
-    private int maxHealth = 10;
+    private int maxHealth = 150;
     public override int MaxHealth => maxHealth;
     private string bossTitle = "Bargain";
     public override string BossTitle => bossTitle;
@@ -24,16 +25,24 @@ public class SkellyBoss : Enemy
     public GameObject CrystalPrefab;
     public GameObject enemyBulletPrefab;
 
-    [Header("SFX")]
+    [Header("Audio")]
     [SerializeField] private AudioClip bossHurtSFX;
     [SerializeField] private AudioClip spawnClawSFX;
     [SerializeField] private AudioClip spawnTowerSFX;
     [SerializeField] private AudioClip spawnCrystalSFX;
+    [SerializeField] private AudioClip bossThemeMusic;
+
+    [Header("UI")]
+    
+    public UIDocument uiDocument;
+    public VisualElement bossHealthBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
+        bossHealthBar = uiDocument.rootVisualElement.Q<VisualElement>("BossBar");
+        bossHealthBar.style.opacity = 0f;
         collisionToToggle = GetComponent<CompositeCollider2D>();
         collisionToToggle.enabled = false;
         animator = GetComponent<Animator>();
@@ -46,7 +55,16 @@ public class SkellyBoss : Enemy
 
     IEnumerator AttackSequence()
     {
+        yield return new WaitForSeconds(2f);
+        bossHealthBar.style.opacity = 1f;
+        StartCoroutine(PlayMusic());
         yield return StartCoroutine(AttackPhase(1, 1.25f));
+    }
+
+    IEnumerator PlayMusic()
+    {
+        yield return new WaitForSeconds(1f);
+        SoundManager.instance.PlayLoopMusic(bossThemeMusic, player.transform, 1f);
     }
 
     public override void TakeDamage(int damage)
@@ -56,7 +74,7 @@ public class SkellyBoss : Enemy
             SoundManager.instance.PlaySFXClip(bossHurtSFX, player.transform, 0.4f);
             base.TakeDamage(damage);
             StartCoroutine(flashRed());
-            
+
             // Check if we should transition to phase 2
             if (currentPhase == 1 && base.currentHealth <= maxHealth / 2)
             {
@@ -96,6 +114,7 @@ public class SkellyBoss : Enemy
         animator.SetInteger("AttackType", 0);
         player.enabled = false;
         player.stopMoving();
+        SoundManager.instance.FadeOutLoopingMusic(5f);
         Invoke(nameof(DestroyBoss), 6f); 
     }
 
