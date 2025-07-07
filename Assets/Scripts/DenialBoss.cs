@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.Collections;
+using UnityEngine.UIElements;
 
 public class DenialBoss : Enemy
 {
@@ -8,11 +9,13 @@ public class DenialBoss : Enemy
     public Player player;
     [SerializeField] private Transform bossTransform;
     [HideInInspector]
-    private int maxHealth = 10;
+    private int maxHealth = 100;
     public override int MaxHealth => maxHealth;
     private string bossTitle = "DENIAL";
     public override string BossTitle => bossTitle;
     public bool isPhaseTwo = false;
+    private int currentPhase = 1;
+    private Coroutine currentAttackCoroutine;
 
     private Animator animator;
     private bool isInvulnerable = true; // Start invulnerable during intro
@@ -38,9 +41,16 @@ public class DenialBoss : Enemy
     [Header("Vulnerability System")]
     public int[] vulnerableAttacks = { 1, 2 };
 
+    [Header("UI")]
+    
+    public UIDocument uiDocument;
+    public VisualElement bossHealthBar;
+
     protected override void Start()
     {
         base.Start();
+        bossHealthBar = uiDocument.rootVisualElement.Q<VisualElement>("BossBar");
+        bossHealthBar.style.opacity = 0f;
         animator = GetComponent<Animator>();
 
         // Start with the intro sequence
@@ -136,6 +146,9 @@ public class DenialBoss : Enemy
 
         // Switch to battle music
         SoundManager.instance.PlayLoopMusic(battleMusic, bossTransform, 0.1f);
+
+        // Turn boss healthbar on
+        bossHealthBar.style.opacity = 1f;
 
         // Start attack sequence
         StartCoroutine(AttackSequence());

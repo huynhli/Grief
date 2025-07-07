@@ -1042,6 +1042,7 @@ MonoBehaviour:
   turretSpawnPoints: []
   turretLifetime: 10
   vulnerableAttacks: 0100000002000000
+  uiDocument: {fileID: 1438854481}
 --- !u!61 &605293549
 BoxCollider2D:
   m_ObjectHideFlags: 0
