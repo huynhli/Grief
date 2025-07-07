@@ -5,9 +5,5 @@
         <ui:VisualElement name="HealthBarContainer" style="flex-basis: 7%; margin-top: 0%; margin-right: 5%; margin-left: 5%; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); flex-grow: 1;">
             <ui:ProgressBar value="100" title="my-progress" name="ProgressBar" style="color: rgba(255, 255, 255, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; flex-basis: 7%;" />
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1; position: absolute; top: 0%; right: 0%; left: 0%; bottom: 0%; margin-top: 20%; font-size: 100px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/RobotoMono-VariableFont_wght.ttf?fileID=12800000&amp;guid=a1f49eb60ab741b49b9b9f01aa6a6bdb&amp;type=3#RobotoMono-VariableFont_wght&quot;); margin-left: 20%; margin-right: 20%; margin-bottom: 10%;">
-            <ui:Label text="YOU DIED" name="Dead" style="align-items: stretch; align-self: center; color: rgb(166, 37, 37);" />
-            <ui:Button text="Main Menu" name="BackButton" style="background-color: rgb(0, 0, 0); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-top: 10%; margin-right: 10%; margin-left: 10%;" />
-        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

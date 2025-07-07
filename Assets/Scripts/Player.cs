@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
     private Transform playerTransform;
+    public bool isDead = false; // Added isDead flag
 
     [Header("Movement")]
     public Rigidbody2D rb;
@@ -52,19 +53,10 @@ public class Player : MonoBehaviour
 
 
     [Header("UI")]
-    public UIDocument uiDocument;
-    public Label youDied;
-    public Button mainMenuButton;
+    public DeathScreen DeathScreen;
 
     void Start()
     {
-        uiDocument = GetComponent<UIDocument>();
-        youDied = uiDocument.rootVisualElement.Q<Label>("Dead");
-        youDied.style.display = DisplayStyle.None;
-        mainMenuButton = uiDocument.rootVisualElement.Q<Button>("BackButton");
-        mainMenuButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        mainMenuButton.clicked += MainMenuButtonClicked;
-        mainMenuButton.style.display = DisplayStyle.None;
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
@@ -75,20 +67,10 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void MainMenuButtonClicked()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    private void OnMouseEnter(MouseEnterEvent evt)
-    {
-        SoundManager.instance.PlaySFXClip(buttonHoverClip, playerTransform, 0.4f);
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (isDashing)
+        if (isDead || isDashing) // Added isDead check
         {
             return;
         }
@@ -123,6 +105,8 @@ public class Player : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (isDead) return; // Block movement input when dead
+        
         animator.SetBool("isWalking", true);
 
         if (context.canceled)
@@ -152,6 +136,8 @@ public class Player : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
+        if (isDead) return; // Block dash input when dead
+        
         if (context.performed && canDash)
         {
             StartCoroutine(DashCoroutine());
@@ -216,43 +202,15 @@ public class Player : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            isDead = true;
             animator.SetBool("isDead", true);
             isInvincible = true;
             rb.linearVelocity = Vector2.zero;
+
             yield return new WaitForSeconds(2f);
             SoundManager.instance.PlaySFXClip(deathSFX, playerTransform, 4f);
-            // player dead -- call game over, anmimation, etc.
             yield return new WaitForSeconds(2f);
-
-            float duration = 1.5f;
-            float elapsed = 0f;
-            float mainMenuStartTime = duration * 0.5f; // Start at 50% through
-            float mainMenuElapsed = 0f;
-            float mainMenuDuration = 0.75f; // Duration for main menu fade
-
-            youDied.style.display = DisplayStyle.Flex;
-            mainMenuButton.style.display = DisplayStyle.Flex;
-
-            while (elapsed < duration)
-            {
-                elapsed += Time.deltaTime;
-                float percent = elapsed / duration;
-                float opacity = Mathf.Lerp(0f, 1f, percent);
-                youDied.style.opacity = opacity;
-
-                if (elapsed >= mainMenuStartTime)
-                {
-                    mainMenuElapsed += Time.deltaTime;
-                    float mainMenuPercent = Mathf.Clamp01(mainMenuElapsed / mainMenuDuration);
-                    float mainMenuOpacity = Mathf.Lerp(0f, 1f, mainMenuPercent);
-                    mainMenuButton.style.opacity = mainMenuOpacity;
-
-                }
-
-                yield return null;
-            }
-            
-            
+            DeathScreen.FadeIn();
         }
     }
 
