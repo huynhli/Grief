@@ -169,13 +169,13 @@ public class MainMenuManager : MonoBehaviour
     private void UnlockAllButtonClicked()
     {
         levelTwoCover.style.opacity = 0f;
-        levelThreeCover.style.opacity = 0f;
-        levelFourCover.style.opacity = 0f;
-        levelFiveCover.style.opacity = 0f;
+        // levelThreeCover.style.opacity = 0f;
+        // levelFourCover.style.opacity = 0f;
+        // levelFiveCover.style.opacity = 0f;
         levelTwoButton.SetEnabled(true);
-        levelThreeButton.SetEnabled(true);
-        levelFourButton.SetEnabled(true);
-        levelFiveButton.SetEnabled(true);
+        // levelThreeButton.SetEnabled(true);
+        // levelFourButton.SetEnabled(true);
+        // levelFiveButton.SetEnabled(true);
     }
 
     private void CreditsButtonClicked()

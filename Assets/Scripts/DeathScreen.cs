@@ -10,14 +10,54 @@ public class DeathScreen : MonoBehaviour
     private Button mainMenuButton;
     private Label youDied;
     [SerializeField] private AudioClip buttonHoverClip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        StartCoroutine(InitializeUI());
+    }
+    
+    IEnumerator InitializeUI()
+    {
+        // Wait a frame to ensure UI Document is ready
+        yield return null;
+        
         uiDocument = GetComponent<UIDocument>();
+        
+        // Add null checks and debug info
+        if (uiDocument == null)
+        {
+            Debug.LogError("UIDocument component not found!");
+            yield break;
+        }
+        
+        if (uiDocument.rootVisualElement == null)
+        {
+            Debug.LogError("Root visual element is null!");
+            yield break;
+        }
+        
         mainMenuButton = uiDocument.rootVisualElement.Q<Button>("BackButton");
         youDied = uiDocument.rootVisualElement.Q<Label>("Dead");
+        
+        // Check if elements were found
+        if (mainMenuButton == null)
+        {
+            Debug.LogError("Button with name 'BackButton' not found in UI Document!");
+            yield break;
+        }
+        
+        if (youDied == null)
+        {
+            Debug.LogError("Label with name 'Dead' not found in UI Document!");
+            yield break;
+        }
+        
+        // Properly initialize the UI state
         mainMenuButton.style.display = DisplayStyle.None;
         youDied.style.display = DisplayStyle.None;
+        mainMenuButton.SetEnabled(false); // Important: disable initially
+        
         mainMenuButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         mainMenuButton.clicked += MainMenuButtonClicked;
         screenTransform = GetComponent<Transform>();
@@ -30,18 +70,18 @@ public class DeathScreen : MonoBehaviour
 
     private void MainMenuButtonClicked()
     {
+        // Disable button to prevent multiple clicks
+        mainMenuButton.SetEnabled(false);
         SceneManager.LoadScene(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void FadeIn()
     {
-        Debug.Log("Fading");
         StartCoroutine(FadeAnimation());
     }
 
@@ -53,8 +93,9 @@ public class DeathScreen : MonoBehaviour
         youDied.style.opacity = 0f;
         mainMenuButton.style.opacity = 0f;
         
-        mainMenuButton.SetEnabled(true);
-        
+        // Ensure button is disabled at start of animation
+        mainMenuButton.SetEnabled(false);
+
         float duration = 1.5f;
         float elapsed = 0f;
         float mainMenuStartTime = duration * 0.5f;
@@ -76,9 +117,10 @@ public class DeathScreen : MonoBehaviour
                 mainMenuButton.style.opacity = mainMenuOpacity;
             }
 
-            mainMenuButton.SetEnabled(true);
-
             yield return null;
         }
+        
+        // Only enable the button after the animation completes
+        mainMenuButton.SetEnabled(true);
     }
 }

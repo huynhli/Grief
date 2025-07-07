@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip fireSFX;
     [SerializeField] private AudioClip deathSFX;
     [SerializeField] private AudioClip playerHurtSFX;
-    [SerializeField] private AudioClip buttonHoverClip;
 
 
     [Header("UI")]

@@ -64,7 +64,7 @@ public class SkellyBoss : Enemy
     IEnumerator PlayMusic()
     {
         yield return new WaitForSeconds(1f);
-        SoundManager.instance.PlayLoopMusic(bossThemeMusic, player.transform, 1f);
+        SoundManager.instance.PlayLoopMusic(bossThemeMusic, player.transform, 0.3f);
     }
 
     public override void TakeDamage(int damage)
