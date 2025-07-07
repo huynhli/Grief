@@ -137,4 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896111803b9a84e43bddad5d7b8b3a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBlockedBullets: 5
+  maxBlockedBullets: 1
+  bulletLife: 1
+  rotation: 0
+  speed: 1

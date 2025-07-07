@@ -3,28 +3,43 @@ using UnityEngine;
 public class BulletBlocker : MonoBehaviour
 {
     [Header("Blocker Settings")]
-    public int maxBlockedBullets = 5; // How many bullets it can block before breaking
+    public int maxBlockedBullets = 1; // How many bullets it can block before breaking
     private int currentBlockedBullets = 0;
+    public float bulletLife = 1f;  // Defines how long before the bullet is destroyed
+    public float rotation = 0f;
+    public float speed = 1f;
+    private Vector2 spawnPoint;
+    private float timer = 0f;
     
     [Header("Visual Effects")]
-    // public GameObject blockEffectPrefab; // Particle effect when blocking
-    // public AudioClip blockSound;
-    // private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
-    
-    // [Header("Destruction")]
-    // public GameObject destructionEffectPrefab;
-    // public AudioClip destructionSound;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spawnPoint = new Vector2(transform.position.x, transform.position.y);
         
         // Make sure it has a collider set as trigger
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)
             col.isTrigger = true;
     }
+
+    void Update()
+    {
+        if(timer > bulletLife) Destroy(this.gameObject);
+        timer += Time.deltaTime;
+        transform.position = Movement(timer);
+    }
+
+    private Vector2 Movement(float timer)
+    {
+        // Moves right according to the bullet's rotation
+        float x = timer * speed * transform.right.x;
+        float y = timer * speed * transform.right.y;
+        return new Vector2(x+spawnPoint.x, y+spawnPoint.y);
+    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -40,14 +55,6 @@ public class BulletBlocker : MonoBehaviour
     {
         currentBlockedBullets++;
         
-        // Play block effect
-        // if (blockEffectPrefab)
-        //     Instantiate(blockEffectPrefab, bullet.transform.position, Quaternion.identity);
-        
-        // // Play block sound
-        // if (audioSource && blockSound)
-        //     audioSource.PlayOneShot(blockSound);
-        
         // Destroy the bullet
         Destroy(bullet.gameObject);
         
@@ -58,22 +65,12 @@ public class BulletBlocker : MonoBehaviour
         }
         else
         {
-            // Visual feedback - flash or change color slightly
             StartCoroutine(FlashBlocker());
         }
     }
 
     void BreakBlocker()
     {
-        // Play destruction effect
-        // if (destructionEffectPrefab)
-        //     Instantiate(destructionEffectPrefab, transform.position, Quaternion.identity);
-        
-        // // Play destruction sound
-        // if (audioSource && destructionSound)
-        //     audioSource.PlayOneShot(destructionSound);
-        
-        // Destroy the blocker
         Destroy(gameObject);
     }
 

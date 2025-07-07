@@ -31,6 +31,10 @@ public class DenialBoss : Enemy
     public GameObject bulletBlockerPrefab; // For the denial/blocking mechanic
     public int orbsPerWave = 16;
     private bool phaseTwo = false;
+    public GameObject turretPrefab;
+    public Transform[] turretSpawnPoints;
+    public float turretLifetime = 15f;
+    private GameObject[] spawnedTurrets;
 
     [Header("Vulnerability System")]
     public int[] vulnerableAttacks = { 2, 4 };
@@ -38,6 +42,7 @@ public class DenialBoss : Enemy
     protected override void Start()
     {
         base.Start();
+        spawnedTurrets = new GameObject[3];
         animator = GetComponent<Animator>();
 
         // Start with the intro sequence
@@ -73,6 +78,7 @@ public class DenialBoss : Enemy
     {
         // Stop all coroutines and play death animation
         StopAllCoroutines();
+
         animator.SetBool("isDead", true);
 
         // Stop battle music
@@ -165,7 +171,7 @@ public class DenialBoss : Enemy
         switch (atkType)
         {
             case 1:
-                // yield return StartCoroutine(SpawnerAttack());
+                yield return StartCoroutine(SpawnerAttack());
                 break;
             case 2:
                 yield return StartCoroutine(WaveAttack());
@@ -180,12 +186,24 @@ public class DenialBoss : Enemy
         }
     }
 
+    // Attack 1: Turrets
+    IEnumerator SpawnerAttack()
+    {
+        Destroy(Instantiate(turretPrefab, new Vector2(-20f, 10f), Quaternion.identity), turretLifetime);
+        Destroy(Instantiate(turretPrefab, new Vector2(20f, 10f), Quaternion.identity), turretLifetime);
+        Destroy(Instantiate(turretPrefab, new Vector2(0f, -10f), Quaternion.identity), turretLifetime);
+    
+        // Wait for the attack duration
+        yield return new WaitForSeconds(turretLifetime);
+    }
+
+
     // Attack 2: Wave Attack - 4 bullet ripples with dodge gaps
     IEnumerator WaveAttack()
     {
         int totalRipples = 5;
         int bulletsPerRipple = 100; // More bullets for better circle coverage
-        float rippleInterval = 1f; // Time between each ripple
+        float rippleInterval = 1.5f; // Time between each ripple
         float gapAngle = 15f; // Angle of the gap in degrees (adjust for difficulty)
         
         // Calculate initial gap direction (toward player's current position)
@@ -195,7 +213,7 @@ public class DenialBoss : Enemy
         for (int ripple = 0; ripple < totalRipples; ripple++)
         {
             // Slightly rotate the gap for each ripple to make it more challenging
-            float currentGapAngle = gapStartAngle + (ripple * 15f);
+            float currentGapAngle = gapStartAngle + (ripple * 30f);
             
             // Create bullets in a circle, skipping the gap area
             for (int i = 0; i < bulletsPerRipple; i++)
