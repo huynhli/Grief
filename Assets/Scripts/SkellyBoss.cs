@@ -10,7 +10,7 @@ public class SkellyBoss : Enemy
     [SerializeField] private bool isInvulnerable;
     private int maxHealth = 150;
     public override int MaxHealth => maxHealth;
-    private string bossTitle = "Bargain";
+    private string bossTitle = "BARGAIN";
     public override string BossTitle => bossTitle;
     private CompositeCollider2D collisionToToggle;
     

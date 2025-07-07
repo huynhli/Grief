@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -46,9 +48,23 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip fireSFX;
     [SerializeField] private AudioClip deathSFX;
     [SerializeField] private AudioClip playerHurtSFX;
+    [SerializeField] private AudioClip buttonHoverClip;
+
+
+    [Header("UI")]
+    public UIDocument uiDocument;
+    public Label youDied;
+    public Button mainMenuButton;
 
     void Start()
     {
+        uiDocument = GetComponent<UIDocument>();
+        youDied = uiDocument.rootVisualElement.Q<Label>("Dead");
+        youDied.style.display = DisplayStyle.None;
+        mainMenuButton = uiDocument.rootVisualElement.Q<Button>("BackButton");
+        mainMenuButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        mainMenuButton.clicked += MainMenuButtonClicked;
+        mainMenuButton.style.display = DisplayStyle.None;
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
@@ -57,6 +73,16 @@ public class Player : MonoBehaviour
         isInvincible = false;
 
         currentHealth = maxHealth;
+    }
+
+    void MainMenuButtonClicked()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void OnMouseEnter(MouseEnterEvent evt)
+    {
+        SoundManager.instance.PlaySFXClip(buttonHoverClip, playerTransform, 0.4f);
     }
 
     // Update is called once per frame
@@ -197,8 +223,36 @@ public class Player : MonoBehaviour
             SoundManager.instance.PlaySFXClip(deathSFX, playerTransform, 4f);
             // player dead -- call game over, anmimation, etc.
             yield return new WaitForSeconds(2f);
-            // TODO fade in death screen and show for time, then
-            // SceneManager.LoadScene(0);
+
+            float duration = 1.5f;
+            float elapsed = 0f;
+            float mainMenuStartTime = duration * 0.5f; // Start at 50% through
+            float mainMenuElapsed = 0f;
+            float mainMenuDuration = 0.75f; // Duration for main menu fade
+
+            youDied.style.display = DisplayStyle.Flex;
+            mainMenuButton.style.display = DisplayStyle.Flex;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float percent = elapsed / duration;
+                float opacity = Mathf.Lerp(0f, 1f, percent);
+                youDied.style.opacity = opacity;
+
+                if (elapsed >= mainMenuStartTime)
+                {
+                    mainMenuElapsed += Time.deltaTime;
+                    float mainMenuPercent = Mathf.Clamp01(mainMenuElapsed / mainMenuDuration);
+                    float mainMenuOpacity = Mathf.Lerp(0f, 1f, mainMenuPercent);
+                    mainMenuButton.style.opacity = mainMenuOpacity;
+
+                }
+
+                yield return null;
+            }
+            
+            
         }
     }
 
