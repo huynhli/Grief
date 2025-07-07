@@ -203,7 +203,7 @@ public class DenialBoss : Enemy
     {
         int totalRipples = 5;
         int bulletsPerRipple = 100; // More bullets for better circle coverage
-        float rippleInterval = 1.5f; // Time between each ripple
+        float rippleInterval = 2f; // Time between each ripple
         float gapAngle = 15f; // Angle of the gap in degrees (adjust for difficulty)
         
         // Calculate initial gap direction (toward player's current position)
@@ -213,7 +213,8 @@ public class DenialBoss : Enemy
         for (int ripple = 0; ripple < totalRipples; ripple++)
         {
             // Slightly rotate the gap for each ripple to make it more challenging
-            float currentGapAngle = gapStartAngle + (ripple * 30f);
+            float randomOffset = UnityEngine.Random.Range(-30f, 30f); // Random rotation within ±30 degrees
+            float currentGapAngle = gapStartAngle + randomOffset;
             
             // Create bullets in a circle, skipping the gap area
             for (int i = 0; i < bulletsPerRipple; i++)
@@ -336,9 +337,9 @@ public class DenialBoss : Enemy
         Vector3 direction = (targetPos - orb.transform.position).normalized;
         
         // Fast acceleration - start with moderate speed and rapidly increase
-        float acceleration = 40f; // Much higher acceleration
+        float acceleration = 30f; // Much higher acceleration
         float maxSpeed = 45f; // Higher max speed
-        float currentSpeed = 5f;
+        float currentSpeed = 15f;
         
         while (orb != null && currentSpeed < maxSpeed)
         {

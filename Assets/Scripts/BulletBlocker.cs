@@ -5,9 +5,9 @@ public class BulletBlocker : MonoBehaviour
     [Header("Blocker Settings")]
     public int maxBlockedBullets = 1; // How many bullets it can block before breaking
     private int currentBlockedBullets = 0;
-    public float bulletLife = 1f;  // Defines how long before the bullet is destroyed
+    public float bulletLife = 10f;  // Defines how long before the bullet is destroyed
     public float rotation = 0f;
-    public float speed = 1f;
+    public float speed = 15f;
     private Vector2 spawnPoint;
     private float timer = 0f;
     
@@ -43,11 +43,21 @@ public class BulletBlocker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Player player = other.GetComponent<Player>();
+            player.TakeDamage();
+            Destroy(gameObject);
+        }
         // Check if it's a bullet
         Bullet bullet = other.GetComponent<Bullet>();
         if (bullet != null)
         {
             BlockBullet(bullet);
+        }
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
     }
 
