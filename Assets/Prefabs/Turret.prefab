@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6573925418069760977}
   - component: {fileID: 6715642848223709164}
   m_Layer: 0
-  m_Name: BulletSpawner
-  m_TagString: Untagged
+  m_Name: Turret
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,3 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb69571a3cd2c428866c236519ca46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 3366944751413072598, guid: 4ebd84b4fac1a4641aad7972ea8e1349, type: 3}
+  bulletLife: 10
+  speed: 15
+  spawnerType: 1
+  firingRate: 0.1

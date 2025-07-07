@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7773777898538031726}
   - component: {fileID: 6750373719422393696}
-  - component: {fileID: 313659054754007792}
   - component: {fileID: -6909268639760179368}
+  - component: {fileID: 7249618383705329612}
   m_Layer: 0
   m_Name: BulletBlocker
   m_TagString: Enemy
@@ -89,7 +89,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &313659054754007792
+--- !u!114 &-6909268639760179368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366944751413072598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896111803b9a84e43bddad5d7b8b3a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBlockedBullets: 2
+  bulletLife: 10
+  rotation: 0
+  speed: 15
+--- !u!58 &7249618383705329612
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,16 +141,3 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &-6909268639760179368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366944751413072598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896111803b9a84e43bddad5d7b8b3a02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBlockedBullets: 5
