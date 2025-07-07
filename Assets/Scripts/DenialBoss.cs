@@ -9,7 +9,7 @@ public class DenialBoss : Enemy
     public Player player;
     [SerializeField] private Transform bossTransform;
     [HideInInspector]
-    private int maxHealth = 100;
+    private int maxHealth = 150;
     public override int MaxHealth => maxHealth;
     private string bossTitle = "DENIAL";
     public override string BossTitle => bossTitle;
