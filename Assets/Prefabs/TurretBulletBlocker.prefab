@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6909268639760179368}
   - component: {fileID: 7249618383705329612}
   m_Layer: 0
-  m_Name: BulletBlocker
+  m_Name: TurretBulletBlocker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896111803b9a84e43bddad5d7b8b3a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBlockedBullets: 2
+  maxBlockedBullets: 1
   bulletLife: 10
   rotation: 0
   speed: 15
