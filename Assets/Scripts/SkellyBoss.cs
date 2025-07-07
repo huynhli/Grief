@@ -33,11 +33,10 @@ public class SkellyBoss : Enemy
     [SerializeField] private AudioClip bossThemeMusic;
 
     [Header("UI")]
-    
+    public WinScreen winScreen;
     public UIDocument uiDocument;
     public VisualElement bossHealthBar;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
@@ -55,7 +54,7 @@ public class SkellyBoss : Enemy
 
     IEnumerator AttackSequence()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(6f);
         bossHealthBar.style.opacity = 1f;
         StartCoroutine(PlayMusic());
         yield return StartCoroutine(AttackPhase(1, 1.25f));
@@ -64,7 +63,7 @@ public class SkellyBoss : Enemy
     IEnumerator PlayMusic()
     {
         yield return new WaitForSeconds(1f);
-        SoundManager.instance.PlayLoopMusic(bossThemeMusic, player.transform, 0.3f);
+        SoundManager.instance.PlayLoopMusic(bossThemeMusic, player.transform, 0.2f);
     }
 
     public override void TakeDamage(int damage)
@@ -75,7 +74,6 @@ public class SkellyBoss : Enemy
             base.TakeDamage(damage);
             StartCoroutine(flashRed());
 
-            // Check if we should transition to phase 2
             if (currentPhase == 1 && base.currentHealth <= maxHealth / 2)
             {
                 isInvulnerable = true;
@@ -92,19 +90,13 @@ public class SkellyBoss : Enemy
     {
         currentPhase = 2;
         
-        // Stop any current attack coroutines
         if (currentAttackCoroutine != null)
         {
             StopCoroutine(currentAttackCoroutine);
         }
         
-        // Force reset to idle immediately
         animator.SetInteger("AttackType", 0);
-        
-        // Wait a brief moment for any current animations to reset
         yield return new WaitForSeconds(0.5f);
-        
-        // Start Phase 2
         StartCoroutine(AttackPhase(2, 2f));
     }
 
@@ -121,8 +113,7 @@ public class SkellyBoss : Enemy
     private void DestroyBoss()
     {
         base.Die();
-        // end screen
-        // SceneManager
+        winScreen.FadeIn();
     }
 
     IEnumerator flashGreen()

@@ -214,7 +214,7 @@ MonoBehaviour:
   invincibilityDuration: 1.5
   isInvincible: 0
   dashSFX: {fileID: 8300000, guid: fb3f4d168d61b6d49a430a94c5dba59a, type: 3}
-  fireSFX: {fileID: 8300000, guid: 2b1885623f0b9d64fbf0976de95d54a5, type: 3}
+  fireSFX: {fileID: 8300000, guid: fcce3b5b2a875254ebaf0c43c86eac2d, type: 3}
   deathSFX: {fileID: 8300000, guid: 44b6ee1f90443e2429688266be61c393, type: 3}
   playerHurtSFX: {fileID: 8300000, guid: 24d6f17996ebbdb46939c738c135d534, type: 3}
   DeathScreen: {fileID: 326093212}
@@ -1089,6 +1089,7 @@ MonoBehaviour:
   spawnTowerSFX: {fileID: 8300000, guid: 3f6b0d4909f976e47819f29dfb699719, type: 3}
   spawnCrystalSFX: {fileID: 8300000, guid: 0bbca25ea5f0ff14fbcef4c46e976f7e, type: 3}
   bossThemeMusic: {fileID: 8300000, guid: 343aa33b5eb2aa84cb9a626b1660b198, type: 3}
+  winScreen: {fileID: 924742384}
   uiDocument: {fileID: 664570357}
 --- !u!1 &326093209
 GameObject:
@@ -1427,6 +1428,71 @@ PolygonCollider2D:
       - {x: 4.1255884, y: 4.3166}
       - {x: -4.9312525, y: 4.3156557}
   m_UseDelaunayMesh: 0
+--- !u!1 &924742381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 924742383}
+  - component: {fileID: 924742382}
+  - component: {fileID: 924742384}
+  m_Layer: 5
+  m_Name: WinScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &924742382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924742381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: ff3b54456cb411c43bdcafeace1ca7e4, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 06ae13ba777ac7c4e85a56dbfdf47431, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!4 &924742383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924742381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924742384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924742381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434459a539960e6498e70263c87d51d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
 --- !u!1 &1025795544
 GameObject:
   m_ObjectHideFlags: 0
@@ -11929,3 +11995,4 @@ SceneRoots:
   - {fileID: 2121034770}
   - {fileID: 1160008091}
   - {fileID: 326093211}
+  - {fileID: 924742383}

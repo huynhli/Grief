@@ -14,13 +14,12 @@ public class DenialBoss : Enemy
     private string bossTitle = "DENIAL";
     public override string BossTitle => bossTitle;
     public bool isPhaseTwo = false;
-    private int currentPhase = 1;
-    private Coroutine currentAttackCoroutine;
 
     private Animator animator;
     private bool isInvulnerable = true; // Start invulnerable during intro
     private bool battleStarted = false;
     private bool isVulnerablePhase = false; // Tracks if boss is in vulnerable phase during attack sequence
+    public WinScreen winScreen;
 
     [Header("Audio")]
     [SerializeField] private AudioClip introMusic;
@@ -32,10 +31,8 @@ public class DenialBoss : Enemy
 
     [Header("Attack Patterns")]
     public GameObject enemyBullet; // general enemy bullet
-    public GameObject turretBullet; // turret bullet
     public int orbsPerWave = 16;
     public GameObject turretPrefab;
-    public Transform[] turretSpawnPoints;
     public float turretLifetime = 10f;
 
     [Header("Vulnerability System")]
@@ -85,25 +82,19 @@ public class DenialBoss : Enemy
 
     protected override void Die()
     {
-        // Stop all coroutines and play death animation
         StopAllCoroutines();
-
         animator.SetTrigger("isDead");
         Debug.Log("Setting parameter to enter Death");
-
-        // Stop battle music
-        // Implement stop music here
         SoundManager.instance.FadeOutLoopingMusic(5f);
-
         player.enabled = false;
         player.stopMoving();
-
         Invoke(nameof(DestroyBoss), 6f);
     }
 
     private void DestroyBoss()
     {
         base.Die();
+        winScreen.FadeIn();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -116,19 +107,10 @@ public class DenialBoss : Enemy
 
     IEnumerator IntroSequence()
     {
-        // Play intro animation
         animator.SetBool("isIntro", true);
-
-        // Play intro music
         StartCoroutine(playIntroAfterOneSecond());
-
-        // Wait for intro animation to complete
         yield return new WaitForSeconds(introAnimationDuration);
-
-        // End intro animation
         animator.SetBool("isIntro", false);
-
-        // Start battle phase
         StartBattle();
     }
 
@@ -144,13 +126,10 @@ public class DenialBoss : Enemy
         battleStarted = true;
         animator.SetBool("isAttack", true);
 
-        // Switch to battle music
         SoundManager.instance.PlayLoopMusic(battleMusic, bossTransform, 0.1f);
 
         // Turn boss healthbar on
         bossHealthBar.style.opacity = 1f;
-
-        // Start attack sequence
         StartCoroutine(AttackSequence());
     }
 

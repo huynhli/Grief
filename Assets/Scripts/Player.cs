@@ -66,32 +66,27 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isDead || isDashing) // Added isDead check
+        if (isDead || isDashing)
         {
             return;
         }
 
-        // Check for mouse button down (start holding)
         if (Input.GetMouseButtonDown(0))
         {
             isHoldingShooting = true;
-            // Only fire immediately if cooldown allows
             if (Time.time - lastShootTime >= shootCooldown)
             {
                 Shoot();
             }
         }
 
-        // Check for mouse button up (stop holding)
         if (Input.GetMouseButtonUp(0))
         {
             isHoldingShooting = false;
         }
 
-        // Continue shooting while holding and cooldown allows
         if (isHoldingShooting && Time.time - lastShootTime >= shootCooldown)
         {
             Shoot();
@@ -104,7 +99,7 @@ public class Player : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (isDead) return; // Block movement input when dead
+        if (isDead) return;
         
         animator.SetBool("isWalking", true);
 
@@ -135,7 +130,7 @@ public class Player : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (isDead) return; // Block dash input when dead
+        if (isDead) return;
         
         if (context.performed && canDash)
         {
@@ -175,9 +170,8 @@ public class Player : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, playerTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
-        SoundManager.instance.PlaySFXClip(fireSFX, playerTransform, 10f);
+        SoundManager.instance.PlaySFXClip(fireSFX, playerTransform, 0.2f);
 
-        // Update the last shoot time
         lastShootTime = Time.time;
     }
 

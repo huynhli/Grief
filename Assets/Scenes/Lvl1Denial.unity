@@ -170,7 +170,7 @@ MonoBehaviour:
   invincibilityDuration: 1.5
   isInvincible: 0
   dashSFX: {fileID: 8300000, guid: fb3f4d168d61b6d49a430a94c5dba59a, type: 3}
-  fireSFX: {fileID: 8300000, guid: 2b1885623f0b9d64fbf0976de95d54a5, type: 3}
+  fireSFX: {fileID: 8300000, guid: fcce3b5b2a875254ebaf0c43c86eac2d, type: 3}
   deathSFX: {fileID: 8300000, guid: 44b6ee1f90443e2429688266be61c393, type: 3}
   playerHurtSFX: {fileID: 8300000, guid: 24d6f17996ebbdb46939c738c135d534, type: 3}
   DeathScreen: {fileID: 1190775660}
@@ -1031,6 +1031,7 @@ MonoBehaviour:
   player: {fileID: 157662304}
   bossTransform: {fileID: 605293545}
   isPhaseTwo: 0
+  winScreen: {fileID: 1127288233}
   introMusic: {fileID: 8300000, guid: 5ef34c407408a794abe88cb23c3ffbcf, type: 3}
   battleMusic: {fileID: 8300000, guid: c74f4eb60b0e68f438c75a0b62120e9f, type: 3}
   denyBullet: {fileID: 8300000, guid: 48484f53bf3dbde47a5fc4a3f489b4c5, type: 3}
@@ -11141,6 +11142,71 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1127288232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127288235}
+  - component: {fileID: 1127288234}
+  - component: {fileID: 1127288233}
+  m_Layer: 5
+  m_Name: WinScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1127288233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127288232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434459a539960e6498e70263c87d51d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
+--- !u!114 &1127288234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127288232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: ff3b54456cb411c43bdcafeace1ca7e4, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 06ae13ba777ac7c4e85a56dbfdf47431, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!4 &1127288235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127288232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190775659
 GameObject:
   m_ObjectHideFlags: 0
@@ -11481,3 +11547,4 @@ SceneRoots:
   - {fileID: 1438854482}
   - {fileID: 1190775662}
   - {fileID: 466269224}
+  - {fileID: 1127288235}
