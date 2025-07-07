@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b32e2736d050374abf868b3aa66ce8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBlockedBullets: 1

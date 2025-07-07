@@ -12,6 +12,7 @@ public class DenialBoss : Enemy
     public override int MaxHealth => maxHealth;
     private string bossTitle = "Denial";
     public override string BossTitle => bossTitle;
+    public bool isPhaseTwo = false;
 
     private Animator animator;
     private bool isInvulnerable = true; // Start invulnerable during intro
@@ -27,22 +28,19 @@ public class DenialBoss : Enemy
     public float introAnimationDuration = 22.9f; // Adjust based on your animation length
 
     [Header("Attack Patterns")]
-    public GameObject bullet;
-    public GameObject bulletBlockerPrefab; // For the denial/blocking mechanic
+    public GameObject enemyBullet; // general enemy bullet
+    public GameObject turretBullet; // turret bullet
     public int orbsPerWave = 16;
-    private bool phaseTwo = false;
     public GameObject turretPrefab;
     public Transform[] turretSpawnPoints;
-    public float turretLifetime = 15f;
-    private GameObject[] spawnedTurrets;
+    public float turretLifetime = 10f;
 
     [Header("Vulnerability System")]
-    public int[] vulnerableAttacks = { 2, 4 };
+    public int[] vulnerableAttacks = { 1, 2 };
 
     protected override void Start()
     {
         base.Start();
-        spawnedTurrets = new GameObject[3];
         animator = GetComponent<Animator>();
 
         // Start with the intro sequence
@@ -66,10 +64,11 @@ public class DenialBoss : Enemy
         base.TakeDamage(damage);
 
         // Check for phase two transition
-        if (base.currentHealth < maxHealth / 2 && !phaseTwo)
+        if (base.currentHealth < maxHealth / 2 && !isPhaseTwo)
         {
-            phaseTwo = true;
-            animator.SetBool("isPhaseTwo", true);
+            isPhaseTwo = true;
+            animator.SetTrigger("isPhaseTwo");
+            Debug.Log("Setting parameter to enter Phase Two");
             // You can add phase transition effects here
         }
     }
@@ -79,12 +78,17 @@ public class DenialBoss : Enemy
         // Stop all coroutines and play death animation
         StopAllCoroutines();
 
-        animator.SetBool("isDead", true);
+        animator.SetTrigger("isDead");
+        Debug.Log("Setting parameter to enter Death");
 
         // Stop battle music
         // Implement stop music here
+        SoundManager.instance.FadeOutLoopingMusic(5f);
 
-        Invoke(nameof(DestroyBoss), 3.5f);
+        player.enabled = false;
+        player.stopMoving();
+
+        Invoke(nameof(DestroyBoss), 6f);
     }
 
     private void DestroyBoss()
@@ -144,8 +148,7 @@ public class DenialBoss : Enemy
         while (base.currentHealth > 0)
         {
             // Choose attack pattern based on phase
-            int attackCount = phaseTwo ? 4 : 3;
-            int rand = UnityEngine.Random.Range(1, attackCount + 1);
+            int rand = UnityEngine.Random.Range(1, 4);
 
             yield return StartCoroutine(HandleAttack(rand));
 
@@ -168,6 +171,7 @@ public class DenialBoss : Enemy
             isVulnerablePhase = false;
             animator.SetBool("isVulnerable", false);
         }
+
         switch (atkType)
         {
             case 1:
@@ -178,10 +182,6 @@ public class DenialBoss : Enemy
                 break;
             case 3:
                 yield return StartCoroutine(OrbsAttack());
-                break;
-            case 4: // Phase 2 only
-                // if (phaseTwo)
-                //     yield return StartCoroutine(UltimateAttack());
                 break;
         }
     }
@@ -233,7 +233,7 @@ public class DenialBoss : Enemy
                 
                 // Spawn bullet at boss position
                 Vector3 spawnPos = bossTransform.position;
-                GameObject bulletObj = Instantiate(bullet, spawnPos, Quaternion.identity);
+                GameObject bulletObj = Instantiate(enemyBullet, spawnPos, Quaternion.identity);
                 
                 // Calculate direction for bullet movement
                 Vector3 bulletDirection = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f);
@@ -292,7 +292,7 @@ public class DenialBoss : Enemy
                     0f
                 );
                 
-                GameObject orb = Instantiate(bullet, spawnPos, Quaternion.identity);
+                GameObject orb = Instantiate(enemyBullet, spawnPos, Quaternion.identity);
                 orbs[i] = orb;
                 
                 // Make orb visually distinct (you can change this based on your bullet prefab)

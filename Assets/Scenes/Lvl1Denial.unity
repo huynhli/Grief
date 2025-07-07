@@ -963,17 +963,18 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   player: {fileID: 157662304}
   bossTransform: {fileID: 605293545}
+  isPhaseTwo: 0
   introMusic: {fileID: 8300000, guid: 5ef34c407408a794abe88cb23c3ffbcf, type: 3}
   battleMusic: {fileID: 8300000, guid: c74f4eb60b0e68f438c75a0b62120e9f, type: 3}
   denyBullet: {fileID: 8300000, guid: 48484f53bf3dbde47a5fc4a3f489b4c5, type: 3}
   introAnimationDuration: 22.9
-  bullet: {fileID: 5012302426932157593, guid: c7cc1c09bf3eb8548815441585a1b443, type: 3}
-  bulletBlockerPrefab: {fileID: 3366944751413072598, guid: 4ebd84b4fac1a4641aad7972ea8e1349, type: 3}
+  enemyBullet: {fileID: 5012302426932157593, guid: c7cc1c09bf3eb8548815441585a1b443, type: 3}
+  turretBullet: {fileID: 1577248884377807048, guid: 97c75ad9667ca174493150ec4a86a6d0, type: 3}
   orbsPerWave: 16
   turretPrefab: {fileID: 1577248884377807048, guid: 97c75ad9667ca174493150ec4a86a6d0, type: 3}
   turretSpawnPoints: []
-  turretLifetime: 15
-  vulnerableAttacks: 0200000004000000
+  turretLifetime: 10
+  vulnerableAttacks: 0100000002000000
 --- !u!61 &605293549
 BoxCollider2D:
   m_ObjectHideFlags: 0
