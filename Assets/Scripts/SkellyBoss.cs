@@ -22,6 +22,7 @@ public class SkellyBoss : Enemy
     public GameObject Tower2Prefab;
     public GameObject ClawPrefab;
     public GameObject CrystalPrefab;
+    public GameObject enemyBulletPrefab;
 
     [Header("SFX")]
     [SerializeField] private AudioClip bossHurtSFX;
@@ -59,6 +60,7 @@ public class SkellyBoss : Enemy
             // Check if we should transition to phase 2
             if (currentPhase == 1 && base.currentHealth <= maxHealth / 2)
             {
+                isInvulnerable = true;
                 StartCoroutine(TransitionToPhaseTwo());
             }
         }
@@ -92,12 +94,16 @@ public class SkellyBoss : Enemy
     {
         animator.SetBool("Dead", true);
         animator.SetInteger("AttackType", 0);
+        player.enabled = false;
+        player.stopMoving();
         Invoke(nameof(DestroyBoss), 6f); 
     }
 
-    private void DestroyBoss() 
+    private void DestroyBoss()
     {
         base.Die();
+        // end screen
+        // SceneManager
     }
 
     IEnumerator flashGreen()
@@ -148,7 +154,6 @@ public class SkellyBoss : Enemy
         }
         else if (phaseNum == 2)
         {
-            isInvulnerable = true;
             animator.SetFloat("Speed", 1f);
             animator.SetInteger("AttackType", 3);
             CameraShake.Instance.Shake(10f, 7f);
@@ -202,12 +207,13 @@ public class SkellyBoss : Enemy
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(RandomProjAttack());
-
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(RandomProjAttack());
-
+        
+        if (currentPhase == 2)
+        {
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(RandomProjAttack());
+        }
+        
         // Wait until the idle state is completely finished
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
@@ -220,25 +226,168 @@ public class SkellyBoss : Enemy
 
     IEnumerator RandomProjAttack()
     {
-        int randomInt = Random.Range(0, 4);
+        int randomInt = Random.Range(0, 3);
         switch (randomInt)
         {
-            case 0: 
-                yield return new WaitForSeconds(1f);
+            case 0:
+                // Attack 1: Semi-circle pattern at bottom of (0, 5.5)
+                yield return StartCoroutine(SemiCircleAttack());
                 break;
             case 1:
-                yield return new WaitForSeconds(1f);
+                // Attack 2: Two vertical lines shooting towards player
+                yield return StartCoroutine(VerticalLineAttack());
                 break;
             case 2:
-                yield return new WaitForSeconds(1f);
-                break;
-            case 3:
-                yield return new WaitForSeconds(1f);
+                // Attack 3: Rectangle barrier of non-moving bullets
+                yield return StartCoroutine(RectangleBarrierAttack());
                 break;
             default:
                 yield return null;
                 break;
         }
+    }
+
+    IEnumerator SemiCircleAttack()
+    {
+        Vector2 center = new Vector2(0, 5.5f);
+        float radius = 2f;
+        int bulletCount = 16;
+        
+        for (int i = 0; i < bulletCount; i++)
+        {
+            // Calculate angle for semi-circle (180 degrees spread)
+            float angle = Mathf.PI * i / (bulletCount - 1); // 0 to PI radians
+            
+            // Calculate spawn position
+            Vector2 spawnPos = center + new Vector2(
+                Mathf.Cos(angle) * radius,
+                -Mathf.Sin(angle) * radius // Negative because we want bottom semi-circle
+            );
+            
+            // Calculate direction (outward from center)
+            Vector2 direction = (spawnPos - center).normalized;
+            
+            // Spawn bullet
+            GameObject bullet = Instantiate(enemyBulletPrefab, spawnPos, Quaternion.identity);
+            
+            // Assuming your bullet has a Rigidbody2D component
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = direction * 8f; // Adjust speed as needed
+            }
+            
+            // Destroy bullet after some time
+            Destroy(bullet, 5f);
+        }
+        
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator VerticalLineAttack()
+{
+    Vector2 leftStart = new Vector2(-20f, -14f);
+    Vector2 rightStart = new Vector2(20f, -14f);
+    int bulletsPerLine = 5;
+    float verticalSpacing = 2f;
+    
+    GameObject[] bullets = new GameObject[10];
+    int bulletIndex = 0;
+    
+    for (int i = 0; i < bulletsPerLine; i++)
+    {
+        Vector2 spawnPosL = leftStart + new Vector2(0, i * verticalSpacing);
+        Vector2 spawnPosR = rightStart + new Vector2(0, i * verticalSpacing);
+        
+        bullets[bulletIndex] = Instantiate(enemyBulletPrefab, spawnPosL, Quaternion.identity);
+        bulletIndex++;
+        bullets[bulletIndex] = Instantiate(enemyBulletPrefab, spawnPosR, Quaternion.identity);
+        bulletIndex++;
+        
+        yield return new WaitForSeconds(0.2f); // Delay between spawns
+    }
+    
+    for (int i = 0; i < bullets.Length; i++)
+    {
+        if (bullets[i] != null) // Check if bullet still exists
+        {
+            Vector2 direction = (player.transform.position - bullets[i].transform.position).normalized;
+            Rigidbody2D rb = bullets[i].GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = direction * 12f; 
+            }
+            
+            // Destroy bullet after some time
+            Destroy(bullets[i], 4f);
+        }
+        yield return new WaitForSeconds(0.3f);
+    }
+}
+
+    IEnumerator RectangleBarrierAttack()
+    {
+        float minY = -15f;
+        float maxY = 0f;
+        float minX = -21f;
+        float maxX = 21f;
+        float spacing = 2f; // Adjust spacing between bullets
+        
+        // Create top edge (y = maxY)
+        for (float x = minX; x <= maxX; x += spacing)
+        {
+            Vector2 spawnPos = new Vector2(x, maxY);
+            GameObject bullet = Instantiate(enemyBulletPrefab, spawnPos, Quaternion.identity);
+            
+            // Make sure the bullet doesn't move
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+            
+            // Destroy after some time
+            Destroy(bullet, 2f);
+        }
+        
+        // Create left edge (x = minX, excluding corners to avoid duplicates)
+        for (float y = minY; y < maxY; y += spacing)
+        {
+            Vector2 spawnPos = new Vector2(minX, y);
+            GameObject bullet = Instantiate(enemyBulletPrefab, spawnPos, Quaternion.identity);
+            
+            // Make sure the bullet doesn't move
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+            
+            // Destroy after some time
+            Destroy(bullet, 2f);
+        }
+        
+        // Create right edge (x = maxX, excluding corners to avoid duplicates)
+        for (float y = minY; y < maxY; y += spacing)
+        {
+            Vector2 spawnPos = new Vector2(maxX, y);
+            GameObject bullet = Instantiate(enemyBulletPrefab, spawnPos, Quaternion.identity);
+            
+            // Make sure the bullet doesn't move
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+            
+            // Destroy after some time
+            Destroy(bullet, 2f);
+        }
+        
+        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator handleAttack(int atkType)

@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     [Header("Attack")]
     public GameObject bulletPrefab;
     public float bulletSpeed = 50f;
-    public float shootCooldown = 0.3f; // Time between shots in seconds
+    public float shootCooldown = 0.15f; // Time between shots in seconds
     private float lastShootTime = 0f;
     private bool isHoldingShooting = false; // Track if mouse is being held
 
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     [Header("Damage Taken")]
     public float invincibilityDuration = 1.5f;
-    public bool isInvincible = false;
+    public bool isInvincible;
     private SpriteRenderer spriteRenderer;
 
     [Header("SFX")]
@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         trailRenderer = GetComponent<TrailRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        isInvincible = false;
 
         currentHealth = maxHealth;
     }
@@ -76,13 +77,13 @@ public class Player : MonoBehaviour
                 Shoot();
             }
         }
-        
+
         // Check for mouse button up (stop holding)
         if (Input.GetMouseButtonUp(0))
         {
             isHoldingShooting = false;
         }
-        
+
         // Continue shooting while holding and cooldown allows
         if (isHoldingShooting && Time.time - lastShootTime >= shootCooldown)
         {
@@ -164,7 +165,7 @@ public class Player : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, playerTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
         SoundManager.instance.PlaySFXClip(fireSFX, playerTransform, 10f);
-        
+
         // Update the last shoot time
         lastShootTime = Time.time;
     }
@@ -190,6 +191,8 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("isDead", true);
+            isInvincible = true;
+            rb.linearVelocity = Vector2.zero;
             yield return new WaitForSeconds(2f);
             SoundManager.instance.PlaySFXClip(deathSFX, playerTransform, 4f);
             // player dead -- call game over, anmimation, etc.
@@ -212,5 +215,12 @@ public class Player : MonoBehaviour
         }
 
         spriteRenderer.enabled = true;
+    }
+
+    public void stopMoving()
+    {
+        playerTransform.position = Vector3.zero;
+        isInvincible = true;
+        rb.linearVelocity = Vector2.zero;
     }
 }

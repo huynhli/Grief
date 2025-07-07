@@ -33,13 +33,14 @@ public class Tower2Prefab : MonoBehaviour
     
     IEnumerator AttackSequence() 
     {
+        yield return new WaitForSeconds(1.5f);
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
-            
+
             // Shoot bullets in fan direction, alternating sides
             ShootFanDirection();
-            
+
             currentIteration++;
             if (currentIteration >= iterationsBeforeSwitch)
             {
