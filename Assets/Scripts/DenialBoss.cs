@@ -10,7 +10,7 @@ public class DenialBoss : Enemy
     [HideInInspector]
     private int maxHealth = 10;
     public override int MaxHealth => maxHealth;
-    private string bossTitle = "Denial";
+    private string bossTitle = "DENIAL";
     public override string BossTitle => bossTitle;
     public bool isPhaseTwo = false;
 

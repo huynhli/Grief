@@ -20,3 +20,23 @@
     border-bottom-width: 2px;
     border-left-width: 2px;
 }
+
+.unity-button {
+}
+
+.unity-button:hover {
+    scale: 1.1 1.1;
+}
+
+.unity-button:active {
+    scale: 1.1 1.1;
+    border-left-color: rgb(152, 152, 152);
+    border-right-color: rgb(152, 152, 152);
+    border-top-color: rgb(152, 152, 152);
+    border-bottom-color: rgb(152, 152, 152);
+    color: rgb(152, 152, 152);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+}
