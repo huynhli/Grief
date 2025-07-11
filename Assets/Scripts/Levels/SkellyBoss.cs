@@ -32,16 +32,9 @@ public class SkellyBoss : Enemy
     [SerializeField] private AudioClip spawnCrystalSFX;
     [SerializeField] private AudioClip bossThemeMusic;
 
-    [Header("UI")]
-    public WinScreen winScreen;
-    public UIDocument uiDocument;
-    public VisualElement bossHealthBar;
-
     protected override void Start()
     {
         base.Start();
-        bossHealthBar = uiDocument.rootVisualElement.Q<VisualElement>("BossBar");
-        bossHealthBar.style.opacity = 0f;
         collisionToToggle = GetComponent<CompositeCollider2D>();
         collisionToToggle.enabled = false;
         animator = GetComponent<Animator>();
@@ -55,7 +48,7 @@ public class SkellyBoss : Enemy
     IEnumerator AttackSequence()
     {
         yield return new WaitForSeconds(6f);
-        bossHealthBar.style.opacity = 1f;
+        base.levelUIManager.ShowBossBar(3f);
         StartCoroutine(PlayMusic());
         yield return StartCoroutine(AttackPhase(1, 1.25f));
     }
@@ -113,7 +106,7 @@ public class SkellyBoss : Enemy
     private void DestroyBoss()
     {
         base.Die();
-        winScreen.FadeIn();
+        
     }
 
     IEnumerator flashGreen()

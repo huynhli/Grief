@@ -134,14 +134,15 @@ public class LevelUIManager : MonoBehaviour
 
 
     // Appearing Overlays //
-    public void ShowBossBar()
+    public void ShowBossBar(float secondsToWait = 0f)
     {
         if (bossHealthBarScreen == null)
         {
             Debug.LogError("bossHealthBarScreen is null! Check your UXML structure.");
             return;
         }
-        IEnumerator BossBarAnimation() {
+        IEnumerator BossBarAnimation(float secondsToWait) {
+            yield return new WaitForSeconds(secondsToWait);
             bossHealthBarScreen.style.display = DisplayStyle.Flex;
             float elapsed = 0f;
             float duration = 1.5f;
@@ -153,7 +154,7 @@ public class LevelUIManager : MonoBehaviour
                 yield return null;
             }
         }
-        StartCoroutine(BossBarAnimation());
+        StartCoroutine(BossBarAnimation(secondsToWait));
     }
 
     public void ShowWinScreen()
