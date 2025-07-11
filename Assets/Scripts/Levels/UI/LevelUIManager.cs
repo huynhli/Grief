@@ -79,15 +79,6 @@ public class LevelUIManager : MonoBehaviour
         deathRetry.clicked += RetryClicked;
     }
 
-    void PrintAllElementNames(VisualElement root)
-    {
-        Debug.Log("Element: " + root.name);
-        foreach (var child in root.Children())
-        {
-            PrintAllElementNames(child);
-        }
-    }
-
     // Button logic //
     private void OnMouseEnter(MouseEnterEvent evt)
     {

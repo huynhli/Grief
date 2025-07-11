@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/BossHealthBar.uss?fileID=7433441132597879392&amp;guid=65992b9318a559848854a19aa033bef1&amp;type=3#BossHealthBar" />
+    <ui:VisualElement name="NotImplemented" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; bottom: 0%; right: 0%; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; position: absolute; top: 0%; right: 0%; left: 0%; bottom: 0%; margin-top: 20%; font-size: 100px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/RobotoMono-VariableFont_wght.ttf?fileID=12800000&amp;guid=a1f49eb60ab741b49b9b9f01aa6a6bdb&amp;type=3#RobotoMono-VariableFont_wght&quot;); margin-left: 20%; margin-right: 20%; margin-bottom: 10%;">
+            <ui:Label text="Not Implemented Yet" name="NotImplementedYet" style="align-items: stretch; align-self: center; color: rgb(166, 37, 37);" />
+            <ui:Button text="Main Menu" name="Main" style="background-color: rgb(0, 0, 0); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-top: 1%; margin-right: 15%; margin-left: 15%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
