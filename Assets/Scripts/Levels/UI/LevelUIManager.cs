@@ -15,6 +15,7 @@ public class LevelUIManager : MonoBehaviour
     [Header("Boss Bar")]
     private VisualElement bossHealthBarScreen;
     private ProgressBar bossProgressBar;
+    private Label bossProgressBarName;
     [Header("Win Screen")]
     private VisualElement winScreen;
     private Button winNext;
@@ -32,7 +33,7 @@ public class LevelUIManager : MonoBehaviour
 
 
     // Query + Register //
-    void Start()
+    void OnEnable()
     {
         uiDocument = GetComponent<UIDocument>();
 
@@ -41,10 +42,13 @@ public class LevelUIManager : MonoBehaviour
         playerProgressBar.lowValue = 0f;
         playerProgressBar.highValue = (float)player.maxHealth;
 
-        bossHealthBarScreen = uiDocument.rootVisualElement.Q<VisualElement>("BossBar");
+        bossHealthBarScreen = uiDocument.rootVisualElement.Q<VisualElement>("BossBarScreen");
         bossProgressBar = uiDocument.rootVisualElement.Q<ProgressBar>("BossProgressBar");
-        playerProgressBar.lowValue = 0f;
-        playerProgressBar.highValue = (float)boss.MaxHealth;
+        bossProgressBarName = uiDocument.rootVisualElement.Q<Label>("BossTitle");
+
+        bossProgressBarName.text = boss.BossTitle;
+        bossProgressBar.lowValue = 0f;
+        bossProgressBar.highValue = (float)boss.MaxHealth;
 
         winScreen = uiDocument.rootVisualElement.Q<VisualElement>("Win");
         winNext = uiDocument.rootVisualElement.Q<Button>("WinNextButton");
@@ -75,6 +79,14 @@ public class LevelUIManager : MonoBehaviour
         deathRetry.clicked += RetryClicked;
     }
 
+    void PrintAllElementNames(VisualElement root)
+    {
+        Debug.Log("Element: " + root.name);
+        foreach (var child in root.Children())
+        {
+            PrintAllElementNames(child);
+        }
+    }
 
     // Button logic //
     private void OnMouseEnter(MouseEnterEvent evt)
@@ -124,15 +136,20 @@ public class LevelUIManager : MonoBehaviour
     // Appearing Overlays //
     public void ShowBossBar()
     {
+        if (bossHealthBarScreen == null)
+        {
+            Debug.LogError("bossHealthBarScreen is null! Check your UXML structure.");
+            return;
+        }
         IEnumerator BossBarAnimation() {
-            bossProgressBar.style.display = DisplayStyle.Flex;
+            bossHealthBarScreen.style.display = DisplayStyle.Flex;
             float elapsed = 0f;
             float duration = 1.5f;
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 float progress = elapsed / duration;
-                bossProgressBar.style.opacity = Mathf.Lerp(0f, 1f, progress);
+                bossHealthBarScreen.style.opacity = Mathf.Lerp(0f, 1f, progress);
                 yield return null;
             }
         }
@@ -181,6 +198,8 @@ public class LevelUIManager : MonoBehaviour
                 yield return null;
             }
         }
+        bossHealthBarScreen.style.opacity = 0f;
+        bossHealthBarScreen.style.display = DisplayStyle.None;
         StartCoroutine(DeathScreenAnimation());
     }
 

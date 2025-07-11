@@ -68,7 +68,6 @@ public class DenialBoss : Enemy
         {
             isPhaseTwo = true;
             animator.SetTrigger("isPhaseTwo");
-            Debug.Log("Setting parameter to enter Phase Two");
             // You can add phase transition effects here
         }
     }
@@ -77,7 +76,6 @@ public class DenialBoss : Enemy
     {
         StopAllCoroutines();
         animator.SetTrigger("isDead");
-        Debug.Log("Setting parameter to enter Death");
         SoundManager.instance.FadeOutLoopingMusic(5f);
         player.enabled = false;
         player.stopMoving();
@@ -120,8 +118,8 @@ public class DenialBoss : Enemy
 
         SoundManager.instance.PlayLoopMusic(battleMusic, bossTransform, 0.1f);
 
-        // Turn boss healthbar on
         base.levelUIManager.ShowBossBar();
+        Debug.Log("showing boss bar");
         StartCoroutine(AttackSequence());
     }
 
