@@ -9,7 +9,7 @@ public class DenialBoss : Enemy
     public Player player;
     [SerializeField] private Transform bossTransform;
     [HideInInspector]
-    private int maxHealth = 5;
+    private int maxHealth = 150;
     public override int MaxHealth => maxHealth;
     private string bossTitle = "DENIAL";
     public override string BossTitle => bossTitle;
@@ -43,8 +43,8 @@ public class DenialBoss : Enemy
         animator = GetComponent<Animator>();
 
         // Start with the intro sequence
-        // StartCoroutine(IntroSequence());
-        StartBattle();
+        StartCoroutine(IntroSequence());
+        // StartBattle();
     }
 
     public override void TakeDamage(int damage)
@@ -130,7 +130,7 @@ public class DenialBoss : Enemy
         while (base.currentHealth > 0)
         {
             // Choose attack pattern based on phase
-            int rand = UnityEngine.Random.Range(1, 3);
+            int rand = UnityEngine.Random.Range(1, 4);
 
             yield return StartCoroutine(HandleAttack(rand));
 
