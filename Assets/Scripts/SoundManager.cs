@@ -7,6 +7,9 @@ public class SoundManager : MonoBehaviour
     private AudioSource activeAudioSource;
     [SerializeField] private AudioSource soundFXObject;
     private Coroutine fadeCoroutine;
+    private Transform uiTransform;
+    [SerializeField] private AudioClip buttonHoverClip;
+    [SerializeField] private AudioClip buttonClickClip;
 
     void Awake()
     {
@@ -14,8 +17,11 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
         }
+        uiTransform = transform;
     }
 
+
+    // playing clips //
     public void PlaySFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
@@ -26,6 +32,26 @@ public class SoundManager : MonoBehaviour
         Destroy(audioSource.gameObject, audioClip.length);
     }
 
+    public void PlayButtonHover()
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, uiTransform.position, Quaternion.identity);
+        audioSource.clip = buttonHoverClip;
+        audioSource.volume = 0.4f;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, buttonHoverClip.length);
+    }
+
+    public void PlayButtonClick()
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, uiTransform.position, Quaternion.identity);
+        audioSource.clip = buttonClickClip;
+        audioSource.volume = 0.4f;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, buttonClickClip.length);
+    }
+
+
+    // playing music //
     public void PlayLoopMusic(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         if (activeAudioSource != null)
@@ -35,7 +61,6 @@ public class SoundManager : MonoBehaviour
         }
 
         activeAudioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
-
         activeAudioSource.clip = audioClip;
         activeAudioSource.volume = volume;
         activeAudioSource.loop = true;
@@ -57,7 +82,9 @@ public class SoundManager : MonoBehaviour
             fadeCoroutine = null;
         }
     }
+
     
+    // fade out music
     public void FadeOutLoopingMusic(float fadeDuration)
     {
         if (activeAudioSource != null)
@@ -69,20 +96,7 @@ public class SoundManager : MonoBehaviour
             fadeCoroutine = StartCoroutine(FadeOutCoroutine(fadeDuration));
         }
     }
-    
-    // Fade to a specific volume without stopping
-    public void FadeLoopingMusicTo(float targetVolume, float fadeDuration = 1f)
-    {
-        if (activeAudioSource != null)
-        {
-            if (fadeCoroutine != null)
-            {
-                StopCoroutine(fadeCoroutine);
-            }
-            fadeCoroutine = StartCoroutine(FadeToVolumeCoroutine(targetVolume, fadeDuration));
-        }
-    }
-    
+
     private IEnumerator FadeOutCoroutine(float duration)
     {
         if (activeAudioSource == null) yield break;
@@ -107,6 +121,20 @@ public class SoundManager : MonoBehaviour
         }
         
         fadeCoroutine = null;
+    }
+    
+
+    // Fade to a specific volume without stopping, for duration --> use case = dialogue/cutscene maybe
+    public void FadeLoopingMusicTo(float targetVolume, float fadeDuration = 1f)
+    {
+        if (activeAudioSource != null)
+        {
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+            }
+            fadeCoroutine = StartCoroutine(FadeToVolumeCoroutine(targetVolume, fadeDuration));
+        }
     }
     
     private IEnumerator FadeToVolumeCoroutine(float targetVolume, float duration)

@@ -799,7 +799,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &2020760241
+--- !u!1 &1282044665
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -807,23 +807,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2020760243}
-  - component: {fileID: 2020760242}
-  - component: {fileID: 2020760244}
+  - component: {fileID: 1282044666}
+  - component: {fileID: 1282044668}
+  - component: {fileID: 1282044669}
   m_Layer: 5
-  m_Name: MainMenuManager
+  m_Name: MainMenuController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2020760242
+--- !u!4 &1282044666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282044665}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282044668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020760241}
+  m_GameObject: {fileID: 1282044665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d788fbe519e034a925a468b08d9e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 306695119}
+  tilemapTransform: {fileID: 1184963466}
+  titleLoadClip: {fileID: 8300000, guid: 922445e139e592043b2f17ad49e0f057, type: 3}
+  mainMenuThemeClip: {fileID: 8300000, guid: c0adba69556899c4ba6818988e0fff2a, type: 3}
+--- !u!114 &1282044669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282044665}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
@@ -836,38 +867,6 @@ MonoBehaviour:
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
---- !u!4 &2020760243
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020760241}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2020760244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020760241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d788fbe519e034a925a468b08d9e40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 306695119}
-  tilemapTransform: {fileID: 1184963466}
-  titleLoadClip: {fileID: 8300000, guid: 922445e139e592043b2f17ad49e0f057, type: 3}
-  buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
-  mainMenuThemeClip: {fileID: 8300000, guid: c0adba69556899c4ba6818988e0fff2a, type: 3}
 --- !u!1 &2045295032
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 5554617312134040976, guid: 3ca41162d58ad044997a4664cb4d6760, type: 3}
+  buttonHoverClip: {fileID: 8300000, guid: 7b732688eb94e374aab8b3717b56c222, type: 3}
+  buttonClickClip: {fileID: 8300000, guid: e60e6f07f9192bf46879ddecd3a0fadb, type: 3}
 --- !u!4 &2045295034
 Transform:
   m_ObjectHideFlags: 0
@@ -920,5 +921,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 536172975}
   - {fileID: 306695119}
-  - {fileID: 2020760243}
+  - {fileID: 1282044666}
   - {fileID: 2045295034}
