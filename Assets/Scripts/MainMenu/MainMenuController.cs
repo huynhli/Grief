@@ -45,6 +45,22 @@ public class MainMenuManager : MonoBehaviour
     private VisualElement creditsMenu;
     private Button creditsBackButton;
 
+    [Header("Tutorial")]
+    private VisualElement tutorialScreen;
+    private VisualElement tutorial11;
+    private VisualElement tutorial12;
+    private Button tutorial13;
+    private VisualElement tutorial13Cover;
+    private VisualElement tutorial21;
+    private VisualElement tutorial22;
+    private Button tutorial23;
+    private VisualElement tutorial23Cover;
+    private VisualElement tutorial31;
+    private VisualElement tutorial32;
+    private Button tutorial33;
+    private VisualElement tutorial33Cover;
+    private Button tutorialGo;
+
     [Header("Sounds")]
     [SerializeField] private AudioClip titleLoadClip;
     [SerializeField] private AudioClip mainMenuThemeClip;
@@ -78,7 +94,7 @@ public class MainMenuManager : MonoBehaviour
         creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        startButton.clicked += () => LevelSelectedClicked(1);
+        startButton.clicked += StartButtonClicked;
         levelSelectButton.clicked += LevelSelectButtonClicked;
         creditsButton.clicked += CreditsButtonClicked;
         exitButton.clicked += ExitButtonClicked;
@@ -119,6 +135,52 @@ public class MainMenuManager : MonoBehaviour
         creditsMenu.style.display = DisplayStyle.None;
         creditsBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         creditsBackButton.clicked += () => BackButtonClicked(1);
+
+        // Tutorial menu
+        tutorialScreen = uiDocument.rootVisualElement.Q<VisualElement>("TutorialScreen");
+        tutorial11 = uiDocument.rootVisualElement.Q<VisualElement>("Box11");
+        tutorial12 = uiDocument.rootVisualElement.Q<VisualElement>("Box12");
+        tutorial13 = uiDocument.rootVisualElement.Q<Button>("Button13");
+        tutorial13Cover = uiDocument.rootVisualElement.Q<VisualElement>("Button13Cover");
+        tutorial21 = uiDocument.rootVisualElement.Q<VisualElement>("Box21");
+        tutorial22 = uiDocument.rootVisualElement.Q<VisualElement>("Box22");
+        tutorial23 = uiDocument.rootVisualElement.Q<Button>("Button23");
+        tutorial23Cover = uiDocument.rootVisualElement.Q<VisualElement>("Button23Cover");
+        tutorial31 = uiDocument.rootVisualElement.Q<VisualElement>("Box31");
+        tutorial32 = uiDocument.rootVisualElement.Q<VisualElement>("Box32");
+        tutorial33 = uiDocument.rootVisualElement.Q<Button>("Button33");
+        tutorial33Cover = uiDocument.rootVisualElement.Q<VisualElement>("Button33Cover");
+        tutorialGo = uiDocument.rootVisualElement.Q<Button>("Go");
+
+        tutorialScreen.style.display = DisplayStyle.None;
+        tutorial11.style.opacity = 0f;
+        tutorial12.style.opacity = 0f;
+        tutorial13.style.opacity = 0f;
+        tutorial13Cover.style.opacity = 0f;
+        tutorial21.style.opacity = 0f;
+        tutorial22.style.opacity = 0f;
+        tutorial23.style.opacity = 0f;
+        tutorial23Cover.style.opacity = 0f;
+        tutorial31.style.opacity = 0f;
+        tutorial32.style.opacity = 0f;
+        tutorial33.style.opacity = 0f;
+        tutorial33Cover.style.opacity = 0f;
+        tutorialGo.style.opacity = 0f;
+
+
+        tutorial13.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        tutorial13.clicked += Tutorial13Clicked;
+        tutorial23.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        tutorial23.clicked += Tutorial23Clicked;
+        tutorial33.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        tutorial33.clicked += Tutorial33Clicked;
+        tutorialGo.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        tutorialGo.clicked += TutorialGoClicked;
+
+        tutorial13.pickingMode = PickingMode.Ignore; 
+        tutorial23.pickingMode = PickingMode.Ignore; 
+        tutorial33.pickingMode = PickingMode.Ignore; 
+        tutorialGo.pickingMode = PickingMode.Ignore; 
     }
 
 
@@ -137,6 +199,85 @@ public class MainMenuManager : MonoBehaviour
             SceneManager.LoadScene(levelNum);
         }
         StartCoroutine(WaitForSoundThenLoad());
+    }
+
+    private void StartButtonClicked() {
+        IEnumerator TutorialSequence1()
+        {
+            titleElement.style.display = DisplayStyle.None;
+            startButton.style.display = DisplayStyle.None;
+            levelSelectButton.style.display = DisplayStyle.None;
+            creditsButton.style.display = DisplayStyle.None;
+            exitButton.style.display = DisplayStyle.None;
+            tutorialScreen.style.display = DisplayStyle.Flex;
+
+            StartCoroutine(MoveStuff(2f, new Vector3(1.25f, -1f, 0f)));
+
+            yield return new WaitForSeconds(1f);
+            tutorial11.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial12.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial13.pickingMode = PickingMode.Position; 
+            tutorial13.style.opacity = 1f;
+        }
+        StartCoroutine(TutorialSequence1());
+    }
+
+    private void Tutorial13Clicked()
+    {
+        IEnumerator TutorialSequence2()
+        {
+            tutorial13.pickingMode = PickingMode.Ignore;
+            // tutorial13.SetEnabled(false);
+            // tutorial13.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
+            tutorial13Cover.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial21.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial22.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial23.pickingMode = PickingMode.Position; 
+            tutorial23.style.opacity = 1f;
+        }
+        StartCoroutine(TutorialSequence2());
+    }
+
+    private void Tutorial23Clicked()
+    {
+        IEnumerator TutorialSequence3()
+        {
+            tutorial23.pickingMode = PickingMode.Ignore; 
+            tutorial23.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
+            tutorial23Cover.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial31.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial32.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorial33.pickingMode = PickingMode.Position; 
+            tutorial33.style.opacity = 1f;
+        }
+        StartCoroutine(TutorialSequence3());
+    }
+
+    private void Tutorial33Clicked()
+    {
+        IEnumerator TutorialSequence4()
+        {
+            tutorial33.pickingMode = PickingMode.Ignore; 
+            tutorial33.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
+            tutorial33Cover.style.opacity = 1f;
+            yield return new WaitForSeconds(0.4f);
+            tutorialGo.pickingMode = PickingMode.Position; 
+            tutorialGo.style.opacity = 1f;
+        }
+        StartCoroutine(TutorialSequence4());
+    }
+
+    private void TutorialGoClicked()
+    {
+        LevelSelectedClicked(1);
     }
 
     private void BackButtonClicked(int det)

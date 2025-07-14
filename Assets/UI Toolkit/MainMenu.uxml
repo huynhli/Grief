@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/MainMenu.uss?fileID=7433441132597879392&amp;guid=05db8605061ae3340a76b56c9bb3173c&amp;type=3#MainMenu" />
     <ui:VisualElement style="flex-grow: 1; align-items: center; margin-top: 4%; margin-right: 4%; margin-bottom: 4%; margin-left: 4%; -unity-font-definition: url(&quot;project://database/Assets/Fonts/RobotoMono-VariableFont_wght.ttf?fileID=12800000&amp;guid=a1f49eb60ab741b49b9b9f01aa6a6bdb&amp;type=3#RobotoMono-VariableFont_wght&quot;); font-size: 14%; scale: 1 1;">
         <ui:Label text="GRIEF" name="Title" style="font-size: 100px; color: rgb(255, 255, 255); transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; letter-spacing: 0; margin-top: 4%;" />
-        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-items: center; align-content: flex-start; align-self: flex-end; font-size: 70px; margin-top: 20px; margin-right: 10%; margin-bottom: 10%; margin-left: 20px; justify-content: space-around; border-bottom-width: 0; height: 0%;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-items: center; align-content: flex-start; align-self: flex-end; font-size: 70px; margin-top: 20px; margin-right: 10%; margin-bottom: 10%; margin-left: 20px; justify-content: space-around; border-bottom-width: 0; height: 50%; position: absolute; top: 30%; right: 1%;">
             <ui:VisualElement style="flex-grow: 1; justify-content: space-evenly; height: 100%; flex-direction: column;">
                 <ui:Button text="START" name="StartGame" style="width: 100%; opacity: 1;" />
                 <ui:Button text="LEVELS" name="LevelSelect" style="width: 100%; opacity: 1;" />
@@ -23,12 +23,12 @@
                         <ui:VisualElement name="2cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
                     </ui:Label>
                 </ui:Button>
-                <ui:Button name="3" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Anger/aseprite/demon_slime_FREE_v1.0.aseprite?fileID=-7842780898595971855&amp;guid=ceb94f7cb684d9d4884d908f41ece0cf&amp;type=3#Frame_2&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 30% 70%; margin-bottom: 15%; padding-bottom: 10px; height: 45%;">
+                <ui:Button name="3" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-right: 2%; margin-left: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Anger/aseprite/demon_slime_FREE_v1.0.aseprite?fileID=2656890655005423567&amp;guid=da06cbb0587dec54d9138e301562387b&amp;type=3#Frame_2&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 30% 70%; margin-bottom: 15%; padding-bottom: 10px; height: 45%;">
                     <ui:Label text="3" name="3num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
                         <ui:VisualElement name="3cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
                     </ui:Label>
                 </ui:Button>
-                <ui:Button name="4" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-left: 2%; margin-right: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Depression/Agis.png?fileID=6701719294234715542&amp;guid=abb4ccf010fa19740b693f106a42665e&amp;type=3#Agis_6&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 40% 80%; margin-bottom: 15%; padding-bottom: 10px; height: 45%;">
+                <ui:Button name="4" class="lvl-select-buttons" style="flex-grow: 1; flex-shrink: 1; margin-left: 2%; margin-right: 2%; margin-top: 1%; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/Depression/Agis.png?fileID=6701719294234715542&amp;guid=e8468355fc681664e8f01e56dbc686a8&amp;type=3#Agis_6&quot;); -unity-background-scale-mode: scale-to-fit; background-size: 40% 80%; margin-bottom: 15%; padding-bottom: 10px; height: 45%;">
                     <ui:Label text="4" name="4num" style="-unity-font-style: bold; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);">
                         <ui:VisualElement name="4cover" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; background-size: 50% 70%; background-color: rgba(140, 140, 140, 0.54); position: relative;" />
                     </ui:Label>
@@ -48,5 +48,25 @@
             </ui:VisualElement>
             <ui:Button text="Back" name="CreditBackButton" style="font-size: 60px; height: 12%; width: 15%; margin-top: 2%; margin-bottom: 5%; margin-left: 5%;" />
         </ui:VisualElement>
+        <ui:VisualElement name="TutorialScreen" style="flex-grow: 1; position: absolute; top: 0%; right: 0%; left: 0%; bottom: 0%; flex-direction: column; padding-right: 0%; padding-left: 0%;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="Box11" class="margin" style="flex-grow: 1;" />
+                <ui:VisualElement name="Box12" class="margin" style="flex-grow: 1;" />
+                <ui:Button text="Move with WASD" name="Button13" class="margin" style="white-space: normal; text-overflow: ellipsis; background-color: rgb(0, 0, 0); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                    <ui:VisualElement name="Button13Cover" style="flex-grow: 1; background-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; position: absolute; top: 0%; right: 0%; bottom: 0%; left: 0%; min-width: auto; opacity: 0;" />
+                </ui:Button>
+                <ui:VisualElement name="Box21" class="margin" style="flex-grow: 1;" />
+                <ui:VisualElement name="Box22" class="margin" style="flex-grow: 1;" />
+                <ui:Button text="Dash with Space" name="Button23" class="margin" style="text-overflow: ellipsis; white-space: normal; background-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Button23Cover" style="flex-grow: 1; background-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; position: absolute; top: 0%; right: 0%; bottom: 0%; left: 0%; min-width: auto; opacity: 0;" />
+                </ui:Button>
+                <ui:VisualElement name="Box31" class="margin" style="flex-grow: 1;" />
+                <ui:VisualElement name="Box32" class="margin" style="flex-grow: 1;" />
+                <ui:Button text="Shoot with Left Click" name="Button33" class="margin" style="text-overflow: ellipsis; white-space: normal; background-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Button33Cover" style="flex-grow: 1; background-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; position: absolute; top: 0%; right: 0%; bottom: 0%; left: 0%; min-width: auto; opacity: 0;" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button text="GO" name="Go" style="width: 300px; align-self: center; height: 150px; font-size: 80px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); margin-bottom: 5%; margin-top: 5%; position: absolute; top: 37%; bottom: 0%; scale: 1 1;" />
     </ui:VisualElement>
 </ui:UXML>

@@ -40,3 +40,27 @@
     border-left-width: 5px;
     color: rgb(152, 152, 152);
 }
+
+.margin {
+    margin-top: 30%;
+    margin-right: 4%;
+    margin-bottom: 25%;
+    margin-left: 2%;
+    background-color: rgb(255, 255, 255);
+    min-height: 90px;
+    min-width: 90px;
+    width: 90px;
+    max-width: 90px;
+    max-height: 90px;
+    height: 90px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    -unity-text-outline-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}

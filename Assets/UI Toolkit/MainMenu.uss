@@ -62,3 +62,19 @@
     width: 150%;
     padding-bottom: 0%;
 }
+
+.margin {
+    width: 120px;
+    margin-right: 1%;
+    margin-left: 3%;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    min-width: 120px;
+    max-width: 120px;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    color: rgb(255, 255, 255);
+}
