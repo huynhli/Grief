@@ -36,9 +36,6 @@ public class Player : MonoBehaviour
     private float lastShootTime = 0f;
     private bool isHoldingShooting = false; // Track if mouse is being held
 
-    [Header("Damage Boss")]
-    public bool enemy;
-
     [Header("Damage Taken")]
     public float invincibilityDuration = 1.5f;
     public bool isInvincible;
@@ -145,7 +142,7 @@ public class Player : MonoBehaviour
         isInvincible = true;
         trailRenderer.emitting = true;
 
-        SoundManager.instance.PlaySFXClip(dashSFX, playerTransform, 4f);
+        SoundManager.instance.PlaySFXClip(dashSFX, 4f);
 
         dashDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
 
@@ -170,7 +167,7 @@ public class Player : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, playerTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(shootDirection.x, shootDirection.y) * bulletSpeed;
-        SoundManager.instance.PlaySFXClip(fireSFX, playerTransform, 0.2f);
+        SoundManager.instance.PlaySFXClip(fireSFX, 0.2f);
 
         lastShootTime = Time.time;
     }
@@ -187,7 +184,7 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
         currentHealth -= 1;
-        SoundManager.instance.PlaySFXClip(playerHurtSFX, transform, 1f);
+        SoundManager.instance.PlaySFXClip(playerHurtSFX, 1f);
         StartCoroutine(FlashPlayer());
 
         yield return new WaitForSeconds(invincibilityDuration);
@@ -200,7 +197,7 @@ public class Player : MonoBehaviour
             isInvincible = true;
             rb.linearVelocity = Vector2.zero;
 
-            SoundManager.instance.PlaySFXClip(deathSFX, playerTransform, 4f);
+            SoundManager.instance.PlaySFXClip(deathSFX, 4f);
             levelUIManager.ShowDeathScreen();
             
         }

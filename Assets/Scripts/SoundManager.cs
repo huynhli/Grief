@@ -22,9 +22,9 @@ public class SoundManager : MonoBehaviour
 
 
     // playing clips //
-    public void PlaySFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    public void PlaySFXClip(AudioClip audioClip, float volume)
     {
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(soundFXObject, uiTransform.position, Quaternion.identity);
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.Play();
@@ -52,7 +52,7 @@ public class SoundManager : MonoBehaviour
 
 
     // playing music //
-    public void PlayLoopMusic(AudioClip audioClip, Transform spawnTransform, float volume)
+    public void PlayLoopMusic(AudioClip audioClip, float volume)
     {
         if (activeAudioSource != null)
         {
@@ -60,7 +60,7 @@ public class SoundManager : MonoBehaviour
             Destroy(activeAudioSource.gameObject);
         }
 
-        activeAudioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        activeAudioSource = Instantiate(soundFXObject, uiTransform.position, Quaternion.identity);
         activeAudioSource.clip = audioClip;
         activeAudioSource.volume = volume;
         activeAudioSource.loop = true;

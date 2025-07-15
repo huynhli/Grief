@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("Damage Taken")]
     public SpriteRenderer spriteRenderer;
+    [SerializeField] private AudioClip hurtSFX;
+
     [Header("UI")]
     public LevelUIManager levelUIManager;
 
@@ -28,6 +30,7 @@ public abstract class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         StartCoroutine(FlashYellow());
+        SoundManager.instance.PlaySFXClip(hurtSFX, 0.4f);
         if (currentHealth == 0)
         {
             Die();

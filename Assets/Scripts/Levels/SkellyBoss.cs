@@ -26,7 +26,6 @@ public class SkellyBoss : Enemy
     public GameObject enemyBulletPrefab;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip bossHurtSFX;
     [SerializeField] private AudioClip spawnClawSFX;
     [SerializeField] private AudioClip spawnTowerSFX;
     [SerializeField] private AudioClip spawnCrystalSFX;
@@ -48,7 +47,7 @@ public class SkellyBoss : Enemy
     IEnumerator AttackSequence()
     {
         yield return new WaitForSeconds(6f);
-        base.levelUIManager.ShowBossBar(3f);
+        base.levelUIManager.ShowBossBar(5f);
         StartCoroutine(PlayMusic());
         yield return StartCoroutine(AttackPhase(1, 1.25f));
     }
@@ -56,14 +55,13 @@ public class SkellyBoss : Enemy
     IEnumerator PlayMusic()
     {
         yield return new WaitForSeconds(1f);
-        SoundManager.instance.PlayLoopMusic(bossThemeMusic, player.transform, 0.2f);
+        SoundManager.instance.PlayLoopMusic(bossThemeMusic, 0.2f);
     }
 
     public override void TakeDamage(int damage)
     {
         if (!isInvulnerable)
         {
-            SoundManager.instance.PlaySFXClip(bossHurtSFX, player.transform, 0.4f);
             base.TakeDamage(damage);
             StartCoroutine(flashRed());
 
@@ -318,7 +316,7 @@ public class SkellyBoss : Enemy
             Rigidbody2D rb = bullets[i].GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.linearVelocity = direction * 12f; 
+                rb.linearVelocity = direction * 20f; 
             }
             
             // Destroy bullet after some time
@@ -395,84 +393,99 @@ public class SkellyBoss : Enemy
 
     IEnumerator handleAttack(int atkType)
     {
+        switch (atkType)
+        {
+            case 1:
+                yield return new WaitForSeconds(3f);
+                isInvulnerable = true;
+                SoundManager.instance.PlaySFXClip(spawnTowerSFX, 4f);
+                float randomFloat1 = Random.Range(-3, 4);
+                Destroy(Instantiate(Tower1Prefab, new Vector2(21f + randomFloat1, 3f + randomFloat1), Quaternion.identity), 10f);
+                randomFloat1 = Random.Range(-3, 4);
+                Destroy(Instantiate(Tower1Prefab, new Vector2(-21f + randomFloat1, 3f + randomFloat1), Quaternion.identity), 10f);
+                randomFloat1 = Random.Range(-3, 4);
+                Destroy(Instantiate(Tower1Prefab, new Vector2(21f + randomFloat1, -10f + randomFloat1), Quaternion.identity), 10f);
+                randomFloat1 = Random.Range(-3, 4);
+                Destroy(Instantiate(Tower1Prefab, new Vector2(-21f + randomFloat1, -10f + randomFloat1), Quaternion.identity), 10f);
+                yield return new WaitForSeconds(4f); // Wait for rest of animation to be done
+                isInvulnerable = false;
+                break;
+            case 2:
+                // spawn two tower2 + 4 crystals
+                yield return new WaitForSeconds(3f);
+                isInvulnerable = true;
+                SoundManager.instance.PlaySFXClip(spawnTowerSFX, 4f);
+                Destroy(Instantiate(Tower2Prefab, new Vector2(15f, 2f), Quaternion.identity), 8f);
+                Destroy(Instantiate(Tower2Prefab, new Vector2(-15f, 2f), Quaternion.identity), 8f);
+                float randomFloat2 = Random.Range(-10, 10);
+                SoundManager.instance.PlaySFXClip(spawnCrystalSFX, 2f);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat2, 4f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat2, 10f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat2, -2f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat2, -9f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat2, 4f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat2, 10f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat2, -2f + randomFloat2 / 2), Quaternion.identity), 7f);
+                randomFloat2 = Random.Range(-10, 10);
+                Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat2, -9f + randomFloat2 / 2), Quaternion.identity), 7f);
+                yield return new WaitForSeconds(4f);
+                isInvulnerable = false;
+                break;
+            case 3:
+                // spawn 2 tower1, 2 tower 2, hands 
+                yield return new WaitForSeconds(2f);
+                isInvulnerable = true;
+                SoundManager.instance.PlaySFXClip(spawnTowerSFX, 4f);
+                Destroy(Instantiate(Tower1Prefab, new Vector2(21f, 3f), Quaternion.identity), 7f);
+                Destroy(Instantiate(Tower1Prefab, new Vector2(-21f, 3f), Quaternion.identity), 7f);
+                Destroy(Instantiate(Tower2Prefab, new Vector2(15f, 2f), Quaternion.identity), 7f);
+                Destroy(Instantiate(Tower2Prefab, new Vector2(-15f, 2f), Quaternion.identity), 7f);
+                yield return new WaitForSeconds(1f);
+                ClawSpawn(true);
+                yield return new WaitForSeconds(2f);
+                isInvulnerable = false;
+                ClawSpawn(false);
+                yield return new WaitForSeconds(2f);
+                break;
+            default:
+                Debug.Log("Empty switch default");
+                break;
+        }
+
         if (atkType == 1)
         {
-            yield return new WaitForSeconds(3f);
-            isInvulnerable = true;
-            SoundManager.instance.PlaySFXClip(spawnTowerSFX, player.transform, 4f);
-            float randomFloat = Random.Range(-3, 4);
-            Destroy(Instantiate(Tower1Prefab, new Vector2(21f + randomFloat, 3f + randomFloat), Quaternion.identity), 10f);
-            randomFloat = Random.Range(-3, 4);
-            Destroy(Instantiate(Tower1Prefab, new Vector2(-21f + randomFloat, 3f + randomFloat), Quaternion.identity), 10f);
-            randomFloat = Random.Range(-3, 4);
-            Destroy(Instantiate(Tower1Prefab, new Vector2(21f + randomFloat, -10f + randomFloat), Quaternion.identity), 10f);
-            randomFloat = Random.Range(-3, 4);
-            Destroy(Instantiate(Tower1Prefab, new Vector2(-21f + randomFloat, -10f + randomFloat), Quaternion.identity), 10f);
-            yield return new WaitForSeconds(4f); // Wait for rest of animation to be done
-            isInvulnerable = false;
+            
         }
         else if (atkType == 2)
         {
-            // spawn two tower2 + 4 crystals
-            yield return new WaitForSeconds(3f);
-            isInvulnerable = true;
-            SoundManager.instance.PlaySFXClip(spawnTowerSFX, player.transform, 4f);
-            Destroy(Instantiate(Tower2Prefab, new Vector2(15f, 2f), Quaternion.identity), 8f);
-            Destroy(Instantiate(Tower2Prefab, new Vector2(-15f, 2f), Quaternion.identity), 8f);
-            float randomFloat = Random.Range(-10, 10);
-            SoundManager.instance.PlaySFXClip(spawnCrystalSFX, player.transform, 2f);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat, 4f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat, 10f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat, -2f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(-20f + randomFloat, -9f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat, 4f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat, 10f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat, -2f + randomFloat/2), Quaternion.identity), 7f);
-            randomFloat = Random.Range(-10, 10);
-            Destroy(Instantiate(CrystalPrefab, new Vector2(20f + randomFloat, -9f + randomFloat/2), Quaternion.identity), 7f);
-            yield return new WaitForSeconds(4f);
-            isInvulnerable = false;
+            
         }
         else if (atkType == 3)
         {
-            // spawn 2 tower1, 2 tower 2, hands 
-            yield return new WaitForSeconds(2f);
-            isInvulnerable = true;
-            SoundManager.instance.PlaySFXClip(spawnTowerSFX, player.transform, 4f);
-            Destroy(Instantiate(Tower1Prefab, new Vector2(21f, 3f), Quaternion.identity), 7f);
-            Destroy(Instantiate(Tower1Prefab, new Vector2(-21f, 3f), Quaternion.identity), 7f);
-            Destroy(Instantiate(Tower2Prefab, new Vector2(15f, 2f), Quaternion.identity), 7f);
-            Destroy(Instantiate(Tower2Prefab, new Vector2(-15f, 2f), Quaternion.identity), 7f);
-            yield return new WaitForSeconds(1f);
-            ClawSpawn(0);
-            yield return new WaitForSeconds(2f);
-            isInvulnerable = false;
-            ClawSpawn(1);
-            yield return new WaitForSeconds(2f);
         }
 
         animator.SetInteger("AttackType", 0);
     }
 
-    void ClawSpawn(int leftRight)
+    void ClawSpawn(bool leftRight)
     {
-        SoundManager.instance.PlaySFXClip(spawnClawSFX, player.transform, 4f);
+        SoundManager.instance.PlaySFXClip(spawnClawSFX, 4f);
         float leftSpawn = -38f;
         float rightSpawn = 38f;
-        if (leftRight == 0)
+        if (leftRight)
         {
-            GameObject tempClaw1 = Instantiate(ClawPrefab, new Vector2(leftSpawn, 16f), Quaternion.identity);
-            GameObject tempClaw2 = Instantiate(ClawPrefab, new Vector2(leftSpawn, 10.5f), Quaternion.identity);
-            GameObject tempClaw3 = Instantiate(ClawPrefab, new Vector2(leftSpawn, 4f), Quaternion.identity);
-            GameObject tempClaw4 = Instantiate(ClawPrefab, new Vector2(leftSpawn, -2f), Quaternion.identity);
-            GameObject tempClaw5 = Instantiate(ClawPrefab, new Vector2(leftSpawn, -8.5f), Quaternion.identity);
-            GameObject tempClaw6 = Instantiate(ClawPrefab, new Vector2(leftSpawn, -14f), Quaternion.identity);
+            Instantiate(ClawPrefab, new Vector2(leftSpawn, 16f), Quaternion.identity);
+            Instantiate(ClawPrefab, new Vector2(leftSpawn, 10.5f), Quaternion.identity);
+            Instantiate(ClawPrefab, new Vector2(leftSpawn, 4f), Quaternion.identity);
+            Instantiate(ClawPrefab, new Vector2(leftSpawn, -2f), Quaternion.identity);
+            Instantiate(ClawPrefab, new Vector2(leftSpawn, -8.5f), Quaternion.identity);
+            Instantiate(ClawPrefab, new Vector2(leftSpawn, -14f), Quaternion.identity);
         }
         else
         {
@@ -481,11 +494,12 @@ public class SkellyBoss : Enemy
             GameObject tempClaw3 = Instantiate(ClawPrefab, new Vector2(rightSpawn, 1.5f), Quaternion.identity);
             GameObject tempClaw4 = Instantiate(ClawPrefab, new Vector2(rightSpawn, -5f), Quaternion.identity);
             GameObject tempClaw5 = Instantiate(ClawPrefab, new Vector2(rightSpawn, -10.5f), Quaternion.identity);
-            tempClaw1.transform.localScale = new Vector3(-1f, 1f, 1f);
-            tempClaw2.transform.localScale = new Vector3(-1f, 1f, 1f);
-            tempClaw3.transform.localScale = new Vector3(-1f, 1f, 1f);
-            tempClaw4.transform.localScale = new Vector3(-1f, 1f, 1f);
-            tempClaw5.transform.localScale = new Vector3(-1f, 1f, 1f);
+            Vector3 reverse = new Vector3(-1f, 1f, 1f);
+            tempClaw1.transform.localScale = reverse;
+            tempClaw2.transform.localScale = reverse;
+            tempClaw3.transform.localScale = reverse;
+            tempClaw4.transform.localScale = reverse;
+            tempClaw5.transform.localScale = reverse;
         }
     }
 }

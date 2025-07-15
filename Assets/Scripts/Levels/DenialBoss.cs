@@ -107,7 +107,7 @@ public class DenialBoss : Enemy
     IEnumerator playIntroAfterOneSecond()
     {
         yield return new WaitForSeconds(0.8f);
-        SoundManager.instance.PlaySFXClip(introMusic, bossTransform, 2f);
+        SoundManager.instance.PlaySFXClip(introMusic, 2f);
     }
 
     private void StartBattle()
@@ -116,7 +116,7 @@ public class DenialBoss : Enemy
         battleStarted = true;
         animator.SetBool("isAttack", true);
 
-        SoundManager.instance.PlayLoopMusic(battleMusic, bossTransform, 0.1f);
+        SoundManager.instance.PlayLoopMusic(battleMusic, 0.1f);
 
         base.levelUIManager.ShowBossBar();
         Debug.Log("showing boss bar");
@@ -347,7 +347,7 @@ public class DenialBoss : Enemy
         }
         
         // Play denial sound
-        SoundManager.instance.PlaySFXClip(denyBullet, bossTransform, 0.2f);
+        SoundManager.instance.PlaySFXClip(denyBullet, 0.2f);
     }
 
 }

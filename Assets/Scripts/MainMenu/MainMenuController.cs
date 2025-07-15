@@ -378,7 +378,7 @@ public class MainMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 
-        SoundManager.instance.PlaySFXClip(titleLoadClip, playerTransform, 15f);
+        SoundManager.instance.PlaySFXClip(titleLoadClip, 15f);
 
         for (int i = 0; i < titleText.Length; i++)
         {
@@ -390,7 +390,7 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator FadeButtons()
     {
         yield return new WaitForSeconds(1.0f);
-        SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, playerTransform, 0.1f);
+        SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, 0.1f);
         StartCoroutine(MovePlayerAndHole(2.5f, Vector3.left));
         float duration = 4f;
         float elapsed = 0f;
