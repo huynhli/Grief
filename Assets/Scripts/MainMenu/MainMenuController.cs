@@ -65,6 +65,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip titleLoadClip;
     [SerializeField] private AudioClip mainMenuThemeClip;
 
+    [Header("Wait Time")]
+    private WaitForSeconds waitZeroFour = new WaitForSeconds(0.4f);
+
 
     void Awake()
     {
@@ -72,34 +75,27 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(AnimateSequence());
     }
 
+
+    // Initializing everything
     private void SetUI()
+    {
+        QueryAll();
+        RegisterAll();
+        SetDisplayAll();
+    }
+
+    private void QueryAll()
     {
         uiDocument = GetComponent<UIDocument>();
 
-        // Set title
+        // Main Menu
         titleElement = uiDocument.rootVisualElement.Q<Label>("Title");
-        titleText = titleElement.text;
-        titleElement.text = "";
-
-        // Find main menu buttons, set invisible, enable hovering + clicks 
         startButton = uiDocument.rootVisualElement.Q<Button>("StartGame");
         creditsButton = uiDocument.rootVisualElement.Q<Button>("Credits");
         levelSelectButton = uiDocument.rootVisualElement.Q<Button>("LevelSelect");
         exitButton = uiDocument.rootVisualElement.Q<Button>("ExitGame");
-        startButton.style.opacity = 0f;
-        creditsButton.style.opacity = 0f;
-        levelSelectButton.style.opacity = 0f;
-        exitButton.style.opacity = 0f;
-        startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        startButton.clicked += StartButtonClicked;
-        levelSelectButton.clicked += LevelSelectButtonClicked;
-        creditsButton.clicked += CreditsButtonClicked;
-        exitButton.clicked += ExitButtonClicked;
 
-        // Invisible level select menu, + enable for interactions
+        // Level Select
         levelSelectMenu = uiDocument.rootVisualElement.Q<VisualElement>("LevelSelectMenu");
         unlockAllButton = uiDocument.rootVisualElement.Q<Button>("UnlockAll");
         levelOneButton = uiDocument.rootVisualElement.Q<Button>("1");
@@ -113,28 +109,10 @@ public class MainMenuManager : MonoBehaviour
         levelFiveButton = uiDocument.rootVisualElement.Q<Button>("5");
         levelFiveCover = uiDocument.rootVisualElement.Q<VisualElement>("5cover");
         levelSelectBackButton = uiDocument.rootVisualElement.Q<Button>("LevelBack");
-        levelSelectMenu.style.display = DisplayStyle.None;
-        levelOneButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelTwoButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelThreeButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelFourButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelFiveButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelSelectBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        unlockAllButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        levelOneButton.clicked += () => LevelSelectedClicked(1);
-        levelTwoButton.clicked += () => LevelSelectedClicked(2);
-        levelThreeButton.clicked += () => LevelSelectedClicked(3);
-        levelFourButton.clicked += () => LevelSelectedClicked(4);
-        levelFiveButton.clicked += () => LevelSelectedClicked(5);
-        levelSelectBackButton.clicked += () => BackButtonClicked(0);
-        unlockAllButton.clicked += UnlockAllButtonClicked;
 
-        // Credits menu
+        // Credits
         creditsMenu = uiDocument.rootVisualElement.Q<VisualElement>("CreditsMenu");
         creditsBackButton = uiDocument.rootVisualElement.Q<Button>("CreditBackButton");
-        creditsMenu.style.display = DisplayStyle.None;
-        creditsBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        creditsBackButton.clicked += () => BackButtonClicked(1);
 
         // Tutorial menu
         tutorialScreen = uiDocument.rootVisualElement.Q<VisualElement>("TutorialScreen");
@@ -151,36 +129,78 @@ public class MainMenuManager : MonoBehaviour
         tutorial33 = uiDocument.rootVisualElement.Q<Button>("Button33");
         tutorial33Cover = uiDocument.rootVisualElement.Q<VisualElement>("Button33Cover");
         tutorialGo = uiDocument.rootVisualElement.Q<Button>("Go");
+    }
 
-        tutorialScreen.style.display = DisplayStyle.None;
-        tutorial11.style.opacity = 0f;
-        tutorial12.style.opacity = 0f;
-        tutorial13.style.opacity = 0f;
-        tutorial13Cover.style.opacity = 0f;
-        tutorial21.style.opacity = 0f;
-        tutorial22.style.opacity = 0f;
-        tutorial23.style.opacity = 0f;
-        tutorial23Cover.style.opacity = 0f;
-        tutorial31.style.opacity = 0f;
-        tutorial32.style.opacity = 0f;
-        tutorial33.style.opacity = 0f;
-        tutorial33Cover.style.opacity = 0f;
-        tutorialGo.style.opacity = 0f;
+    private void RegisterAll()
+    {
+        // Main Menu
+        startButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        creditsButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelSelectButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        exitButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        startButton.clicked += StartButtonClicked;
+        levelSelectButton.clicked += LevelSelectButtonClicked;
+        creditsButton.clicked += CreditsButtonClicked;
+        exitButton.clicked += ExitButtonClicked;
 
+        // Level Select
+        levelOneButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelTwoButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelThreeButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelFourButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelFiveButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelSelectBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        unlockAllButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        levelOneButton.clicked += () => LevelSelectedClicked(1);
+        levelTwoButton.clicked += () => LevelSelectedClicked(2);
+        levelThreeButton.clicked += () => LevelSelectedClicked(3);
+        levelFourButton.clicked += () => LevelSelectedClicked(4);
+        levelFiveButton.clicked += () => LevelSelectedClicked(5);
+        levelSelectBackButton.clicked += () => BackButtonClicked(0);
+        unlockAllButton.clicked += UnlockAllButtonClicked;
 
+        // Credits
+        creditsBackButton.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        creditsBackButton.clicked += () => BackButtonClicked(1);
+
+        // Tutorial
         tutorial13.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        tutorial13.clicked += Tutorial13Clicked;
         tutorial23.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        tutorial23.clicked += Tutorial23Clicked;
         tutorial33.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-        tutorial33.clicked += Tutorial33Clicked;
         tutorialGo.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+        tutorial13.clicked += Tutorial13Clicked;
+        tutorial23.clicked += Tutorial23Clicked;
+        tutorial33.clicked += Tutorial33Clicked;
         tutorialGo.clicked += TutorialGoClicked;
+        VisibleDisplayComps(Array.Empty<VisualElement>(), new VisualElement[] { tutorialGo });
+        tutorialGo.SetEnabled(false);
+    }
 
-        tutorial13.pickingMode = PickingMode.Ignore; 
-        tutorial23.pickingMode = PickingMode.Ignore; 
-        tutorial33.pickingMode = PickingMode.Ignore; 
-        tutorialGo.pickingMode = PickingMode.Ignore; 
+    private void SetDisplayAll()
+    {
+        // main menu
+        titleText = titleElement.text;
+        titleElement.text = "";
+        VisibleOpacityComps(Array.Empty<VisualElement>(), new VisualElement[]{startButton, creditsButton, levelSelectButton, exitButton});
+
+        // Invisible level select menu, + enable for interactions
+        // Credits menu
+        // Tutorial screen
+        VisibleDisplayComps(Array.Empty<VisualElement>(), new VisualElement[] { levelSelectMenu, creditsMenu, tutorialScreen });
+
+        VisibleOpacityComps(Array.Empty<VisualElement>(), new VisualElement[] {tutorial11, tutorial12, tutorial13, tutorial13Cover, tutorial21, tutorial22, tutorial23, tutorial23Cover, tutorial31, tutorial32, tutorial33, tutorial33Cover, tutorialGo});
+    }
+
+    private void SetEnabled(Button[] arrayEnabling, Button[] arrayDisabling)
+    {
+        for (int i = 0; i < arrayEnabling.Length; i++)
+        {
+            arrayEnabling[i].SetEnabled(true);
+        }
+        for (int i = 0; i < arrayDisabling.Length; i++)
+        {
+            arrayDisabling[i].SetEnabled(false);
+        }
     }
 
 
@@ -195,84 +215,49 @@ public class MainMenuManager : MonoBehaviour
         IEnumerator WaitForSoundThenLoad()
         {
             SoundManager.instance.PlayButtonClick();
-            yield return new WaitForSeconds(0.4f);
+            yield return waitZeroFour;
             SceneManager.LoadScene(levelNum);
         }
         StartCoroutine(WaitForSoundThenLoad());
     }
 
-    private void StartButtonClicked() {
-        IEnumerator TutorialSequence1()
+    private void StartButtonClicked()
+    {
+        SoundManager.instance.PlayButtonClick();
+
+        VisibleDisplayComps(new VisualElement[] { tutorialScreen }, new VisualElement[] { titleElement, startButton, levelSelectButton, creditsButton, exitButton });
+
+        StartCoroutine(MovePlayerAndHole(2f, new Vector3(1.25f, -1f, 0f)));
+
+        StartCoroutine(WaitForSecondsWrapper(0.6f));
+        StartCoroutine(TutorialSequence(new VisualElement[] { tutorial11, tutorial12, tutorial13 }));
+    }
+
+    private IEnumerator TutorialSequence(VisualElement[] listOfComps)
+    {
+        SoundManager.instance.PlayButtonClick();
+        for (int i = 0; i < listOfComps.Length; i++)
         {
-            titleElement.style.display = DisplayStyle.None;
-            startButton.style.display = DisplayStyle.None;
-            levelSelectButton.style.display = DisplayStyle.None;
-            creditsButton.style.display = DisplayStyle.None;
-            exitButton.style.display = DisplayStyle.None;
-            tutorialScreen.style.display = DisplayStyle.Flex;
-
-            StartCoroutine(MoveStuff(2f, new Vector3(1.25f, -1f, 0f)));
-
-            yield return new WaitForSeconds(1f);
-            tutorial11.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial12.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial13.pickingMode = PickingMode.Position; 
-            tutorial13.style.opacity = 1f;
+            listOfComps[i].style.opacity = 1f;
+            yield return waitZeroFour;
         }
-        StartCoroutine(TutorialSequence1());
     }
 
     private void Tutorial13Clicked()
     {
-        IEnumerator TutorialSequence2()
-        {
-            tutorial13.pickingMode = PickingMode.Ignore;
-            // tutorial13.SetEnabled(false);
-            // tutorial13.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
-            tutorial13Cover.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial21.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial22.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial23.pickingMode = PickingMode.Position; 
-            tutorial23.style.opacity = 1f;
-        }
-        StartCoroutine(TutorialSequence2());
+        StartCoroutine(TutorialSequence(new VisualElement[] { tutorial13Cover, tutorial21, tutorial22, tutorial23 }));
     }
 
     private void Tutorial23Clicked()
     {
-        IEnumerator TutorialSequence3()
-        {
-            tutorial23.pickingMode = PickingMode.Ignore; 
-            tutorial23.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
-            tutorial23Cover.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial31.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial32.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorial33.pickingMode = PickingMode.Position; 
-            tutorial33.style.opacity = 1f;
-        }
-        StartCoroutine(TutorialSequence3());
+        StartCoroutine(TutorialSequence(new VisualElement[] { tutorial23Cover, tutorial31, tutorial32, tutorial33 }));
     }
 
     private void Tutorial33Clicked()
     {
-        IEnumerator TutorialSequence4()
-        {
-            tutorial33.pickingMode = PickingMode.Ignore; 
-            tutorial33.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
-            tutorial33Cover.style.opacity = 1f;
-            yield return new WaitForSeconds(0.4f);
-            tutorialGo.pickingMode = PickingMode.Position; 
-            tutorialGo.style.opacity = 1f;
-        }
-        StartCoroutine(TutorialSequence4());
+        StartCoroutine(TutorialSequence(new VisualElement[] { tutorial33Cover, tutorialGo }));
+        VisibleDisplayComps(new VisualElement[] { tutorialGo }, Array.Empty<VisualElement>());
+        tutorialGo.SetEnabled(true);
     }
 
     private void TutorialGoClicked()
@@ -285,24 +270,14 @@ public class MainMenuManager : MonoBehaviour
         if (det == 0) // coming from level select
         {
             SoundManager.instance.PlayButtonClick();
-            levelSelectMenu.style.display = DisplayStyle.None;
-            titleElement.style.display = DisplayStyle.Flex;
-            startButton.style.display = DisplayStyle.Flex;
-            levelSelectButton.style.display = DisplayStyle.Flex;
-            creditsButton.style.display = DisplayStyle.Flex;
-            exitButton.style.display = DisplayStyle.Flex;
-            StartCoroutine(MoveStuff(2f, new Vector3(-1.25f, 1f, 0f)));
+            VisibleDisplayComps(new VisualElement[] { titleElement, startButton, levelSelectButton, creditsButton, exitButton }, new VisualElement[] { levelSelectMenu });
+            StartCoroutine(MovePlayerAndHole(2f, new Vector3(-1.25f, 1f, 0f)));
 
         }
         else if (det == 1) // coming from credits
         {
             SoundManager.instance.PlayButtonClick();
-            creditsMenu.style.display = DisplayStyle.None;
-            titleElement.style.display = DisplayStyle.Flex;
-            startButton.style.display = DisplayStyle.Flex;
-            levelSelectButton.style.display = DisplayStyle.Flex;
-            creditsButton.style.display = DisplayStyle.Flex;
-            exitButton.style.display = DisplayStyle.Flex;
+            VisibleDisplayComps(new VisualElement[] { titleElement, startButton, levelSelectButton, creditsButton, exitButton }, new VisualElement[] { creditsMenu });
         }
         else
         {
@@ -310,59 +285,59 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    private void VisibleDisplayComps(VisualElement[] listUICompsForVisible, VisualElement[] listUICompsForInvisible)
+    {
+        for (int i = 0; i < listUICompsForVisible.Length; i++)
+        {
+            listUICompsForVisible[i].style.display = DisplayStyle.Flex;
+        }
+        for (int i = 0; i < listUICompsForInvisible.Length; i++)
+        {
+            listUICompsForInvisible[i].style.display = DisplayStyle.None;
+        }
+    }
+
+    private void VisibleOpacityComps(VisualElement[] listUICompsForVisible, VisualElement[] listUICompsForInvisible)
+    {
+        for (int i = 0; i < listUICompsForVisible.Length; i++)
+        {
+            listUICompsForVisible[i].style.opacity = 1f;
+        }
+        for (int i = 0; i < listUICompsForInvisible.Length; i++)
+        {
+            listUICompsForInvisible[i].style.opacity = 0f;
+        }
+    }
+
     private void UnlockAllButtonClicked()
     {
         SoundManager.instance.PlayButtonClick();
-        levelTwoCover.style.opacity = 0f;
-        levelThreeCover.style.opacity = 0f;
-        levelFourCover.style.opacity = 0f;
-        levelFiveCover.style.opacity = 0f;
-        levelTwoButton.SetEnabled(true);
-        levelThreeButton.SetEnabled(true);
-        levelFourButton.SetEnabled(true);
-        levelFiveButton.SetEnabled(true);
+        VisibleOpacityComps(Array.Empty<VisualElement>(), new VisualElement[]{levelTwoCover, levelThreeCover, levelFourCover, levelFiveCover});
+
+        SetEnabled(new Button[] { levelTwoButton, levelThreeButton, levelFourButton, levelFiveButton }, Array.Empty<Button>());
     }
 
     private void CreditsButtonClicked()
     {
         SoundManager.instance.PlayButtonClick();
-        creditsMenu.style.display = DisplayStyle.Flex;
-        titleElement.style.display = DisplayStyle.None;
-        startButton.style.display = DisplayStyle.None;
-        levelSelectButton.style.display = DisplayStyle.None;
-        creditsButton.style.display = DisplayStyle.None;
-        exitButton.style.display = DisplayStyle.None;
+        VisibleDisplayComps(new VisualElement[] { creditsMenu }, new VisualElement[] { titleElement, startButton, levelSelectButton, creditsButton, exitButton });
     }
 
     private void LevelSelectButtonClicked()
     {
         SoundManager.instance.PlayButtonClick();
-        levelSelectMenu.style.display = DisplayStyle.Flex;
-        titleElement.style.display = DisplayStyle.None;
-        startButton.style.display = DisplayStyle.None;
-        levelSelectButton.style.display = DisplayStyle.None;
-        creditsButton.style.display = DisplayStyle.None;
-        exitButton.style.display = DisplayStyle.None;
+        VisibleDisplayComps(new VisualElement[] { levelSelectMenu }, new VisualElement[] { titleElement, startButton, levelSelectButton, creditsButton, exitButton });
+        VisibleOpacityComps(new VisualElement[] { levelTwoCover, levelThreeCover, levelFourCover, levelFiveCover }, new VisualElement[] { levelOneCover });
 
-        // disable levels locked
-        levelOneCover.style.opacity = 0f;
-        levelTwoCover.style.opacity = 1f;
-        levelThreeCover.style.opacity = 1f;
-        levelFourCover.style.opacity = 1f;
-        levelFiveCover.style.opacity = 1f;
+        SetEnabled(Array.Empty<Button>(), new Button[] { levelTwoButton, levelThreeButton, levelFourButton, levelFiveButton });
 
-        levelTwoButton.SetEnabled(false);
-        levelThreeButton.SetEnabled(false);
-        levelFourButton.SetEnabled(false);
-        levelFiveButton.SetEnabled(false);
-
-        // animation to move
-        StartCoroutine(MoveStuff(2f, new Vector3(1.25f, -1f, 0f)));
+        StartCoroutine(MovePlayerAndHole(2f, new Vector3(1.25f, -1f, 0f)));
     }
 
     private void ExitButtonClicked()
     {
         SoundManager.instance.PlayButtonClick();
+
         Application.Quit();
 #if UNITY_EDITOR
         EditorApplication.isPlaying=false;
@@ -416,7 +391,7 @@ public class MainMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         SoundManager.instance.PlayLoopMusic(mainMenuThemeClip, playerTransform, 0.1f);
-        StartCoroutine(MoveStuff(2.5f, Vector3.left));
+        StartCoroutine(MovePlayerAndHole(2.5f, Vector3.left));
         float duration = 4f;
         float elapsed = 0f;
 
@@ -433,7 +408,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    IEnumerator MoveStuff(float distance, Vector3 direction)
+    IEnumerator MovePlayerAndHole(float distance, Vector3 direction)
     {
 
         float duration = 1f;
@@ -457,6 +432,11 @@ public class MainMenuManager : MonoBehaviour
 
             yield return null;
         }
+    }
+    
+    private IEnumerator WaitForSecondsWrapper(float duration)
+    {
+        yield return new WaitForSeconds(duration);
     }
 
 }
